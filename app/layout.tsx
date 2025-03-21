@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist_Mono, Inter } from "next/font/google";
+import { Footer } from "../components/footer";
+import Header from "../components/header";
 import { cn } from "../lib/utils";
 import "./globals.css";
 
@@ -33,7 +35,17 @@ export default function RootLayout({
           disableTransitionOnChange
           enableSystem
         >
-          {children}
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <div className="flex-1 flex flex-col">
+              <div className="max-w-screen-lg px-8 mx-auto border-border border-dotted border-r-1 border-l-1 flex-1 w-full">
+                <div className="pt-10 pb-20 min-h-[calc(100%-2rem)] w-full">
+                  {children}
+                </div>
+              </div>
+            </div>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
