@@ -2,12 +2,27 @@ import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+
+const BLOCKS = [
+  { title: "Account and User Management" },
+  { title: "Badges" },
+  { title: "Banners" },
+  { title: "Bar Charts" },
+  { title: "Billing and Usage" },
+  { title: "Dialogs" },
+  {
+    title: "File Upload",
+    description: "Upload files to your app",
+    image: "/file-upload.webp",
+  },
+];
 
 export default function Home() {
   return (
     <div>
       <div className="border-border border-dotted border-b-1">
-        <div className="flex items-center justify-between max-w-3xl px-8 mx-auto border-border border-dotted border-r-1 border-l-1">
+        <div className="flex items-center justify-between max-w-screen-lg px-8 mx-auto border-border border-dotted border-r-1 border-l-1">
           <div className="flex space-x-2 py-5">
             <h1 className="text-xl font-semibold">blocks</h1>
             <Badge variant="outline" className="rounded-full text-xs">
@@ -38,9 +53,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div>
-        <div className="max-w-3xl px-8 mx-auto border-border border-dotted border-r-1 border-l-1">
-          <div className=" pt-10 h-[calc(100vh-8.5rem)]">
+      <div className="max-w-screen-lg px-8 mx-auto border-border border-dotted border-r-1 border-l-1">
+        <div className="pt-10 pb-20">
+          <div className="mb-15">
             <h1 className="text-foreground mb-4 text-4xl/[1.1] font-bold tracking-tight md:text-5xl/[1.1]">
               Building Blocks for the Web
             </h1>
@@ -49,11 +64,28 @@ export default function Home() {
               Works with all React frameworks. Open Source. Free forever.
             </p>
           </div>
+
+          <div className="grid grid-cols-3 gap-10">
+            {BLOCKS.map((block, index) => (
+              <div key={index} className="space-y-2">
+                <Image
+                  className="grayscale rounded-lg border border-border"
+                  src="/file-upload.webp"
+                  alt="blocks"
+                  width={1000}
+                  height={1000}
+                />
+                <div className="font-medium leading-none tracking-tight">
+                  {block.title}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       <div className="border-border border-dotted border-t-1">
-        <div className="max-w-3xl px-8 mx-auto border-border py-5 border-dotted border-r-1 border-l-1">
+        <div className="mx-auto max-w-screen-lg px-8 border-border border-dotted border-r-1 border-l-1">
           <Footer />
         </div>
       </div>

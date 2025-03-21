@@ -3,8 +3,8 @@ import { ThemeSwitcher } from "./theme-switcher";
 
 export function Footer() {
   return (
-    <footer className="border-grid flex justify-between items-center">
-      <div className="container">
+    <footer className="flex justify-between items-center py-5">
+      <div>
         <div className="text-balance text-center text-sm leading-loose text-muted-foreground md:text-left">
           Built by{" "}
           <a
