@@ -1,5 +1,6 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
+import rehypePrettyCode from "rehype-pretty-code";
 
 function CustomLink(props: any) {
   const href = props.href;
@@ -27,6 +28,11 @@ export function CustomMDX(props: any) {
   return (
     <MDXRemote
       {...props}
+      options={{
+        mdxOptions: {
+          rehypePlugins: [[rehypePrettyCode, {}]],
+        },
+      }}
       components={{ ...components, ...(props.components || {}) }}
     />
   );
