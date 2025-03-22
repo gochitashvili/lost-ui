@@ -36,6 +36,7 @@ export default async function Page({ params }: PageProps) {
           <Block
             key={block.name}
             name={block.name}
+            code={block.codeSource}
             codeSource={
               block.codeSource && (
                 <CustomMDX source={block.codeSource.toString()} />

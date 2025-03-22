@@ -7,7 +7,7 @@ const components = {
     <code
       data-line-numbers
       className={cn(
-        "relative rounded bg-black px-0] py-4 font-mono text-sm",
+        "relative rounded-lg bg-black dark:border dark:border-accent py-4 font-mono text-sm",
         className
       )}
       {...props}

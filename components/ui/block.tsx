@@ -3,9 +3,11 @@
 import blocksComponents from "@/content/blocks-components";
 import { BlocksProps } from "@/lib/blocks";
 import { cn } from "@/lib/utils";
-import { Monitor, Smartphone, Tablet } from "lucide-react";
+import { Copy, Monitor, Smartphone, Tablet } from "lucide-react";
 import * as React from "react";
 import { ImperativePanelHandle } from "react-resizable-panels";
+import { toast } from "sonner";
+import { Button } from "./button";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -24,6 +26,7 @@ export const Block = ({
   blocksId,
   blocksCategory,
   codeSource,
+  code,
 }: BlocksProps) => {
   const BlocksComponent = blocksComponents[blocksId];
   const [state, setState] = React.useState<BlockViewState>({
@@ -47,6 +50,38 @@ export const Block = ({
     }
   };
 
+  const handleCopy = () => {
+    let cleanCode = typeof code === "string" ? code : "";
+
+    if (cleanCode.startsWith("```")) {
+      try {
+        const codeBlockRegex = /^```(?:\w+)?\s*\n([\s\S]*?)\n```\s*$/;
+        const match = cleanCode.match(codeBlockRegex);
+
+        if (match && match[1]) {
+          cleanCode = match[1];
+        }
+      } catch (error) {
+        console.error("Error parsing markdown:", error);
+      }
+    }
+
+    navigator.clipboard
+      .writeText(cleanCode)
+      .then(() => {
+        toast.success("Code copied to clipboard", {
+          duration: 2000,
+          position: "bottom-right",
+        });
+      })
+      .catch(() => {
+        toast.error("Failed to copy code", {
+          duration: 2000,
+          position: "bottom-right",
+        });
+      });
+  };
+
   return (
     <>
       <div className="mt-8 first:mt-0">
@@ -60,7 +95,7 @@ export const Block = ({
               onValueChange={handleViewChange}
               className="hidden lg:flex"
             >
-              <TabsList className="h-7 items-center rounded-md p-0 px-[calc(theme(spacing.1)_-_2px)] py-[theme(spacing.1)]">
+              <TabsList className="h-7 items-center rounded-md p-0 px-[calc(theme(spacing.1)_-_2px)] py-[theme(spacing.1)] dark:bg-background dark:text-foreground dark:border">
                 <TabsTrigger
                   value="preview"
                   className="h-[1.45rem] rounded-sm px-2 text-xs"
@@ -75,7 +110,7 @@ export const Block = ({
                 </TabsTrigger>
               </TabsList>
             </Tabs>
-            <div className="hidden h-7 items-center gap-1.5 rounded-md border p-[2px] shadow-none lg:flex">
+            <div className="h-7 items-center gap-1.5 rounded-md border p-[2px] shadow-none lg:flex">
               <ToggleGroup
                 type="single"
                 value={state.size.toString()}
@@ -104,6 +139,17 @@ export const Block = ({
                 </ToggleGroupItem>
               </ToggleGroup>
             </div>
+
+            <div>
+              <Button
+                onClick={handleCopy}
+                variant="outline"
+                size="icon"
+                className="h-7 w-7"
+              >
+                <Copy className="h-3 w-3" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -112,13 +158,13 @@ export const Block = ({
           <ResizablePanelGroup direction="horizontal" className="relative">
             <ResizablePanel
               ref={resizablePanelRef}
-              className="relative rounded-lg border border-accent transition-all dark:bg-gray-950"
+              className="relative rounded-lg border border-accent transition-all dark:bg-background"
               defaultSize={100}
               minSize={30}
             >
               <div
                 className={cn(
-                  "rounded-lg bg-white transition-all dark:bg-gray-950",
+                  "rounded-lg bg-white transition-all dark:bg-background",
                   applyPadding ? "p-4 sm:p-10" : "overflow-hidden"
                 )}
               >
