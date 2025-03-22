@@ -37,7 +37,9 @@ export default async function Page({ params }: PageProps) {
             key={block.name}
             name={block.name}
             codeSource={
-              block.codeSource && <CustomMDX source={block.codeSource} />
+              block.codeSource && (
+                <CustomMDX source={block.codeSource.toString()} />
+              )
             }
             blocksId={block.blocksId}
             blocksCategory={block.blocksCategory}

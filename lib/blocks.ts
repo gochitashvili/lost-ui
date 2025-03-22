@@ -71,7 +71,7 @@ export function getBlocksMDX(blocksCategory: string) {
 
 export interface BlocksProps {
   name: string;
-  codeSource?: ReactNode;
+  codeSource?: string | ReactNode;
   copyCode?: ReactNode;
   blocksId: string;
   blocksCategory: string;

@@ -108,7 +108,7 @@ export const Block = ({
         </div>
       </div>
       <div className="relative mt-4 w-full rounded-lg" data-view={state.view}>
-        {state.view === "preview" ? (
+        {state.view === "preview" && (
           <ResizablePanelGroup direction="horizontal" className="relative">
             <ResizablePanel
               ref={resizablePanelRef}
@@ -128,15 +128,11 @@ export const Block = ({
             <ResizableHandle className="relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:bg-border after:transition-all after:hover:h-10 md:block" />
             <ResizablePanel defaultSize={0} minSize={0} />
           </ResizablePanelGroup>
-        ) : (
-          <div className="rounded-lg bg-transparent text-white overflow-auto max-h-[500px]">
-            {codeSource ? (
-              <pre className="text-sm">{codeSource}</pre>
-            ) : (
-              <div className="text-center p-6">
-                No code available for this component
-              </div>
-            )}
+        )}
+
+        {state.view === "code" && (
+          <div className="rounded-lg overflow-auto max-h-[500px]">
+            {codeSource}
           </div>
         )}
       </div>

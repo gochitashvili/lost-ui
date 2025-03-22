@@ -1,30 +1,21 @@
-import { MDXRemote } from "next-mdx-remote/rsc";
-import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 
-function CustomLink(props: any) {
-  const href = props.href;
-
-  if (href.startsWith("/")) {
-    return (
-      <Link href={href} {...props}>
-        {props.children}
-      </Link>
-    );
-  }
-
-  if (href.startsWith("#")) {
-    return <a {...props} />;
-  }
-
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
-}
-
 const components = {
-  a: CustomLink,
+  code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
+    <code
+      data-line-numbers
+      className={cn(
+        "relative rounded bg-black px-0] py-4 font-mono text-sm",
+        className
+      )}
+      {...props}
+    />
+  ),
 };
 
-export function CustomMDX(props: any) {
+export function CustomMDX(props: MDXRemoteProps) {
   return (
     <MDXRemote
       {...props}
