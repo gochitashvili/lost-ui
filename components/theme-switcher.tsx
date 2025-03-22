@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { motion } from "motion/react";
 import { useTheme } from "next-themes";
 import { type ComponentProps, useDeferredValue } from "react";
-import { cn } from "../lib/utils";
 
 const THEMES = [
   {

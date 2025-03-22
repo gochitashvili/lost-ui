@@ -1,18 +1,6 @@
+import { blocksCategoriesMetadata } from "@/content/blocks-categories";
 import Image from "next/image";
-
-const BLOCKS = [
-  { title: "Account and User Management" },
-  { title: "Badges" },
-  { title: "Banners" },
-  { title: "Bar Charts" },
-  { title: "Billing and Usage" },
-  { title: "Dialogs" },
-  {
-    title: "File Upload",
-    description: "Upload files to your app",
-    image: "/file-upload.webp",
-  },
-];
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -28,19 +16,21 @@ export default function Home() {
       </div>
 
       <div className="grid grid-cols-3 gap-10 w-full">
-        {BLOCKS.map((block, index) => (
-          <div key={index} className="space-y-2">
-            <Image
-              className="grayscale rounded-lg border border-border"
-              src="/file-upload.webp"
-              alt="blocks"
-              width={1000}
-              height={1000}
-            />
-            <div className="font-medium leading-none tracking-tight">
-              {block.title}
+        {blocksCategoriesMetadata.map((block) => (
+          <Link key={`${block.id}-${block.name}`} href={`/${block.id}`}>
+            <div className="space-y-2">
+              <Image
+                className="grayscale rounded-lg border border-border"
+                src={block.thumbnail}
+                alt={block.name}
+                width={1000}
+                height={1000}
+              />
+              <div className="font-medium leading-none tracking-tight">
+                {block.name}
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

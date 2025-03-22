@@ -1,5 +1,5 @@
-import { siteConfig } from "../config";
-import { ThemeSwitcher } from "./theme-switcher";
+import { ThemeSwitcher } from "@/components/theme-switcher";
+import { siteConfig } from "@/config";
 
 export function Footer() {
   return (

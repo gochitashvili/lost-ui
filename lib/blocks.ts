@@ -1,9 +1,9 @@
+import { blocksCategoriesMetadata } from "@/content/blocks-categories";
+import { blocksMetadata } from "@/content/blocks-metadata";
 import fs from "fs";
 import { notFound } from "next/navigation";
 import path from "path";
 import { ReactNode } from "react";
-import { blocksCategoriesMetadata } from "../content/blocks-categories";
-import { blocksMetadata } from "../content/blocks-metadata";
 
 type Metadata = {
   title: string;
