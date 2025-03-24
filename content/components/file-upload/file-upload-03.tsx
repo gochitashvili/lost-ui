@@ -104,13 +104,13 @@ export default function FileUpload03() {
             <div className="flex text-sm leading-6 text-muted-foreground">
               <p>Drag and drop or</p>
               <label
-                htmlFor="file-upload"
+                htmlFor="file-upload-03"
                 className="relative cursor-pointer rounded-sm pl-1 font-medium text-primary hover:underline hover:underline-offset-4"
               >
                 <span>choose file</span>
                 <input
-                  id="file-upload"
-                  name="file-upload"
+                  id="file-upload-03"
+                  name="file-upload-03"
                   type="file"
                   className="sr-only"
                   accept=".csv, .xlsx, .xls"

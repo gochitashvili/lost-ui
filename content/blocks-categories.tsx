@@ -35,7 +35,6 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   {
     id: categoryIds.FileUpload,
     name: "File Upload",
-
     thumbnail: "/thumbnails/file-upload.webp",
     hasCharts: false,
   },
