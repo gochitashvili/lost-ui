@@ -11,4 +11,9 @@ export const blocksMetadata: BlocksMetadata[] = [
     category: categoryIds.FileUpload,
     name: "File Upload 2",
   },
+  {
+    id: "file-upload-03",
+    category: categoryIds.FileUpload,
+    name: "File Upload 3",
+  },
 ];
