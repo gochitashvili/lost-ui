@@ -26,4 +26,25 @@ export const blocksMetadata: BlocksMetadata[] = [
     category: categoryIds.FileUpload,
     name: "File Upload 5",
   },
+
+  {
+    id: "form-layout-01",
+    category: categoryIds.FormLayout,
+    name: "Form Layout 1",
+  },
+  {
+    id: "form-layout-02",
+    category: categoryIds.FormLayout,
+    name: "Form Layout 2",
+  },
+  {
+    id: "form-layout-03",
+    category: categoryIds.FormLayout,
+    name: "Form Layout 3",
+  },
+  {
+    id: "form-layout-04",
+    category: categoryIds.FormLayout,
+    name: "Form Layout 4",
+  },
 ];

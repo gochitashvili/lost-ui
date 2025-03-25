@@ -14,4 +14,5 @@ export type BlocksMetadata = {
 
 export const categoryIds: { [key: string]: string } = {
   FileUpload: "file-upload",
+  FormLayout: "form-layout",
 };

@@ -83,8 +83,8 @@ export const Block = ({
   };
 
   return (
-    <>
-      <div className="mt-8 first:mt-0">
+    <div className="my-24 first:mt-8">
+      <div className="">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4 cursor-pointer font-medium text-foreground sm:text-lg">
             {name}
@@ -182,6 +182,6 @@ export const Block = ({
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };

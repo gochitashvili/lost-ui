@@ -22,7 +22,7 @@ export default async function Page({ params }: PageProps) {
       <div className="space-y-2">
         <Link
           href="/"
-          className="text-sm text-gray-500 flex gap-1 items-center"
+          className="text-sm text-muted-foreground flex gap-1 items-center"
         >
           <ArrowLeftIcon className="w-3 h-3" />
           <span>Back to blocks</span>
@@ -31,7 +31,7 @@ export default async function Page({ params }: PageProps) {
         <h1 className="text-3xl font-bold tracking-tight">{blocks.name}</h1>
       </div>
 
-      <div className="mt-12 overflow-hidden px-px pb-px">
+      <div className="mt-0 overflow-hidden px-px pb-px">
         {blocks.blocksData?.map((block) => (
           <Block
             key={block.name}
