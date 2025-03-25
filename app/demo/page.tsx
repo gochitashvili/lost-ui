@@ -75,7 +75,7 @@ export default function FileUpload() {
   };
 
   return (
-    <Card className="w-full mx-auto max-w-lg bg-background rounded-lg p-0 shadow-md">
+    <Card className="w-full max-w-lg bg-background rounded-lg p-0 shadow-md">
       <CardContent className="p-0">
         <div className="p-6 pb-4">
           <div className="flex justify-between items-start">
