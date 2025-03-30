@@ -47,4 +47,30 @@ export const blocksMetadata: BlocksMetadata[] = [
     category: categoryIds.FormLayout,
     name: "Form Layout 4",
   },
+
+  {
+    id: "login-01",
+    category: categoryIds.Login,
+    name: "Login 1",
+  },
+  {
+    id: "login-02",
+    category: categoryIds.Login,
+    name: "Login 2",
+  },
+  {
+    id: "login-03",
+    category: categoryIds.Login,
+    name: "Login 3",
+  },
+  {
+    id: "login-04",
+    category: categoryIds.Login,
+    name: "Login 4",
+  },
+  {
+    id: "login-05",
+    category: categoryIds.Login,
+    name: "Login 5",
+  },
 ];

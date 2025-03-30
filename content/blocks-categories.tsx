@@ -44,6 +44,12 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
     thumbnail: "/thumbnails/file-upload.webp",
     hasCharts: false,
   },
+  {
+    id: categoryIds.Login,
+    name: "Login",
+    thumbnail: "/thumbnails/file-upload.webp",
+    hasCharts: false,
+  },
 ];
 
 export const blocksCategoriesMetadata = initializeAndUpdateCategories();
