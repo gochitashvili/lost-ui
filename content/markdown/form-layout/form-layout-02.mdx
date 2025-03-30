@@ -1,7 +1,8 @@
+```tsx
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
   SelectContent,
@@ -12,7 +13,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 
-export default function Example() {
+export default function FormLayout02() {
   return (
     <>
       <form>
@@ -189,91 +190,56 @@ export default function Example() {
           <div className="sm:max-w-3xl md:col-span-2">
             <fieldset>
               <legend className="text-sm font-medium text-foreground dark:text-foreground">
-                Team
+                Newsletter
               </legend>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
-                Configure the types of team alerts you want to receive.
+              <p
+                id="newsletter-description"
+                className="mt-2 text-sm leading-6 text-muted-foreground dark:text-muted-foreground"
+              >
+                Change how often you want to receive updates from our
+                newsletter.
               </p>
-              <div className="mt-2">
-                <div className="flex items-center gap-x-3 py-1">
-                  <Checkbox
-                    id="team-requests"
-                    name="team-requests"
-                    defaultChecked
+              <RadioGroup defaultValue="never" className="mt-6">
+                <div className="flex items-center gap-x-3">
+                  <RadioGroupItem
+                    id="every-week"
+                    value="every-week"
+                    aria-describedby="newsletter-description"
                   />
                   <Label
-                    htmlFor="team-requests"
+                    htmlFor="every-week"
                     className="text-sm font-medium text-foreground dark:text-foreground"
                   >
-                    Team join requests
+                    Every week
                   </Label>
                 </div>
-                <div className="flex items-center gap-x-3 py-1">
-                  <Checkbox
-                    id="team-activity-digest"
-                    name="team-activity-digest"
+                <div className="flex items-center gap-x-3">
+                  <RadioGroupItem
+                    id="every-month"
+                    value="every-month"
+                    aria-describedby="newsletter-description"
                   />
                   <Label
-                    htmlFor="team-activity-digest"
+                    htmlFor="every-month"
                     className="text-sm font-medium text-foreground dark:text-foreground"
                   >
-                    Weekly team activity digest
+                    Every month
                   </Label>
                 </div>
-              </div>
-            </fieldset>
-            <fieldset className="mt-6">
-              <legend className="text-sm font-medium text-foreground dark:text-foreground">
-                Usage
-              </legend>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
-                Configure the types of usage alerts you want to receive.
-              </p>
-              <div className="mt-2">
-                <div className="flex items-center gap-x-3 py-1">
-                  <Checkbox id="api-requests" name="api-requests" />
-                  <Label
-                    htmlFor="api-requests"
-                    className="text-sm font-medium text-foreground dark:text-foreground"
-                  >
-                    API requests
-                  </Label>
-                </div>
-                <div className="flex items-center gap-x-3 py-1">
-                  <Checkbox
-                    id="workspace-execution"
-                    name="workspace-execution"
+                <div className="flex items-center gap-x-3">
+                  <RadioGroupItem
+                    id="never"
+                    value="never"
+                    aria-describedby="newsletter-description"
                   />
                   <Label
-                    htmlFor="workspace-execution"
+                    htmlFor="never"
                     className="text-sm font-medium text-foreground dark:text-foreground"
                   >
-                    Workspace loading times
+                    Never
                   </Label>
                 </div>
-                <div className="flex items-center gap-x-3 py-1">
-                  <Checkbox
-                    id="query-caching"
-                    name="query-caching"
-                    defaultChecked
-                  />
-                  <Label
-                    htmlFor="query-caching"
-                    className="text-sm font-medium text-foreground dark:text-foreground"
-                  >
-                    Query caching
-                  </Label>
-                </div>
-                <div className="flex items-center gap-x-3 py-1">
-                  <Checkbox id="storage" name="storage" defaultChecked />
-                  <Label
-                    htmlFor="storage"
-                    className="text-sm font-medium text-foreground dark:text-foreground"
-                  >
-                    Storage
-                  </Label>
-                </div>
-              </div>
+              </RadioGroup>
             </fieldset>
           </div>
         </div>
@@ -290,3 +256,4 @@ export default function Example() {
     </>
   );
 }
+```
