@@ -1,3 +1,6 @@
+import { FileUploadThumbnail } from "@/components/thumbnails/file-upload";
+import { FormLayoutThumbnail } from "@/components/thumbnails/form-layout";
+import { LoginThumbnail } from "@/components/thumbnails/login";
 import { blocksMetadata } from "./blocks-metadata";
 import {
   BlocksCategoryMetadata,
@@ -35,19 +38,19 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   {
     id: categoryIds.FileUpload,
     name: "File Upload",
-    thumbnail: "/thumbnails/file-upload.webp",
+    thumbnail: FileUploadThumbnail,
     hasCharts: false,
   },
   {
     id: categoryIds.FormLayout,
     name: "Form Layout",
-    thumbnail: "/thumbnails/file-upload.webp",
+    thumbnail: FormLayoutThumbnail,
     hasCharts: false,
   },
   {
     id: categoryIds.Login,
     name: "Login",
-    thumbnail: "/thumbnails/file-upload.webp",
+    thumbnail: LoginThumbnail,
     hasCharts: false,
   },
 ];

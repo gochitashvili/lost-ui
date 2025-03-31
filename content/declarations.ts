@@ -1,7 +1,7 @@
 export type BlocksCategoryMetadata = {
   id: string;
   name: string;
-  thumbnail: string;
+  thumbnail: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   count: string;
   hasCharts?: boolean;
 };

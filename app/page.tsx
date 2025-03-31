@@ -1,5 +1,4 @@
 import { blocksCategoriesMetadata } from "@/content/blocks-categories";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -19,13 +18,8 @@ export default function Home() {
         {blocksCategoriesMetadata.map((block) => (
           <Link key={`${block.id}-${block.name}`} href={`/${block.id}`}>
             <div className="space-y-2">
-              <Image
-                className="grayscale rounded-lg border border-border"
-                src={block.thumbnail}
-                alt={block.name}
-                width={1000}
-                height={1000}
-              />
+              <block.thumbnail className="grayscale rounded-lg border border-border" />
+
               <div className="font-medium leading-none tracking-tight">
                 {block.name}
               </div>
