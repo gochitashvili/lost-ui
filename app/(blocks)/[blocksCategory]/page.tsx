@@ -1,13 +1,40 @@
 import { Block } from "@/components/ui/block";
 import { CustomMDX } from "@/components/ui/mdx";
+import { blocksCategoriesMetadata } from "@/content/blocks-categories";
 import { getBlocks } from "@/lib/blocks";
 import { ArrowLeftIcon } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 type PageProps = {
   params: Promise<{ blocksCategory: string }>;
 };
+
+type Params = {
+  params: Promise<{
+    blocksCategory: string;
+  }>;
+};
+
+export async function generateStaticParams() {
+  return blocksCategoriesMetadata.map((category) => ({
+    blocksCategory: category.id,
+  }));
+}
+
+export async function generateMetadata(props: Params): Promise<Metadata> {
+  const params = await props.params;
+  const blocks = getBlocks({ blocksCategory: params.blocksCategory });
+
+  if (!blocks) {
+    return notFound();
+  }
+
+  return {
+    title: `${blocks.name} | blocks`,
+  };
+}
 
 export default async function Page({ params }: PageProps) {
   const { blocksCategory } = await params;
