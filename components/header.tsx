@@ -3,7 +3,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-export default function Header() {
+export function Header() {
   return (
     <div className="border-border border-dotted border-b-1">
       <div className="flex items-center justify-between max-w-screen-lg px-8 mx-auto border-border border-dotted border-r-1 border-l-1">
