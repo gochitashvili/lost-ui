@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowRight, Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { useState } from "react";
 
-export default function LoginForm() {
+export default function Login07() {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const toggleVisibility = () => setIsVisible((prevState) => !prevState);
@@ -28,7 +28,7 @@ export default function LoginForm() {
         <div className="space-y-5">
           <Button variant="outline" className="w-full justify-center gap-2">
             <GoogleIcon className="h-4 w-4" />
-            Connect with Google
+            Sign in with Google
           </Button>
 
           <div className="flex items-center gap-2">

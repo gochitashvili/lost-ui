@@ -1,17 +1,18 @@
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export default function Header() {
   return (
     <div className="border-border border-dotted border-b-1">
       <div className="flex items-center justify-between max-w-screen-lg px-8 mx-auto border-border border-dotted border-r-1 border-l-1">
-        <div className="flex space-x-2 py-5">
+        <Link href="/" className="flex space-x-2 py-5">
           <h1 className="text-xl font-semibold">blocks</h1>
           <Badge variant="outline" className="rounded-full text-xs">
             v0.0.0-alpha
           </Badge>
-        </div>
+        </Link>
         <a
           className={cn(buttonVariants({ variant: "outline" }), "rounded-full")}
           href="https://github.com/ephraimduncan/blocks"
