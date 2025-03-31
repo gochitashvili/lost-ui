@@ -1,12 +1,10 @@
-"use client";
-
 import { Logo } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 
-export default function LoginPage() {
+export default function Login06() {
   return (
     <div className="flex items-center justify-center p-4">
       <Card className="w-full max-w-sm rounded-4xl px-6 py-10 pt-14">

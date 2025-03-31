@@ -17,6 +17,7 @@ const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "login-03": components.Login03,
   "login-04": components.Login04,
   "login-05": components.Login05,
+  "login-06": components.Login06,
 };
 
 export default blocksComponents;

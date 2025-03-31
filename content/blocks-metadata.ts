@@ -73,4 +73,9 @@ export const blocksMetadata: BlocksMetadata[] = [
     category: categoryIds.Login,
     name: "Login 5",
   },
+  {
+    id: "login-06",
+    category: categoryIds.Login,
+    name: "Login 6",
+  },
 ];
