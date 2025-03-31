@@ -49,7 +49,7 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   },
   {
     id: categoryIds.Login,
-    name: "Login",
+    name: "Login & Signup",
     thumbnail: LoginThumbnail,
     hasCharts: false,
   },

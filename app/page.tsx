@@ -14,14 +14,18 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-10 w-full">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-10 w-full">
         {blocksCategoriesMetadata.map((block) => (
           <Link key={`${block.id}-${block.name}`} href={`/${block.id}`}>
-            <div className="space-y-2">
+            <div className="space-y-3">
               <block.thumbnail className="grayscale rounded-lg border border-border" />
-
-              <div className="font-medium leading-none tracking-tight">
-                {block.name}
+              <div className="flex flex-col gap-1">
+                <div className="font-medium text-base leading-none tracking-tight">
+                  {block.name}
+                </div>
+                <div className="text-muted-foreground text-sm">
+                  {block.count} blocks
+                </div>
               </div>
             </div>
           </Link>
