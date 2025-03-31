@@ -11,6 +11,7 @@ const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "form-layout-02": components.FormLayout02,
   "form-layout-03": components.FormLayout03,
   "form-layout-04": components.FormLayout04,
+  "form-layout-05": components.FormLayout05,
 
   "login-01": components.Login01,
   "login-02": components.Login02,

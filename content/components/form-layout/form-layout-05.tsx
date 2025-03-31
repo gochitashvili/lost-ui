@@ -73,7 +73,7 @@ const plans = [
   },
 ];
 
-export default function FormLayout05() {
+export default function WorkspaceForm() {
   const [selected, setSelected] = useState(plans[0]);
 
   return (
