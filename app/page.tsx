@@ -18,7 +18,7 @@ export default function Home() {
         {blocksCategoriesMetadata.map((block) => (
           <Link key={`${block.id}-${block.name}`} href={`/${block.id}`}>
             <div className="space-y-3">
-              <block.thumbnail className="grayscale rounded-lg border border-border" />
+              <block.thumbnail className="w-full grayscale rounded-lg border border-border" />
               <div className="flex flex-col gap-1">
                 <div className="font-medium text-base leading-none tracking-tight">
                   {block.name}
