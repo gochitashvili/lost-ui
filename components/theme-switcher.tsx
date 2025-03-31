@@ -3,7 +3,6 @@
 
 import { cn } from "@/lib/utils";
 import { Monitor, Moon, Sun } from "lucide-react";
-import { motion } from "motion/react";
 import { useTheme } from "next-themes";
 import { type ComponentProps, useDeferredValue } from "react";
 
@@ -65,16 +64,7 @@ function ThemeSwitcher({
             type="button"
           >
             {isActive && (
-              <motion.div
-                className="-z-1 absolute inset-0 rounded-full bg-muted"
-                layoutId="activeTheme"
-                transition={{
-                  type: "spring",
-                  stiffness: 800,
-                  damping: 80,
-                  mass: 4,
-                }}
-              />
+              <div className="-z-1 absolute inset-0 rounded-full bg-muted" />
             )}
             <Icon
               className={cn(
