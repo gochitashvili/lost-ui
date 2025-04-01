@@ -35,7 +35,7 @@ export const Block = ({
   });
   const resizablePanelRef = React.useRef<ImperativePanelHandle>(null);
 
-  const noPaddingCategories = ["page-shells", "logins"];
+  const noPaddingCategories = ["stats"];
   const applyPadding = !noPaddingCategories.includes(blocksCategory);
 
   const handleViewChange = (value: string) => {

@@ -98,4 +98,55 @@ export const blocksMetadata: BlocksMetadata[] = [
     category: categoryIds.Login,
     name: "Signup with Role Selection",
   },
+
+  {
+    id: "stats-01",
+    category: categoryIds.Stats,
+    name: "Stats with trending",
+  },
+  {
+    id: "stats-02",
+    category: categoryIds.Stats,
+    name: "Stats with borders",
+  },
+  {
+    id: "stats-03",
+    category: categoryIds.Stats,
+    name: "Stats cards",
+  },
+  {
+    id: "stats-04",
+    category: categoryIds.Stats,
+    name: "Stats cards with badges",
+  },
+  {
+    id: "stats-05",
+    category: categoryIds.Stats,
+    name: "Stats cards with links",
+  },
+  {
+    id: "stats-06",
+    category: categoryIds.Stats,
+    name: "Stats cards with status",
+  },
+  {
+    id: "stats-07",
+    category: categoryIds.Stats,
+    name: "Stats cards with circular progress",
+  },
+  {
+    id: "stats-08",
+    category: categoryIds.Stats,
+    name: "Stats card with circular progress and links",
+  },
+  {
+    id: "stats-09",
+    category: categoryIds.Stats,
+    name: "Stats card with progress",
+  },
+  {
+    id: "stats-10",
+    category: categoryIds.Stats,
+    name: "Stats card with area chart",
+  },
 ];
