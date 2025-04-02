@@ -1,3 +1,5 @@
+"use client";
+
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { siteConfig } from "@/config";
 
@@ -14,7 +16,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 className="font-medium underline underline-offset-4"
-                data-s:event="Twitter Link Click"
+                onClick={() => window.stonks?.event("Twitter Link Click")}
               >
                 ephraimduncan_
               </a>
@@ -24,7 +26,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 className="font-medium underline underline-offset-4"
-                data-s:event="GitHub Link Click"
+                onClick={() => window.stonks?.event("GitHub Link Click")}
               >
                 GitHub
               </a>

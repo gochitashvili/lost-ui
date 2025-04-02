@@ -1,3 +1,5 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -21,7 +23,7 @@ export function Header() {
           href="https://github.com/ephraimduncan/blocks"
           rel="noreferrer"
           target="_blank"
-          data-s:event="GitHub Link Click"
+          onClick={() => window.stonks?.event("GitHub Link Click")}
         >
           <svg
             aria-hidden="true"
