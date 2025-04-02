@@ -149,4 +149,20 @@ export const blocksMetadata: BlocksMetadata[] = [
     category: categoryIds.Stats,
     name: "Stats card with area chart",
   },
+
+  {
+    id: "grid-list-01",
+    category: categoryIds.GridList,
+    name: "Simple Card with Dropdown",
+  },
+  {
+    id: "grid-list-02",
+    category: categoryIds.GridList,
+    name: "Link cards",
+  },
+  {
+    id: "grid-list-03",
+    category: categoryIds.GridList,
+    name: "Link cards with icons",
+  },
 ];

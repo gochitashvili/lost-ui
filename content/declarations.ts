@@ -17,4 +17,5 @@ export const categoryIds: { [key: string]: string } = {
   FormLayout: "form-layout",
   Login: "login",
   Stats: "stats",
+  GridList: "grid-list",
 };

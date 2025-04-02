@@ -61,6 +61,12 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
     thumbnail: StatsThumbnail,
     hasCharts: false,
   },
+  {
+    id: categoryIds.GridList,
+    name: "Grid List",
+    thumbnail: StatsThumbnail,
+    hasCharts: false,
+  },
 ];
 
 export const blocksCategoriesMetadata = initializeAndUpdateCategories();
