@@ -21,6 +21,7 @@ export function Header() {
           href="https://github.com/ephraimduncan/blocks"
           rel="noreferrer"
           target="_blank"
+          data-s:event="GitHub Link Click"
         >
           <svg
             aria-hidden="true"

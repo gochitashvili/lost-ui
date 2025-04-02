@@ -14,8 +14,9 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 className="font-medium underline underline-offset-4"
+                data-s:event="Twitter Link Click"
               >
-                ephraimduncan
+                ephraimduncan_
               </a>
               . The source code is available on{" "}
               <a
@@ -23,6 +24,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 className="font-medium underline underline-offset-4"
+                data-s:event="GitHub Link Click"
               >
                 GitHub
               </a>
