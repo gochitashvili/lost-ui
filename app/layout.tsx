@@ -2,10 +2,10 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
-import { OpenPanelComponent } from "@openpanel/nextjs";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist_Mono, Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const fontSans = Inter({
@@ -50,12 +50,7 @@ export default function RootLayout({
           </div>
           <Toaster />
 
-          <OpenPanelComponent
-            clientId="8c951082-04c8-4017-aaf2-e659393f19b5"
-            trackScreenViews={true}
-            trackOutgoingLinks={true}
-            trackAttributes={true}
-          />
+          <Script defer src="https://assets.onedollarstats.com/stonks.js" />
         </ThemeProvider>
       </body>
     </html>
