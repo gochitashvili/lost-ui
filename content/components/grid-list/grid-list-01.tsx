@@ -61,7 +61,7 @@ export default function GridList01() {
                       <DropdownMenuItem>Edit collection</DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>Share collection</DropdownMenuItem>
-                      <DropdownMenuItem className="text-destructive">
+                      <DropdownMenuItem className="text-destructive hover:bg-destructive/10 hover:text-destructive focus:bg-destructive/10 focus:text-destructive">
                         Delete collection
                       </DropdownMenuItem>
                     </DropdownMenuContent>

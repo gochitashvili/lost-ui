@@ -1,6 +1,7 @@
 "use client";
 
-import blocksComponents from "@/content/blocks-components";
+import { OpenInV0Button } from "@/components/open-in-v0-button";
+import { blocksComponents } from "@/content/blocks-components";
 import { BlocksProps } from "@/lib/blocks";
 import { cn } from "@/lib/utils";
 import { Copy, Monitor, Smartphone, Tablet } from "lucide-react";
@@ -15,7 +16,6 @@ import {
 } from "./resizable";
 import { Tabs, TabsList, TabsTrigger } from "./tabs";
 import { ToggleGroup, ToggleGroupItem } from "./toggle-group";
-
 interface BlockViewState {
   view: "preview" | "code";
   size: number;
@@ -110,10 +110,11 @@ export const Block = ({
                 </TabsTrigger>
               </TabsList>
             </Tabs>
-            <div className="h-7 items-center gap-1.5 rounded-md border p-[2px] shadow-none lg:flex">
+            <div className="h-7 items-center gap-1.5 rounded-lg border p-0.5 shadow-none lg:flex">
               <ToggleGroup
                 type="single"
                 value={state.size.toString()}
+                className="gap-0.5"
                 onValueChange={handleSizeChange}
               >
                 <ToggleGroupItem
@@ -150,6 +151,8 @@ export const Block = ({
                 <Copy className="h-3 w-3" />
               </Button>
             </div>
+
+            <OpenInV0Button name={blocksId} />
           </div>
         </div>
       </div>

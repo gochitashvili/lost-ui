@@ -1,6 +1,6 @@
 import * as components from "./components";
 
-const blocksComponents: { [blocksId: string]: React.ElementType } = {
+export const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "file-upload-01": components.FileUpload01,
   "file-upload-02": components.FileUpload02,
   "file-upload-03": components.FileUpload03,
@@ -38,5 +38,3 @@ const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "grid-list-02": components.GridList02,
   "grid-list-03": components.GridList03,
 };
-
-export default blocksComponents;
