@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export function Header() {
   return (
-    <div className="border-border border-dotted border-b-1">
+    <div className="sticky top-0 z-50 bg-background border-border border-dotted border-b-1">
       <div className="flex items-center justify-between max-w-screen-lg px-4 sm:px-8 mx-auto border-border border-dotted border-r-1 border-l-1">
         <Link href="/" className="flex space-x-2 py-5 items-center">
           <h1 className="text-xl font-semibold">blocks</h1>
