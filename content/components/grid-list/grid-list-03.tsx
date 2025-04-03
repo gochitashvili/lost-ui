@@ -1,51 +1,81 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import {
+  ArrowRight,
   ArrowUpRight,
-  Bell,
-  FolderKanban,
-  Settings,
-  UserCog,
+  CheckCircle,
+  ContactRound,
+  Hand,
+  Server,
+  UserCircle,
 } from "lucide-react";
 
 const actions = [
   {
-    title: "Manage Profile",
+    title: "Getting Started",
+    description:
+      "Everything you need to know to get started and get to work in ChatCloud.",
     href: "#",
-    icon: UserCog,
-    iconForeground: "text-blue-700",
-    iconBackground: "bg-blue-50 dark:bg-blue-950/30",
-    ringColorClass: "ring-blue-700/30",
-  },
-  {
-    title: "View Projects",
-    href: "#",
-    icon: FolderKanban,
+    icon: ArrowRight,
     iconForeground: "text-green-700",
     iconBackground: "bg-green-50 dark:bg-green-950/30",
     ringColorClass: "ring-green-700/30",
   },
   {
-    title: "Check Notifications",
+    title: "Admin Settings",
+    description:
+      "Learn how to manage your current workspace or your enterprise space.",
     href: "#",
-    icon: Bell,
+    icon: UserCircle,
     iconForeground: "text-red-700",
     iconBackground: "bg-red-50 dark:bg-red-950/30",
     ringColorClass: "ring-red-700/30",
   },
   {
-    title: "Access Settings",
+    title: "Server Setup",
+    description:
+      "Connect, simplify, and automate. Discover the power of apps and tools.",
     href: "#",
-    icon: Settings,
-    iconForeground: "text-purple-700",
-    iconBackground: "bg-purple-50 dark:bg-purple-950/30",
-    ringColorClass: "ring-purple-700/30",
+    icon: Server,
+    iconForeground: "text-blue-700",
+    iconBackground: "bg-blue-50 dark:bg-blue-950/30",
+    ringColorClass: "ring-blue-700/30",
+  },
+  {
+    title: "Login and Verification",
+    description:
+      "Read on to learn how to sign in with your email address, or your Apple or Google.",
+    href: "#",
+    icon: CheckCircle,
+    iconForeground: "text-sky-700",
+    iconBackground: "bg-sky-50 dark:bg-sky-950/30",
+    ringColorClass: "ring-sky-700/30",
+  },
+  {
+    title: "Account Setup",
+    description:
+      "Adjust your profile and preferences to make ChatCloud work just for you.",
+    href: "#",
+    icon: ContactRound,
+    iconForeground: "text-pink-700",
+    iconBackground: "bg-pink-50 dark:bg-pink-950/30",
+    ringColorClass: "ring-pink-700/30",
+  },
+  {
+    title: "Trust & Safety",
+    description:
+      "Trust on our current database and learn how we distribute your data.",
+    href: "#",
+    icon: Hand,
+    iconForeground: "text-orange-700",
+    iconBackground: "bg-orange-50 dark:bg-orange-950/30",
+    ringColorClass: "ring-orange-700/30",
   },
 ];
 
 export default function ActionGrid() {
   return (
-    <div className="overflow-hidden rounded-[1rem] bg-muted shadow-sm sm:grid sm:grid-cols-2 sm:gap-0.5 space-y-0.5 sm:space-y-0 p-0.5">
+    <div className="overflow-hidden rounded-[1rem] bg-muted shadow-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-0.5 space-y-0.5 sm:space-y-0 p-0.5">
       {actions.map((action) => (
         <Card
           key={action.title}
@@ -74,8 +104,7 @@ export default function ActionGrid() {
                 </a>
               </h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Pariatur, perspiciatis?
+                {action.description}
               </p>
             </div>
             <span
