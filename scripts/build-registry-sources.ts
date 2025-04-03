@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { registryItemSchema } from "shadcn/registry";
 
 const baseDir = path.resolve(__dirname, "..");
 const registryJsonPath = path.resolve(baseDir, "public", "index.json");
@@ -188,7 +189,9 @@ function buildSourceFiles() {
       const sourceFile = processRegistryItem(name, item, registry);
       const outputPath = path.join(registrySourcesDir, `${name}.json`);
       try {
-        fs.writeFileSync(outputPath, JSON.stringify(sourceFile, null, 2));
+        const parsed = registryItemSchema.parse(sourceFile);
+
+        fs.writeFileSync(outputPath, JSON.stringify(parsed, null, 2));
         console.log(`Generated source file for: ${name}`);
         count++;
       } catch (error) {
