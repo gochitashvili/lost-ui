@@ -1,14 +1,14 @@
 import { blocksComponents } from "@/content/blocks-components";
 import { notFound } from "next/navigation";
 
-interface BlockPreviewPageProps {
-  params: {
+type Params = {
+  params: Promise<{
     blockId: string;
-  };
-}
+  }>;
+};
 
-export default function BlockPreviewPage({ params }: BlockPreviewPageProps) {
-  const { blockId } = params;
+export default async function BlockPreviewPage({ params }: Params) {
+  const { blockId } = await params;
   const BlocksComponent = blocksComponents[blockId];
 
   if (!BlocksComponent) {
