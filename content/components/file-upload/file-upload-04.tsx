@@ -1,3 +1,5 @@
+"use client";
+
 import { File, FileSpreadsheet, X } from "lucide-react";
 import { ChangeEvent, DragEvent, useRef, useState } from "react";
 import { toast } from "sonner";

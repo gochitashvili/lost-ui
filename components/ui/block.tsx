@@ -1,52 +1,35 @@
 "use client";
 
 import { OpenInV0Button } from "@/components/open-in-v0-button";
-import { blocksComponents } from "@/content/blocks-components";
 import { BlocksProps } from "@/lib/blocks";
 import { cn } from "@/lib/utils";
 import { Copy, Monitor, Smartphone, Tablet } from "lucide-react";
 import * as React from "react";
-import { ImperativePanelHandle } from "react-resizable-panels";
 import { toast } from "sonner";
 import { Button } from "./button";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "./resizable";
 import { Tabs, TabsList, TabsTrigger } from "./tabs";
 import { ToggleGroup, ToggleGroupItem } from "./toggle-group";
+
+type BlockViewSize = "desktop" | "tablet" | "mobile";
+
 interface BlockViewState {
   view: "preview" | "code";
-  size: number;
+  size: BlockViewSize;
 }
 
-export const Block = ({
-  name,
-  blocksId,
-  blocksCategory,
-  codeSource,
-  code,
-}: BlocksProps) => {
-  const BlocksComponent = blocksComponents[blocksId];
+export const Block = ({ name, blocksId, codeSource, code }: BlocksProps) => {
   const [state, setState] = React.useState<BlockViewState>({
     view: "preview",
-    size: 100,
+    size: "desktop",
   });
-  const resizablePanelRef = React.useRef<ImperativePanelHandle>(null);
-
-  const noPaddingCategories = ["stats"];
-  const applyPadding = !noPaddingCategories.includes(blocksCategory);
 
   const handleViewChange = (value: string) => {
     setState((prev) => ({ ...prev, view: value as "preview" | "code" }));
   };
 
   const handleSizeChange = (value: string) => {
-    const size = parseInt(value);
-    setState((prev) => ({ ...prev, size }));
-    if (resizablePanelRef.current) {
-      resizablePanelRef.current.resize(size);
+    if (value) {
+      setState((prev) => ({ ...prev, size: value as BlockViewSize }));
     }
   };
 
@@ -113,26 +96,26 @@ export const Block = ({
             <div className="h-7 items-center gap-1.5 rounded-lg border p-0.5 shadow-none lg:flex">
               <ToggleGroup
                 type="single"
-                value={state.size.toString()}
+                value={state.size}
                 className="gap-0.5"
                 onValueChange={handleSizeChange}
               >
                 <ToggleGroupItem
-                  value="100"
+                  value="desktop"
                   className="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
                   title="Desktop"
                 >
                   <Monitor className="h-3.5 w-3.5" />
                 </ToggleGroupItem>
                 <ToggleGroupItem
-                  value="60"
+                  value="tablet"
                   className="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
                   title="Tablet"
                 >
                   <Tablet className="h-3.5 w-3.5" />
                 </ToggleGroupItem>
                 <ToggleGroupItem
-                  value="30"
+                  value="mobile"
                   className="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
                   title="Mobile"
                 >
@@ -158,25 +141,28 @@ export const Block = ({
       </div>
       <div className="relative mt-4 w-full rounded-lg" data-view={state.view}>
         {state.view === "preview" && (
-          <ResizablePanelGroup direction="horizontal" className="relative">
-            <ResizablePanel
-              ref={resizablePanelRef}
-              className="relative rounded-lg border border-accent transition-all dark:bg-background"
-              defaultSize={100}
-              minSize={30}
-            >
-              <div
-                className={cn(
-                  "rounded-lg bg-white transition-all dark:bg-background",
-                  applyPadding ? "p-4 sm:p-10" : "overflow-hidden"
-                )}
-              >
-                <BlocksComponent />
-              </div>
-            </ResizablePanel>
-            <ResizableHandle className="relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:bg-border after:transition-all after:hover:h-10 md:block" />
-            <ResizablePanel defaultSize={0} minSize={0} />
-          </ResizablePanelGroup>
+          <div className="relative rounded-lg border border-accent dark:bg-background h-[930px] overflow-auto">
+            <iframe
+              src={`/blocks/preview/${blocksId}`}
+              title={`${name} preview`}
+              className={cn(
+                "w-full h-full transition-all duration-300 ease-in-out mx-auto",
+                {
+                  "max-w-full": state.size === "desktop",
+                  "max-w-[768px]": state.size === "tablet",
+                  "max-w-[390px]": state.size === "mobile",
+                }
+              )}
+              style={{
+                width:
+                  state.size === "tablet"
+                    ? "768px"
+                    : state.size === "mobile"
+                    ? "390px"
+                    : "100%",
+              }}
+            />
+          </div>
         )}
 
         {state.view === "code" && (
