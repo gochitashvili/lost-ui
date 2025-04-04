@@ -7,6 +7,14 @@ type Params = {
   }>;
 };
 
+export async function generateStaticParams() {
+  const blockIds = Object.keys(blocksComponents);
+
+  return blockIds.map((blockId) => ({
+    blockId: blockId,
+  }));
+}
+
 export default async function BlockPreviewPage({ params }: Params) {
   const { blockId } = await params;
   const BlocksComponent = blocksComponents[blockId];
