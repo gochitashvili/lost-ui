@@ -113,7 +113,7 @@ export const Block = ({
               {name}
             </a>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center">
             <Tabs
               value={state.view}
               onValueChange={handleViewChange}
@@ -207,7 +207,7 @@ export const Block = ({
 
       <div className="relative mt-4 w-full">
         {state.view === "preview" && (
-          <div className="group-data-[view=code]/block-view-wrapper:hidden md:h-[--height]">
+          <div className="md:h-[--height]">
             <div className="grid w-full gap-4">
               <ResizablePanelGroup
                 direction="horizontal"

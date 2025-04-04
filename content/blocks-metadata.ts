@@ -67,7 +67,7 @@ export const blocksMetadata: BlocksMetadata[] = [
     id: "login-01",
     category: categoryIds.Login,
     name: "Simple Email Login with Google",
-    iframeHeight: "450px",
+    iframeHeight: "420px",
   },
   {
     id: "login-02",
@@ -195,6 +195,6 @@ export const blocksMetadata: BlocksMetadata[] = [
     id: "grid-list-03",
     category: categoryIds.GridList,
     name: "Link cards with icons",
-    iframeHeight: "420px",
+    iframeHeight: "500px",
   },
 ];
