@@ -76,6 +76,9 @@ export interface BlocksProps {
   copyCode?: ReactNode;
   blocksId: string;
   blocksCategory: string;
+  meta?: {
+    iframeHeight?: string;
+  };
 }
 
 export function getBlocks(params: { blocksCategory: string }) {
@@ -96,6 +99,9 @@ export function getBlocks(params: { blocksCategory: string }) {
           codeSource,
           name: block.name,
           blocksId: block.id,
+          meta: {
+            iframeHeight: block.iframeHeight,
+          },
           blocksCategory: block.category,
         });
       } catch (err) {

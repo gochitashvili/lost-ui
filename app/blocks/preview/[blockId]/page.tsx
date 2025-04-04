@@ -24,7 +24,7 @@ export default async function BlockPreviewPage({ params }: Params) {
   }
 
   return (
-    <div className="flex w-full items-center justify-center min-h-screen p-4">
+    <div className="flex w-full items-center justify-center p-4">
       <BlocksComponent />
     </div>
   );
