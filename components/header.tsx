@@ -23,7 +23,7 @@ export function Header() {
           href="https://github.com/ephraimduncan/blocks"
           rel="noreferrer"
           target="_blank"
-          onClick={() => window.stonks?.event("GitHub Link Click")}
+          data-umami-event="View GitHub Repository"
         >
           <svg
             aria-hidden="true"

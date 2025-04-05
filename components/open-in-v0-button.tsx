@@ -20,6 +20,7 @@ export function OpenInV0Button({
         }/r/${name}.json`}
         target="_blank"
         rel="noreferrer"
+        data-umami-event="Open Block in v0"
       >
         Open in{" "}
         <svg

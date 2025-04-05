@@ -123,12 +123,14 @@ export const Block = ({
                 <TabsTrigger
                   value="preview"
                   className="h-[1.45rem] rounded-sm px-2 text-xs"
+                  data-umami-event="View Block Preview"
                 >
                   Preview
                 </TabsTrigger>
                 <TabsTrigger
                   value="code"
                   className="h-[1.45rem] rounded-sm px-2 text-xs"
+                  data-umami-event="View Block Code"
                 >
                   Code
                 </TabsTrigger>
@@ -150,6 +152,7 @@ export const Block = ({
                   value="desktop"
                   className="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
                   title="Desktop"
+                  data-umami-event="Set Preview Desktop"
                 >
                   <Monitor className="h-3.5 w-3.5" />
                 </ToggleGroupItem>
@@ -157,6 +160,7 @@ export const Block = ({
                   value="tablet"
                   className="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
                   title="Tablet"
+                  data-umami-event="Set Preview Tablet"
                 >
                   <Tablet className="h-3.5 w-3.5" />
                 </ToggleGroupItem>
@@ -164,6 +168,7 @@ export const Block = ({
                   value="mobile"
                   className="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
                   title="Mobile"
+                  data-umami-event="Set Preview Mobile"
                 >
                   <Smartphone className="h-3.5 w-3.5" />
                 </ToggleGroupItem>
@@ -174,6 +179,7 @@ export const Block = ({
                   className="h-[22px] w-[22px] rounded-sm p-0"
                   asChild
                   title="Open in New Tab"
+                  data-umami-event="Open Block Fullscreen Preview"
                 >
                   <Link href={`/blocks/preview/${blocksId}`} target="_blank">
                     <span className="sr-only">Open in New Tab</span>
@@ -192,6 +198,7 @@ export const Block = ({
                 variant="outline"
                 size="icon"
                 className="h-7 w-7"
+                data-umami-event="Copy Block Code"
               >
                 <Copy className="h-3 w-3" />
               </Button>

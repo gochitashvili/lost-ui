@@ -16,7 +16,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 className="font-medium underline underline-offset-4"
-                onClick={() => window.stonks?.event("Twitter Link Click")}
+                data-umami-event="View Twitter Profile"
               >
                 ephraimduncan_
               </a>
@@ -26,7 +26,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 className="font-medium underline underline-offset-4"
-                onClick={() => window.stonks?.event("GitHub Link Click")}
+                data-umami-event="View GitHub Repository"
               >
                 GitHub
               </a>

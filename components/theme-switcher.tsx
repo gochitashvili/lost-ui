@@ -62,6 +62,7 @@ function ThemeSwitcher({
             onClick={() => setTheme(type)}
             title={`Switch to ${label}`}
             type="button"
+            data-umami-event={`Switch Theme to ${type}`}
           >
             {isActive && (
               <div className="-z-1 absolute inset-0 rounded-full bg-muted" />
