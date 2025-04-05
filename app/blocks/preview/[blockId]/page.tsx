@@ -1,5 +1,6 @@
 import { blocksComponents } from "@/content/blocks-components";
 import { notFound } from "next/navigation";
+import PreviewThemeSwitcher from "./theme-switcher";
 
 type Params = {
   params: Promise<{
@@ -24,8 +25,9 @@ export default async function BlockPreviewPage({ params }: Params) {
   }
 
   return (
-    <div className="flex w-full items-center justify-center">
+    <div className="relative flex h-screen w-full items-center justify-center">
       <BlocksComponent />
+      <PreviewThemeSwitcher />
     </div>
   );
 }

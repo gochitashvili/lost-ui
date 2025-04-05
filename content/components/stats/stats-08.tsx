@@ -46,7 +46,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function BudgetTracker() {
+export default function Stats08() {
   return (
     <div className="flex items-center justify-center p-10 w-full">
       <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 w-full">

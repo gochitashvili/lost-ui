@@ -27,7 +27,7 @@ const data = [
   },
 ];
 
-export default function StatsCardsWithLinks() {
+export default function Stats05() {
   return (
     <div className="flex items-center justify-center p-10 w-full">
       <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full">
