@@ -1,4 +1,5 @@
 import "@/app/globals.css";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -37,6 +38,7 @@ export default function RootLayout({
         >
           {children}
 
+          <TailwindIndicator />
           <Toaster />
           <Script defer src="https://assets.onedollarstats.com/stonks.js" />
         </ThemeProvider>
