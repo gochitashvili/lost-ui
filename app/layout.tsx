@@ -18,8 +18,52 @@ const fontMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "blocks",
+  title: {
+    default: "blocks.so",
+    template: `%s - blocks.so`,
+  },
+  metadataBase: new URL("https://blocks.so"),
   description: "blocks.so",
+  keywords: [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "Server Components",
+    "Radix UI",
+    "shadcn",
+    "blocks.so",
+    "blocks",
+  ],
+  authors: [
+    {
+      name: "Ephraim Duncan",
+      url: "https://ephraimduncan.com",
+    },
+  ],
+  creator: "Ephraim Duncan",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://blocks.so",
+    title: "blocks.so",
+    description: "blocks.so",
+    siteName: "blocks.so",
+    images: [
+      {
+        url: "https://blocks.so/og",
+        width: 1200,
+        height: 630,
+        alt: "blocks.so",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "blocks.so",
+    description: "blocks.so",
+    images: ["https://blocks.so/og"],
+    creator: "Ephraim Duncan",
+  },
 };
 
 export default function RootLayout({
