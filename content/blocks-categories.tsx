@@ -50,6 +50,12 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
     hasCharts: false,
   },
   {
+    id: categoryIds.GridList,
+    name: "Grid List",
+    thumbnail: StatsThumbnail,
+    hasCharts: false,
+  },
+  {
     id: categoryIds.Login,
     name: "Login & Signup",
     thumbnail: LoginThumbnail,
@@ -58,12 +64,6 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   {
     id: categoryIds.Stats,
     name: "Stats",
-    thumbnail: StatsThumbnail,
-    hasCharts: false,
-  },
-  {
-    id: categoryIds.GridList,
-    name: "Grid List",
     thumbnail: StatsThumbnail,
     hasCharts: false,
   },
