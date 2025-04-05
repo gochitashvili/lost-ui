@@ -1,6 +1,7 @@
 import "@/app/globals.css";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import Script from "next/script";
 
 export default function BlockLayout({
   children,
@@ -18,6 +19,14 @@ export default function BlockLayout({
         </div>
       </div>
       <Footer />
+
+      {process.env.NODE_ENV === "production" && (
+        <Script
+          async
+          src="https://analytics.duncan.land/script.js"
+          data-website-id="1671be23-4bb0-43b1-9632-962a463265e8"
+        />
+      )}
     </div>
   );
 }

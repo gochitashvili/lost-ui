@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist_Mono, Inter } from "next/font/google";
-import Script from "next/script";
 
 const fontSans = Inter({
   variable: "--font-sans",
@@ -86,14 +85,6 @@ export default function RootLayout({
           <Toaster />
         </ThemeProvider>
       </body>
-
-      {process.env.NODE_ENV === "production" && (
-        <Script
-          async
-          src="https://analytics.duncan.land/script.js"
-          data-website-id="1671be23-4bb0-43b1-9632-962a463265e8"
-        />
-      )}
     </html>
   );
 }
