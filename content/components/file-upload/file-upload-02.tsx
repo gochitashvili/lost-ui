@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 
 export default function FileUpload01() {
   return (
-    <div className="mx-auto max-w-lg">
+    <div className="flex items-center justify-center p-10">
       <Card>
         <CardHeader>
           <CardTitle>Set up your first workspace</CardTitle>

@@ -1,61 +1,75 @@
 "use client";
 
 import { OpenInV0Button } from "@/components/open-in-v0-button";
-import { blocksComponents } from "@/content/blocks-components";
-import { BlocksProps } from "@/lib/blocks";
-import { cn } from "@/lib/utils";
-import { Copy, Monitor, Smartphone, Tablet } from "lucide-react";
-import * as React from "react";
-import { ImperativePanelHandle } from "react-resizable-panels";
-import { toast } from "sonner";
-import { Button } from "./button";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "./resizable";
+} from "@/components/ui/resizable";
+import { BlocksProps } from "@/lib/blocks";
+import { Copy, Fullscreen, Monitor, Smartphone, Tablet } from "lucide-react";
+import Link from "next/link";
+import * as React from "react";
+import { ImperativePanelHandle } from "react-resizable-panels";
+import { toast } from "sonner";
+import { Button } from "./button";
+import { Separator } from "./separator";
 import { Tabs, TabsList, TabsTrigger } from "./tabs";
 import { ToggleGroup, ToggleGroupItem } from "./toggle-group";
+
 interface BlockViewState {
   view: "preview" | "code";
-  size: number;
+  size: "desktop" | "tablet" | "mobile";
 }
 
 export const Block = ({
   name,
   blocksId,
-  blocksCategory,
   codeSource,
   code,
-}: BlocksProps) => {
-  const BlocksComponent = blocksComponents[blocksId];
+  meta,
+}: BlocksProps & { meta?: { iframeHeight?: string } }) => {
   const [state, setState] = React.useState<BlockViewState>({
     view: "preview",
-    size: 100,
+    size: "desktop",
   });
-  const resizablePanelRef = React.useRef<ImperativePanelHandle>(null);
 
-  const noPaddingCategories = ["stats"];
-  const applyPadding = !noPaddingCategories.includes(blocksCategory);
+  const resizablePanelRef = React.useRef<ImperativePanelHandle>(null);
+  const iframeHeight = meta?.iframeHeight ?? "930px";
 
   const handleViewChange = (value: string) => {
     setState((prev) => ({ ...prev, view: value as "preview" | "code" }));
   };
 
   const handleSizeChange = (value: string) => {
-    const size = parseInt(value);
-    setState((prev) => ({ ...prev, size }));
-    if (resizablePanelRef.current) {
-      resizablePanelRef.current.resize(size);
+    if (value) {
+      setState((prev) => ({
+        ...prev,
+        size: value as "desktop" | "tablet" | "mobile",
+      }));
+
+      if (resizablePanelRef?.current) {
+        switch (value) {
+          case "desktop":
+            resizablePanelRef.current.resize(100);
+            break;
+          case "tablet":
+            resizablePanelRef.current.resize(60);
+            break;
+          case "mobile":
+            resizablePanelRef.current.resize(30);
+            break;
+        }
+      }
     }
   };
 
   const handleCopy = () => {
     let cleanCode = typeof code === "string" ? code : "";
 
-    if (cleanCode.startsWith("```")) {
+    if (cleanCode.startsWith("````")) {
       try {
-        const codeBlockRegex = /^```(?:\w+)?\s*\n([\s\S]*?)\n```\s*$/;
+        const codeBlockRegex = /^````(?:\w+)?\s*\n([\s\S]*?)\n````\s*$/;
         const match = cleanCode.match(codeBlockRegex);
 
         if (match && match[1]) {
@@ -83,13 +97,23 @@ export const Block = ({
   };
 
   return (
-    <div className="my-24 first:mt-8">
+    <div
+      className="my-24 first:mt-8"
+      id={blocksId}
+      data-view={state.view}
+      style={{ "--height": iframeHeight } as React.CSSProperties}
+    >
       <div className="">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4 cursor-pointer font-medium text-foreground sm:text-lg">
-            {name}
+            <a
+              href={`#${blocksId}`}
+              className="text-sm font-medium underline-offset-2 hover:underline"
+            >
+              {name}
+            </a>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center">
             <Tabs
               value={state.view}
               onValueChange={handleViewChange}
@@ -110,37 +134,58 @@ export const Block = ({
                 </TabsTrigger>
               </TabsList>
             </Tabs>
-            <div className="h-7 items-center gap-1.5 rounded-lg border p-0.5 shadow-none lg:flex">
+            <Separator
+              orientation="vertical"
+              className="mx-2 hidden h-4 lg:flex"
+            />
+            <div className="ml-auto hidden h-7 items-center gap-1.5 rounded-md border p-[2px] shadow-none lg:flex">
               <ToggleGroup
                 type="single"
-                value={state.size.toString()}
-                className="gap-0.5"
-                onValueChange={handleSizeChange}
+                value={state.size}
+                onValueChange={(value) => {
+                  handleSizeChange(value);
+                }}
               >
                 <ToggleGroupItem
-                  value="100"
+                  value="desktop"
                   className="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
                   title="Desktop"
                 >
                   <Monitor className="h-3.5 w-3.5" />
                 </ToggleGroupItem>
                 <ToggleGroupItem
-                  value="60"
+                  value="tablet"
                   className="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
                   title="Tablet"
                 >
                   <Tablet className="h-3.5 w-3.5" />
                 </ToggleGroupItem>
                 <ToggleGroupItem
-                  value="30"
+                  value="mobile"
                   className="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
                   title="Mobile"
                 >
                   <Smartphone className="h-3.5 w-3.5" />
                 </ToggleGroupItem>
+                <Separator orientation="vertical" className="h-4" />
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="h-[22px] w-[22px] rounded-sm p-0"
+                  asChild
+                  title="Open in New Tab"
+                >
+                  <Link href={`/blocks/preview/${blocksId}`} target="_blank">
+                    <span className="sr-only">Open in New Tab</span>
+                    <Fullscreen className="h-3.5 w-3.5" />
+                  </Link>
+                </Button>
               </ToggleGroup>
             </div>
-
+            <Separator
+              orientation="vertical"
+              className="mx-1 hidden h-4 md:flex"
+            />
             <div>
               <Button
                 onClick={handleCopy}
@@ -151,36 +196,45 @@ export const Block = ({
                 <Copy className="h-3 w-3" />
               </Button>
             </div>
-
+            <Separator
+              orientation="vertical"
+              className="mx-1 hidden h-4 xl:flex"
+            />
             <OpenInV0Button name={blocksId} />
           </div>
         </div>
       </div>
-      <div className="relative mt-4 w-full rounded-lg" data-view={state.view}>
+
+      <div className="relative mt-4 w-full">
         {state.view === "preview" && (
-          <ResizablePanelGroup direction="horizontal" className="relative">
-            <ResizablePanel
-              ref={resizablePanelRef}
-              className="relative rounded-lg border border-accent transition-all dark:bg-background"
-              defaultSize={100}
-              minSize={30}
-            >
-              <div
-                className={cn(
-                  "rounded-lg bg-white transition-all dark:bg-background",
-                  applyPadding ? "p-4 sm:p-10" : "overflow-hidden"
-                )}
+          <div className="md:h-[--height]">
+            <div className="grid w-full gap-4">
+              <ResizablePanelGroup
+                direction="horizontal"
+                className="relative z-10"
               >
-                <BlocksComponent />
-              </div>
-            </ResizablePanel>
-            <ResizableHandle className="relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:bg-border after:transition-all after:hover:h-10 md:block" />
-            <ResizablePanel defaultSize={0} minSize={0} />
-          </ResizablePanelGroup>
+                <ResizablePanel
+                  ref={resizablePanelRef}
+                  className="relative rounded-lg border border-accent bg-background"
+                  defaultSize={100}
+                  minSize={30}
+                >
+                  <iframe
+                    src={`/blocks/preview/${blocksId}`}
+                    title={`${name} preview`}
+                    height={meta?.iframeHeight ?? 930}
+                    className="relative z-20 w-full bg-background"
+                  />
+                </ResizablePanel>
+                <ResizableHandle className="relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:bg-border after:transition-all after:hover:h-10 md:block" />
+                <ResizablePanel defaultSize={0} minSize={0} />
+              </ResizablePanelGroup>
+            </div>
+          </div>
         )}
 
         {state.view === "code" && (
-          <div className="rounded-lg overflow-auto max-h-[500px]">
+          <div className="group-data-[view=preview]/block-view-wrapper:hidden md:h-[--height] rounded-lg overflow-auto">
             {codeSource}
           </div>
         )}

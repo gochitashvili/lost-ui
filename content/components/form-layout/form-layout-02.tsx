@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 export default function FormLayout02() {
   return (
-    <>
+    <div className="flex items-center justify-center p-10">
       <form>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
@@ -252,6 +252,6 @@ export default function FormLayout02() {
           </Button>
         </div>
       </form>
-    </>
+    </div>
   );
 }

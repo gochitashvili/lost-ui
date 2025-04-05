@@ -1,3 +1,5 @@
+"use client";
+
 import { File, FileSpreadsheet, X } from "lucide-react";
 import { ChangeEvent, DragEvent, useRef, useState } from "react";
 import { toast } from "sonner";
@@ -87,12 +89,12 @@ export default function FileUpload03() {
   const { file, progress, uploading } = uploadState;
 
   return (
-    <div className="mx-auto max-w-lg">
-      <form onSubmit={(e) => e.preventDefault()}>
+    <div className="flex items-center justify-center p-10 w-full max-w-lg">
+      <form className="w-full" onSubmit={(e) => e.preventDefault()}>
         <h3 className="text-lg font-semibold text-foreground">File Upload</h3>
 
         <div
-          className="flex justify-center rounded-md border mt-2 border-dashed border-input px-6 py-20"
+          className="flex justify-center rounded-md border mt-2 border-dashed border-input px-6 py-12"
           onDragOver={(e) => e.preventDefault()}
           onDrop={handleDrop}
         >

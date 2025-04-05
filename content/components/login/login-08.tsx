@@ -21,7 +21,7 @@ export default function SignIn() {
   const togglePasswordVisibility = () => setIsPasswordVisible((prev) => !prev);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex items-center justify-center min-h-screen">
       <Card className="w-full max-w-md mx-4 pb-0">
         <CardHeader className="space-y-1 text-center mb-2 mt-4">
           <div className="flex justify-center">

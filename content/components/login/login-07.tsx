@@ -15,7 +15,7 @@ export default function Login07() {
   const toggleVisibility = () => setIsVisible((prevState) => !prevState);
 
   return (
-    <div className="flex items-center justify-center p-4 py-24">
+    <div className="flex items-center justify-center min-h-screen">
       <div className="mx-auto w-full max-w-xs space-y-6">
         <div className="space-y-2 text-center">
           <Logo className="mx-auto h-16 w-16" />

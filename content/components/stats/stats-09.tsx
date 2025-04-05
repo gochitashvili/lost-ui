@@ -22,28 +22,36 @@ const data = [
     limit: "10GB",
     percentage: 18.5,
   },
+  {
+    name: "API Calls",
+    stat: "4,328",
+    limit: "5,000",
+    percentage: 86.56,
+  },
 ];
 
 export default function Stats09() {
   return (
-    <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 m-4">
-      {data.map((item) => (
-        <Card key={item.name}>
-          <CardContent className="">
-            <dt className="text-sm text-muted-foreground">{item.name}</dt>
-            <dd className="text-2xl font-semibold text-foreground">
-              {item.stat}
-            </dd>
-            <Progress value={item.percentage} className="mt-6 h-2" />
-            <dd className="mt-2 flex items-center justify-between text-sm">
-              <span className="text-primary">{item.percentage}&#37;</span>
-              <span className="text-muted-foreground">
-                {item.stat} of {item.limit}
-              </span>
-            </dd>
-          </CardContent>
-        </Card>
-      ))}
-    </dl>
+    <div className="flex items-center justify-center p-10 w-full">
+      <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 w-full">
+        {data.map((item) => (
+          <Card key={item.name} className="py-4">
+            <CardContent className="">
+              <dt className="text-sm text-muted-foreground">{item.name}</dt>
+              <dd className="text-2xl font-semibold text-foreground">
+                {item.stat}
+              </dd>
+              <Progress value={item.percentage} className="mt-6 h-2" />
+              <dd className="mt-2 flex items-center justify-between text-sm">
+                <span className="text-primary">{item.percentage}&#37;</span>
+                <span className="text-muted-foreground">
+                  {item.stat} of {item.limit}
+                </span>
+              </dd>
+            </CardContent>
+          </Card>
+        ))}
+      </dl>
+    </div>
   );
 }

@@ -10,6 +10,7 @@ export type BlocksMetadata = {
   id: string;
   category: string;
   name: string;
+  iframeHeight?: string;
 };
 
 export const categoryIds: { [key: string]: string } = {

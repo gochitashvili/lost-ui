@@ -14,7 +14,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-10 w-full">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-4 lg:gap-10 w-full">
         {blocksCategoriesMetadata.map((block) => (
           <Link key={`${block.id}-${block.name}`} href={`/${block.id}`}>
             <div className="space-y-3">

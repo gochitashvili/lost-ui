@@ -4,7 +4,7 @@ import { FileSpreadsheet, Upload, X } from "lucide-react";
 
 export default function FileUpload04() {
   return (
-    <div className="sm:mx-auto sm:max-w-lg">
+    <div className="sm:mx-auto sm:max-w-lg flex items-center justify-center p-10 w-full max-w-lg">
       <form>
         <h3 className="text-lg font-semibold text-foreground">File Upload</h3>
         <div className="mt-4 flex justify-center space-x-4 rounded-md border border-dashed border-input px-6 py-10">
