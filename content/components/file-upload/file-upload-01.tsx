@@ -117,7 +117,7 @@ export default function FileUpload() {
                       <SelectItem value="1">
                         <img
                           className="size-5 rounded"
-                          src="/avatar-01.png"
+                          src="https://blocks.so/avatar-01.png"
                           alt="Ephraim Duncan"
                           width={20}
                           height={20}
@@ -127,7 +127,7 @@ export default function FileUpload() {
                       <SelectItem value="2">
                         <img
                           className="size-5 rounded"
-                          src="/avatar-01.png"
+                          src="https://blocks.so/avatar-01.png"
                           alt="Mark Manson"
                           width={20}
                           height={20}
@@ -137,7 +137,7 @@ export default function FileUpload() {
                       <SelectItem value="3">
                         <img
                           className="size-5 rounded"
-                          src="/avatar-01.png"
+                          src="https://blocks.so/avatar-01.png"
                           alt="Anne Kelley"
                           width={20}
                           height={20}
