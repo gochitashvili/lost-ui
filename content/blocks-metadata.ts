@@ -240,4 +240,22 @@ export const blocksMetadata: BlocksMetadata[] = [
     name: "Dialog",
     iframeHeight: "750px",
   },
+  {
+    id: "dialog-08",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "350px",
+  },
+  {
+    id: "dialog-09",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "350px",
+  },
+  {
+    id: "dialog-10",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "350px",
+  },
 ];
