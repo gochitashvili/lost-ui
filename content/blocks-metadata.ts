@@ -197,4 +197,47 @@ export const blocksMetadata: BlocksMetadata[] = [
     name: "Link cards with icons",
     iframeHeight: "500px",
   },
+
+  {
+    id: "dialog-01",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "400px",
+  },
+  {
+    id: "dialog-02",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "400px",
+  },
+  {
+    id: "dialog-03",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "450px",
+  },
+  {
+    id: "dialog-04",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "450px",
+  },
+  {
+    id: "dialog-05",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "600px",
+  },
+  {
+    id: "dialog-06",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "650px",
+  },
+  {
+    id: "dialog-07",
+    category: categoryIds.Dialogs,
+    name: "Dialog",
+    iframeHeight: "650px",
+  },
 ];

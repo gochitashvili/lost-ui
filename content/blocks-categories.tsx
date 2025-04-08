@@ -38,6 +38,12 @@ const initializeAndUpdateCategories = (): BlocksCategoryMetadata[] => {
 
 const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   {
+    id: categoryIds.Dialogs,
+    name: "Dialogs",
+    thumbnail: FileUploadThumbnail,
+    hasCharts: false,
+  },
+  {
     id: categoryIds.FileUpload,
     name: "File Upload",
     thumbnail: FileUploadThumbnail,
