@@ -41,7 +41,7 @@ const members = [
 ];
 
 export default function Dialog05() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

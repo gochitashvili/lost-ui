@@ -58,13 +58,13 @@ export default function Dialog06() {
                   </div>
                   <Separator className="my-4" />
                   <h4 className="text-sm font-medium text-foreground">
-                    Description:
+                    Description
                   </h4>
                   <p className="mt-1 text-sm leading-6 text-muted-foreground">
                     Quickly set up the foundational tools for your project.
                   </p>
                   <h4 className="mt-6 text-sm font-medium text-foreground">
-                    Info:
+                    Info
                   </h4>
                   <p className="mt-1 text-sm leading-6 text-muted-foreground">
                     Select your preferred stack and configurations.
