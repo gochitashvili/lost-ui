@@ -6,13 +6,32 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import { useCopy } from "@/hooks/use-copy";
 import { BlocksProps } from "@/lib/blocks";
-import { Copy, Fullscreen, Monitor, Smartphone, Tablet } from "lucide-react";
+import {
+  Check,
+  Code,
+  Copy,
+  Fullscreen,
+  Monitor,
+  Smartphone,
+  Tablet,
+} from "lucide-react";
 import Link from "next/link";
-import * as React from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { ImperativePanelHandle } from "react-resizable-panels";
-import { toast } from "sonner";
+import CliCommands from "../cli-commands";
 import { Button } from "./button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+} from "./dialog";
 import { Separator } from "./separator";
 import { Tabs, TabsList, TabsTrigger } from "./tabs";
 import { ToggleGroup, ToggleGroupItem } from "./toggle-group";
@@ -28,14 +47,36 @@ export const Block = ({
   codeSource,
   code,
   meta,
-}: BlocksProps & { meta?: { iframeHeight?: string } }) => {
-  const [state, setState] = React.useState<BlockViewState>({
+}: BlocksProps) => {
+  const [hasCopied, setHasCopied] = useState(false);
+  const [state, setState] = useState<BlockViewState>({
     view: "preview",
     size: "desktop",
   });
 
-  const resizablePanelRef = React.useRef<ImperativePanelHandle>(null);
+  const resizablePanelRef = useRef<ImperativePanelHandle>(null);
   const iframeHeight = meta?.iframeHeight ?? "930px";
+
+  const [, copy] = useCopy();
+
+  const getCleanCode = (rawCode: string | ReactNode): string => {
+    let cleanCode = typeof rawCode === "string" ? rawCode : "";
+
+    if (cleanCode.startsWith("````")) {
+      try {
+        const codeBlockRegex = /^````(?:\\w+)?\\s*\\n([\\s\\S]*?)\\n````\\s*$/;
+        const [, extractedCode] = cleanCode.match(codeBlockRegex) || [];
+
+        if (extractedCode) {
+          cleanCode = extractedCode;
+        }
+      } catch (error) {
+        console.error("Error parsing markdown for copy:", error);
+      }
+    }
+
+    return cleanCode;
+  };
 
   const handleViewChange = (value: string) => {
     setState((prev) => ({ ...prev, view: value as "preview" | "code" }));
@@ -64,37 +105,20 @@ export const Block = ({
     }
   };
 
-  const handleCopy = () => {
-    let cleanCode = typeof code === "string" ? code : "";
-
-    if (cleanCode.startsWith("````")) {
-      try {
-        const codeBlockRegex = /^````(?:\w+)?\s*\n([\s\S]*?)\n````\s*$/;
-        const match = cleanCode.match(codeBlockRegex);
-
-        if (match && match[1]) {
-          cleanCode = match[1];
-        }
-      } catch (error) {
-        console.error("Error parsing markdown:", error);
-      }
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+    if (hasCopied) {
+      timeoutId = setTimeout(() => {
+        setHasCopied(false);
+      }, 2000);
     }
 
-    navigator.clipboard
-      .writeText(cleanCode)
-      .then(() => {
-        toast.success("Code copied to clipboard", {
-          duration: 2000,
-          position: "bottom-right",
-        });
-      })
-      .catch(() => {
-        toast.error("Failed to copy code", {
-          duration: 2000,
-          position: "bottom-right",
-        });
-      });
-  };
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [hasCopied]);
 
   return (
     <div
@@ -192,17 +216,55 @@ export const Block = ({
               orientation="vertical"
               className="mx-1 hidden h-4 md:flex"
             />
-            <div>
+
+            <div className="flex items-center gap-1">
               <Button
-                onClick={handleCopy}
+                onClick={() => {
+                  const cleanCode = getCleanCode(code);
+                  copy(cleanCode);
+                  setHasCopied(true);
+                }}
                 variant="outline"
                 size="icon"
                 className="h-7 w-7"
                 data-umami-event="Copy Block Code"
               >
-                <Copy className="h-3 w-3" />
+                {hasCopied ? (
+                  <Check className="h-3 w-3" />
+                ) : (
+                  <Copy className="h-3 w-3" />
+                )}
               </Button>
+
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-7 w-7"
+                    data-umami-event="Copy shadcn cli command"
+                  >
+                    <Code className="h-3 w-3" />
+                  </Button>
+                </DialogTrigger>
+
+                <DialogPortal>
+                  <DialogOverlay className="backdrop-blur-sm" />
+                  <DialogContent className="sm:max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle className="text-left">
+                        Installation
+                      </DialogTitle>
+                      <DialogDescription className="sr-only">
+                        Use the CLI to add blocks to your project
+                      </DialogDescription>
+                    </DialogHeader>
+                    <CliCommands name={blocksId} />
+                  </DialogContent>
+                </DialogPortal>
+              </Dialog>
             </div>
+
             <Separator
               orientation="vertical"
               className="mx-1 hidden h-4 xl:flex"

@@ -82,13 +82,11 @@ function processItemFiles(item: InputRegistryItem): ProcessedFile[] {
         return null;
       }
 
-      const targetPath = `/components/${file.path}.tsx`;
-
       return {
-        path: targetPath,
+        path: `/components/${file.path}.tsx`,
         content,
         type: file.type,
-        target: targetPath, // Target seems same as path in original script
+        target: `/components/blocks/${file.path.split("/").pop()}.tsx`,
       };
     })
     .filter((file): file is ProcessedFile => file !== null);
