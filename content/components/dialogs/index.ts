@@ -8,3 +8,4 @@ export { default as Dialog07 } from "./dialog-07";
 export { default as Dialog08 } from "./dialog-08";
 export { default as Dialog09 } from "./dialog-09";
 export { default as Dialog10 } from "./dialog-10";
+export { default as Dialog11 } from "./dialog-11";

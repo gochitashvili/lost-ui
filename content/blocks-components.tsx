@@ -48,4 +48,5 @@ export const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "dialog-08": components.Dialog08,
   "dialog-09": components.Dialog09,
   "dialog-10": components.Dialog10,
+  "dialog-11": components.Dialog11,
 };

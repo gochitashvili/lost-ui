@@ -14,7 +14,7 @@ import {
 import { Check } from "lucide-react";
 import { useState } from "react";
 
-export default function Dialog09() {
+export default function Dialog10() {
   const [open, setOpen] = useState(true);
 
   return (
