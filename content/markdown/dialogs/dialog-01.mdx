@@ -4,6 +4,7 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -11,43 +12,36 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Check } from "lucide-react";
 import { useState } from "react";
 
 export default function Dialog01() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [open, setOpen] = useState(true);
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <div className="flex items-center justify-center py-36">
-        <DialogTrigger asChild>
-          <Button>Edit Profile</Button>
-        </DialogTrigger>
-      </div>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="outline">Show Dialog</Button>
+      </DialogTrigger>
 
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Edit Profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
+      <DialogContent className="sm:max-w-sm flex flex-col items-center">
+        <div className="flex justify-center">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+            <Check className="h-6 w-6 text-green-600" />
+          </div>
+        </div>
+
+        <DialogHeader className="text-center gap-0">
+          <DialogTitle className="text-center">Payment successful</DialogTitle>
+          <DialogDescription className="mt-2 text-center mx-auto sm:max-w-[90%]">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+            amet labore.
           </DialogDescription>
         </DialogHeader>
-        <div className="space-y-2">
-          <Label htmlFor="username" className="text-sm font-medium">
-            Username
-          </Label>
-          <Input
-            id="username"
-            name="username"
-            type="text"
-            placeholder="Your username"
-          />
-        </div>
-        <DialogFooter>
-          <Button type="submit" className="w-full">
-            Save Changes
-          </Button>
+        <DialogFooter className="sm:justify-center w-full">
+          <DialogClose asChild>
+            <Button className="w-full">Go back to dashboard</Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
