@@ -1,124 +1,215 @@
 "use client";
 
+import { AppWindowIcon as Apps } from "lucide-react";
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
-import { CheckIcon, CopyIcon, ExternalLink, Link, Share2 } from "lucide-react";
-import { useRef, useState } from "react";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 
 export default function Dialog11() {
-  const [open, setOpen] = useState<boolean>(true);
-  const [copied, setCopied] = useState<boolean>(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleCopy = () => {
-    if (inputRef.current) {
-      navigator.clipboard.writeText(inputRef.current.value);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    }
-  };
+  const [open, setOpen] = useState(true);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>
-          <Share2 className="mr-2 h-4 w-4" />
-          Share
-        </Button>
+        <Button>Initialize New Project</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Share & Collaborate</DialogTitle>
-          <p className="text-sm text-muted-foreground">
-            Share this project with your team to collaborate on it.
-          </p>
+      <DialogContent className="overflow-visible p-0 sm:max-w-2xl gap-0">
+        <DialogHeader className="border-b px-6 py-4 mb-0">
+          <DialogTitle>Initialize New Project</DialogTitle>
         </DialogHeader>
-        <div className="space-y-4 py-4">
-          <div className="flex items-center justify-between space-x-2">
-            <div className="flex items-center space-x-2">
-              <span>Enable comments and suggestions</span>
-            </div>
-            <Switch id="comments" />
-          </div>
 
-          <div className="space-y-1.5">
-            <Label htmlFor="share-link" className="sr-only">
-              Share Link
-            </Label>
-            <div className="relative">
-              <Input
-                ref={inputRef}
-                id="share-link"
-                readOnly
-                value="https://writer.so/app/projects/123?share=true"
-                className="pe-9"
-              />
-              <TooltipProvider delayDuration={0}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <button
-                      onClick={handleCopy}
-                      className="text-muted-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed"
-                      aria-label={copied ? "Copied" : "Copy to clipboard"}
-                      disabled={copied}
-                    >
-                      <div
-                        className={cn(
-                          "transition-all",
-                          copied ? "scale-100 opacity-100" : "scale-0 opacity-0"
-                        )}
-                      >
-                        <CheckIcon
-                          className="text-primary"
-                          size={16}
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <div
-                        className={cn(
-                          "absolute transition-all",
-                          copied ? "scale-0 opacity-0" : "scale-100 opacity-100"
-                        )}
-                      >
-                        <CopyIcon size={16} aria-hidden="true" />
-                      </div>
-                    </button>
-                  </TooltipTrigger>
-                  <TooltipContent className="px-2 py-1 text-xs">
-                    {copied ? "Copied!" : "Copy to clipboard"}
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+        <form action="#" method="POST">
+          <div className="flex flex-col-reverse md:flex-row">
+            <div className="flex flex-col justify-between md:w-80 md:border-r">
+              <div className="flex-1 grow">
+                <div className="border-t p-6 md:border-none">
+                  <div className="flex items-center space-x-3">
+                    <div className="inline-flex shrink-0 items-center justify-center rounded-sm bg-muted p-3">
+                      <Apps
+                        className="size-5 text-foreground"
+                        aria-hidden={true}
+                      />
+                    </div>
+                    <div className="space-y-0.5">
+                      <h3 className="text-sm font-medium text-foreground">
+                        Project Starter
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        Configure your new codebase
+                      </p>
+                    </div>
+                  </div>
+                  <Separator className="my-4" />
+                  <h4 className="text-sm font-medium text-foreground">
+                    Description
+                  </h4>
+                  <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                    Quickly set up the foundational tools for your project.
+                  </p>
+                  <h4 className="mt-6 text-sm font-medium text-foreground">
+                    Info
+                  </h4>
+                  <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                    Select your preferred stack and configurations.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center justify-between border-t p-4">
+                <DialogClose asChild>
+                  <Button type="button" variant="ghost">
+                    Cancel
+                  </Button>
+                </DialogClose>
+                <Button type="submit" size="sm">
+                  Initialize
+                </Button>
+              </div>
+            </div>
+
+            <div className="flex-1 space-y-6 p-6 md:px-6 md:pb-8 md:pt-6">
+              <div className="space-y-2">
+                <div className="flex items-center space-x-3">
+                  <div className="inline-flex size-6 items-center justify-center rounded-sm bg-muted text-sm text-foreground">
+                    1
+                  </div>
+                  <Label
+                    htmlFor="framework"
+                    className="text-sm font-medium text-foreground"
+                  >
+                    Select Framework
+                  </Label>
+                </div>
+                <Select defaultValue="react">
+                  <SelectTrigger
+                    id="framework"
+                    name="framework"
+                    className="w-full"
+                  >
+                    <SelectValue placeholder="Select framework" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="react">Next.js</SelectItem>
+                    <SelectItem value="vue">React Router</SelectItem>
+                    <SelectItem value="angular">Tanstack Start</SelectItem>
+                    <SelectItem value="svelte">SvelteKit</SelectItem>
+                    <SelectItem value="vanilla">SolidStart</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center space-x-3">
+                  <div className="inline-flex size-6 items-center justify-center rounded-sm bg-muted text-sm text-foreground">
+                    2
+                  </div>
+                  <Label
+                    htmlFor="package-manager"
+                    className="text-sm font-medium text-foreground"
+                  >
+                    Choose Package Manager
+                  </Label>
+                </div>
+                <Select defaultValue="npm">
+                  <SelectTrigger
+                    id="package-manager"
+                    name="package-manager"
+                    className="w-full"
+                  >
+                    <SelectValue placeholder="Select manager" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="npm">npm</SelectItem>
+                    <SelectItem value="yarn">yarn</SelectItem>
+                    <SelectItem value="pnpm">pnpm</SelectItem>
+                    <SelectItem value="bun">bun</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <div className="flex items-center space-x-3">
+                  <div className="inline-flex size-6 items-center justify-center rounded-sm bg-muted text-sm text-foreground">
+                    3
+                  </div>
+                  <Label
+                    htmlFor="linter"
+                    className="text-sm font-medium text-foreground"
+                  >
+                    Configure Linter/Formatter
+                  </Label>
+                </div>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Ensure code quality and consistency.
+                </p>
+                <Select defaultValue="eslint-prettier">
+                  <SelectTrigger
+                    id="linter"
+                    name="linter"
+                    className="mt-4 w-full"
+                  >
+                    <SelectValue placeholder="Select tools" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="eslint-prettier">
+                      ESLint + Prettier
+                    </SelectItem>
+                    <SelectItem value="eslint">ESLint Only</SelectItem>
+                    <SelectItem value="prettier">Prettier Only</SelectItem>
+                    <SelectItem value="biome">Biome</SelectItem>
+                    <SelectItem value="oxlint">Oxlint</SelectItem>
+                    <SelectItem value="none">None</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <div className="flex items-center space-x-3">
+                  <div className="inline-flex size-6 items-center justify-center rounded-sm bg-muted text-sm text-foreground">
+                    4
+                  </div>
+                  <Label
+                    htmlFor="testing-tool"
+                    className="text-sm font-medium text-foreground"
+                  >
+                    Select Testing Tool
+                  </Label>
+                </div>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Choose a framework for unit/integration tests.
+                </p>
+                <Select defaultValue="jest">
+                  <SelectTrigger
+                    id="testing-tool"
+                    name="testing-tool"
+                    className="mt-4 w-full"
+                  >
+                    <SelectValue placeholder="Select tool" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="jest">Jest</SelectItem>
+                    <SelectItem value="vitest">Vitest</SelectItem>
+                    <SelectItem value="cypress">Cypress</SelectItem>
+                    <SelectItem value="none">None</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
-
-          <div className="flex space-x-2">
-            <Button className="flex-1 gap-2" onClick={handleCopy}>
-              <Link className="h-4 w-4" />
-              Copy Link
-            </Button>
-            <Button variant="outline" className="flex-1 gap-2">
-              <ExternalLink className="h-4 w-4" />
-              Preview
-            </Button>
-          </div>
-        </div>
+        </form>
       </DialogContent>
     </Dialog>
   );

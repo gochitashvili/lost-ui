@@ -1,106 +1,74 @@
 "use client";
 
-import { UserPlus } from "lucide-react";
-import { useState } from "react";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-
-const members = [
-  {
-    name: "Ephraim Duncan",
-    email: "ephraim@documenso.com",
-    avatarUrl: "/avatar-01.png",
-    initials: "ED",
-    status: "member",
-  },
-  {
-    name: "Lucas Smith",
-    email: "lucas@documenso.com",
-    avatarUrl: "/avatar-01.png",
-    initials: "LS",
-    status: "member",
-  },
-  {
-    name: "Timur Ercan",
-    email: "timur@documenso.com",
-    avatarUrl: "/avatar-01.png",
-    initials: "TE",
-    status: "member",
-  },
-];
+import { Label } from "@/components/ui/label";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { useState } from "react";
 
 export default function Dialog05() {
-  const [open, setOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
+  const toggleVisibility = () => setIsVisible((prevState) => !prevState);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button onClick={() => setOpen(true)}>Invite members</Button>
+        <Button variant="destructive">Delete Workspace</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-2xl">
+      <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-semibold text-foreground">
-            Invite members
-          </DialogTitle>
-          <DialogDescription className="text-sm leading-6 text-muted-foreground">
-            Add new team members to your workspace. Please consider your
-            organization&apos;s policies when adding external people.
+          <DialogTitle>Delete workspace</DialogTitle>
+          <DialogDescription>
+            All workspace data will be permanently deleted. There is no coming
+            back after you press delete.
           </DialogDescription>
         </DialogHeader>
         <form>
-          <div className="flex w-full items-center space-x-2">
-            <div className="relative flex-1">
-              <UserPlus className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <div>
+            <Label htmlFor="delete-workspace" className="text-sm font-medium">
+              Confirm password
+            </Label>
+            <div className="relative mt-2">
               <Input
-                id="inviteEmail"
-                className="h-10 pl-9"
-                placeholder="Add email..."
-                type="email"
+                id="delete-workspace"
+                name="delete-workspace"
+                type={isVisible ? "text" : "password"}
+                placeholder="Password"
+                className="pe-9"
               />
-            </div>
-            <Button type="submit" className="h-10">
-              Invite
-            </Button>
-          </div>
-        </form>
-        <h4 className="mt-4 text-sm font-medium text-foreground">
-          People with existing access
-        </h4>
-        <ul className="divide-y">
-          {members.map((member) => (
-            <li
-              key={member.name}
-              className="flex items-center justify-between py-2.5"
-            >
-              <div className="flex items-center space-x-3">
-                <Avatar className="h-9 w-9">
-                  <AvatarImage src={member.avatarUrl} alt={member.name} />
-                  <AvatarFallback>{member.initials}</AvatarFallback>
-                </Avatar>
-                <span className="font-medium text-foreground">
-                  {member.name}
-                </span>
-              </div>
-              <Badge
-                variant="outline"
-                className="bg-background text-xs font-medium"
+              <button
+                className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md"
+                type="button"
+                onClick={toggleVisibility}
+                aria-label={isVisible ? "Hide password" : "Show password"}
+                aria-pressed={isVisible}
+                aria-controls="delete-workspace"
               >
-                {member.status}
-              </Badge>
-            </li>
-          ))}
-        </ul>
+                {isVisible ? (
+                  <EyeOffIcon size={16} aria-hidden="true" />
+                ) : (
+                  <EyeIcon size={16} aria-hidden="true" />
+                )}
+              </button>
+            </div>
+          </div>
+          <DialogFooter className="mt-4">
+            <Button type="submit" variant="destructive" className="w-full">
+              Delete workspace permanently
+            </Button>
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );
