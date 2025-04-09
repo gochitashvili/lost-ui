@@ -3,6 +3,7 @@ import { FormLayoutThumbnail } from "@/components/thumbnails/form-layout";
 import { LoginThumbnail } from "@/components/thumbnails/login";
 import { StatsThumbnail } from "@/components/thumbnails/stats";
 
+import { DialogThumbnail } from "@/components/thumbnails/dialog";
 import { blocksMetadata } from "./blocks-metadata";
 import {
   BlocksCategoryMetadata,
@@ -40,7 +41,7 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   {
     id: categoryIds.Dialogs,
     name: "Dialogs",
-    thumbnail: FileUploadThumbnail,
+    thumbnail: DialogThumbnail,
     hasCharts: false,
   },
   {
