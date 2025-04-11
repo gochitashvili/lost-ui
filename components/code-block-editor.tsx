@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { Check, ChevronRight, Clipboard, File, Folder } from "lucide-react";
 import * as React from "react";
+import { createHighlighter } from "shiki";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -211,6 +212,28 @@ function findFileByPath(items: FileTreeItem[], path: string): FileItem | null {
   return null;
 }
 
+// Create a singleton highlighter instance
+let highlighterInstance: Awaited<ReturnType<typeof createHighlighter>> | null =
+  null;
+let highlighterPromise: Promise<
+  Awaited<ReturnType<typeof createHighlighter>>
+> | null = null;
+
+// Function to get or create the highlighter instance
+async function getHighlighter() {
+  if (highlighterInstance) return highlighterInstance;
+
+  if (!highlighterPromise) {
+    highlighterPromise = createHighlighter({
+      themes: ["github-dark"],
+      langs: ["javascript", "typescript", "tsx", "jsx", "html", "css"],
+    });
+  }
+
+  highlighterInstance = await highlighterPromise;
+  return highlighterInstance;
+}
+
 function CodeBlockEditorToolbar() {
   const { activeFile, fileTree } = useCodeBlockEditor();
   const [isCopied, setIsCopied] = React.useState(false);
@@ -365,19 +388,63 @@ function TreeItem({ item, depth }: { item: FileTreeItem; depth: number }) {
 
 function CodeView() {
   const { activeFile, fileTree } = useCodeBlockEditor();
+  const [highlightedCode, setHighlightedCode] = React.useState<string>("");
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const file = activeFile ? findFileByPath(fileTree, activeFile) : null;
   const content = file?.content || "";
+
+  React.useEffect(() => {
+    async function highlightCode() {
+      if (!file) {
+        setHighlightedCode("");
+        setIsLoading(false);
+        return;
+      }
+
+      setIsLoading(true);
+      try {
+        const highlighter = await getHighlighter();
+
+        const extension = file.path.split(".").pop() || "";
+        let lang = "typescript";
+
+        if (extension === "css") lang = "css";
+        else if (extension === "html") lang = "html";
+        else if (extension === "js") lang = "javascript";
+        else if (extension === "jsx") lang = "jsx";
+        else if (extension === "tsx") lang = "tsx";
+
+        const html = highlighter.codeToHtml(content, {
+          lang,
+          theme: "github-dark",
+        });
+        setHighlightedCode(html);
+      } catch (error) {
+        console.error("Error highlighting code:", error);
+        setHighlightedCode(`<pre>${content}</pre>`);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    highlightCode();
+  }, [file, content]);
 
   if (!file) {
     return <div className="p-4">Select a file to view its content</div>;
   }
 
+  if (isLoading) {
+    return <div className="p-4">Loading syntax highlighting...</div>;
+  }
+
   return (
-    <div className="flex min-w-0 flex-1 flex-col">
-      <pre className="flex-1 overflow-auto bg-muted/30 p-4 text-sm !rounded-l-none !rounded-tr-none">
-        <code>{content}</code>
-      </pre>
+    <div className="flex min-w-0 flex-1 flex-col code-block-editor-view">
+      <div
+        className="flex-1 overflow-auto bg-muted/30 p-4 text-sm !rounded-l-none !rounded-tr-none"
+        dangerouslySetInnerHTML={{ __html: highlightedCode }}
+      />
     </div>
   );
 }
