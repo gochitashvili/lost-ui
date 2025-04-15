@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build:source": "bun run scripts/build-registry-sources.ts",
-    "build:registry": "bun run scripts/build-registry-index.ts && bun run build:source",
-    "markdown": "bun run scripts/generate-markdown.ts ./content/components/",
-    "build": "bun run build:registry && bun run markdown && next build --turbopack",
+    "generate:registry": "bun run scripts/generate-registry.mjs && shadcn build",
+    "generate:markdown": "bun run scripts/generate-markdown.ts ./content/components/",
+    "build": "bun run generate:registry && bun run generate:markdown && next build --turbopack",
     "start": "next start",
     "lint": "next lint"
   },
@@ -68,15 +67,16 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.2",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.3.0",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "ts-morph": "^25.0.1",
+    "typescript": "^5"
   },
   "overrides": {
     "@types/react": "19.1.0",
