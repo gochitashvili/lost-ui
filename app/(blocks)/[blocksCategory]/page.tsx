@@ -75,6 +75,7 @@ export default async function Page({ params }: PageProps) {
             }
             blocksId={block.blocksId}
             blocksCategory={block.blocksCategory}
+            fileTree={block.fileTree}
           />
         ))}
       </div>
