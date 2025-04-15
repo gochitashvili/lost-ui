@@ -275,6 +275,51 @@
       ],
       "files": [
         {
+          "path": "content/components/file-upload/file-upload-01/index.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-01/index.tsx"
+        },
+        {
+          "path": "content/components/file-upload/file-upload-01/dropzone.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-01/dropzone.tsx"
+        },
+        {
+          "path": "content/components/file-upload/file-upload-01/file-item.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-01/file-item.tsx"
+        },
+        {
+          "path": "content/components/file-upload/file-upload-01/file-list.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-01/file-list.tsx"
+        },
+        {
+          "path": "content/components/file-upload/file-upload-01/form.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-01/form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-upload-01",
+      "type": "registry:block",
+      "title": "File Upload with Preview",
+      "description": "A file upload with preview block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "card",
+        "input",
+        "label",
+        "select",
+        "tooltip"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
           "path": "content/components/file-upload/file-upload-01.tsx",
           "type": "registry:block",
           "target": "/components/blocks/file-upload-01.tsx"
@@ -368,29 +413,6 @@
           "path": "content/components/file-upload/file-upload-05.tsx",
           "type": "registry:block",
           "target": "/components/blocks/file-upload-05.tsx"
-        }
-      ]
-    },
-    {
-      "name": "file-upload-06",
-      "type": "registry:block",
-      "title": "File Upload with Icon",
-      "description": "A file upload with icon block.",
-      "author": "ephraim duncan <https://ephraimduncan.com>",
-      "registryDependencies": [
-        "label"
-      ],
-      "dependencies": [],
-      "files": [
-        {
-          "path": "content/components/file-upload/file-upload-06/index.tsx",
-          "type": "registry:block",
-          "target": "/components/blocks/file-upload-06/index.tsx"
-        },
-        {
-          "path": "content/components/file-upload/file-upload-06/icon.tsx",
-          "type": "registry:block",
-          "target": "/components/blocks/file-upload-06/icon.tsx"
         }
       ]
     },
