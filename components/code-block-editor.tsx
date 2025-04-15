@@ -23,89 +23,14 @@ type FileItem = {
   type: "file";
 };
 
-type FolderItem = {
+export type FolderItem = {
   name: string;
   path: string;
   type: "folder";
   children: FileTreeItem[];
 };
 
-type FileTreeItem = FileItem | FolderItem;
-
-// Sample data structure
-const sampleFileTree: FileTreeItem[] = [
-  {
-    name: "app",
-    path: "app",
-    type: "folder",
-    children: [
-      {
-        name: "login",
-        path: "app/login",
-        type: "folder",
-        children: [
-          {
-            name: "page.tsx",
-            path: "app/login/page.tsx",
-            type: "file",
-            content: `import { LoginForm } from "@/components/login-form"
-
-export default function Page() {
-  return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        <LoginForm />
-      </div>
-    </div>
-  )
-}`,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "components",
-    path: "components",
-    type: "folder",
-    children: [
-      {
-        name: "login-form.tsx",
-        path: "components/login-form.tsx",
-        type: "file",
-        content: `import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-
-export function LoginForm() {
-  return (
-    <div className="space-y-6">
-      <div className="space-y-2 text-center">
-        <h1 className="text-3xl font-bold">Login</h1>
-        <p className="text-gray-500 dark:text-gray-400">
-          Enter your credentials to sign in to your account
-        </p>
-      </div>
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" placeholder="m@example.com" required type="email" />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="password">Password</Label>
-          <Input id="password" required type="password" />
-        </div>
-        <Button className="w-full" type="submit">
-          Sign In
-        </Button>
-      </div>
-    </div>
-  )
-}`,
-      },
-    ],
-  },
-];
+export type FileTreeItem = FileItem | FolderItem;
 
 // Context for our code block editor
 type CodeBlockEditorContext = {
@@ -449,8 +374,17 @@ function CodeView() {
   );
 }
 
-export function CodeBlockEditor() {
-  const [fileTree] = React.useState(sampleFileTree);
+export interface CodeBlockEditorProps {
+  fileTree: FileTreeItem[];
+}
+
+export function CodeBlockEditor({ fileTree }: CodeBlockEditorProps) {
+  console.log(fileTree);
+
+  // Handle cases where fileTree might be missing initially
+  if (!fileTree) {
+    return <div>Loading editor...</div>; // Or some other placeholder
+  }
 
   return (
     <CodeBlockEditorProvider fileTree={fileTree}>

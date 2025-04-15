@@ -5,11 +5,34 @@ import { notFound } from "next/navigation";
 import path from "path";
 import { ReactNode } from "react";
 
+// --- Added File Tree Types ---
+type FileItem = {
+  name: string;
+  path: string;
+  content?: string;
+  type: "file";
+};
+
+type FolderItem = {
+  name: string;
+  path: string;
+  type: "folder";
+  children: FileTreeItem[];
+};
+
+type FileTreeItem = FileItem | FolderItem;
+// --- End Added File Tree Types ---
+
 type Metadata = {
   title: string;
   publishedAt?: string;
   summary?: string;
   image?: string;
+  blocksCategory: string;
+  meta?: {
+    iframeHeight?: string;
+    type?: "file" | "directory";
+  };
 };
 
 function parseFrontmatter(fileContent: string) {
@@ -69,6 +92,54 @@ export function getBlocksMDX(blocksCategory: string) {
   );
 }
 
+// --- Added Directory Reading Function ---
+function readDirectoryTree(dirPath: string, basePath = ""): FileTreeItem[] {
+  try {
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+    const tree: FileTreeItem[] = [];
+
+    for (const entry of entries) {
+      const currentPath = path.join(dirPath, entry.name);
+      const relativePath = basePath ? `${basePath}/${entry.name}` : entry.name;
+
+      if (entry.isDirectory()) {
+        tree.push({
+          name: entry.name,
+          path: relativePath,
+          type: "folder",
+          children: readDirectoryTree(currentPath, relativePath),
+        });
+      } else if (entry.isFile()) {
+        // Optional: Add filters for allowed file types if needed
+        // e.g., if (![\"tsx\", \"ts\", \"css\", \"js\", \"jsx\"].includes(path.extname(entry.name).substring(1))) continue;
+        try {
+          const content = fs.readFileSync(currentPath, "utf-8");
+          tree.push({
+            name: entry.name,
+            path: relativePath,
+            type: "file",
+            content: content,
+          });
+        } catch (readErr) {
+          console.error(`Error reading file ${currentPath}:`, readErr);
+          // Optionally add file item even if content fails to read
+          tree.push({
+            name: entry.name,
+            path: relativePath,
+            type: "file",
+            content: `// Error reading file content`,
+          });
+        }
+      }
+    }
+    return tree;
+  } catch (error) {
+    console.error(`Error reading directory ${dirPath}:`, error);
+    return []; // Return empty array on error
+  }
+}
+// --- End Added Directory Reading Function ---
+
 export interface BlocksProps {
   name: string;
   code?: string | ReactNode;
@@ -78,7 +149,9 @@ export interface BlocksProps {
   blocksCategory: string;
   meta?: {
     iframeHeight?: string;
+    type?: "file" | "directory";
   };
+  fileTree?: FileTreeItem[];
 }
 
 export function getBlocks(params: { blocksCategory: string }) {
@@ -91,9 +164,25 @@ export function getBlocks(params: { blocksCategory: string }) {
     .filter((blocks) => blocks.category === params.blocksCategory)
     .forEach((block) => {
       try {
-        const codeSource = getBlocksMDX(block.category).find(
-          (blocks) => blocks.blocksCategory === block.id
-        )?.content;
+        let codeSource: string | ReactNode | undefined = undefined;
+        let fileTree: FileTreeItem[] | undefined = undefined;
+
+        if (block.type === "directory") {
+          const blockDirPath = path.join(
+            process.cwd(),
+            "content",
+            "components", // Assuming components live here
+            block.id
+          );
+          fileTree = readDirectoryTree(blockDirPath);
+          // For directory type, codeSource might be irrelevant or could point to a main file
+          // codeSource = findMainFileContent(fileTree); // Optional: logic to find main file
+        } else {
+          // Existing logic for file type
+          codeSource = getBlocksMDX(block.category).find(
+            (blocks) => blocks.blocksCategory === block.id
+          )?.content;
+        }
 
         blocksData.push({
           codeSource,
@@ -101,8 +190,10 @@ export function getBlocks(params: { blocksCategory: string }) {
           blocksId: block.id,
           meta: {
             iframeHeight: block.iframeHeight,
+            type: block.type,
           },
           blocksCategory: block.category,
+          fileTree,
         });
       } catch (err) {
         console.error(err);

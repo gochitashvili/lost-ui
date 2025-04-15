@@ -1,5 +1,6 @@
 "use client";
 
+import { CodeBlockEditor } from "@/components/code-block-editor";
 import { OpenInV0Button } from "@/components/open-in-v0-button";
 import {
   ResizableHandle,
@@ -47,6 +48,7 @@ export const Block = ({
   codeSource,
   code,
   meta,
+  fileTree,
 }: BlocksProps) => {
   const [hasCopied, setHasCopied] = useState(false);
   const [state, setState] = useState<BlockViewState>({
@@ -56,6 +58,7 @@ export const Block = ({
 
   const resizablePanelRef = useRef<ImperativePanelHandle>(null);
   const iframeHeight = meta?.iframeHeight ?? "930px";
+  const isDirectory = meta?.type === "directory";
 
   const [, copy] = useCopy();
 
@@ -171,6 +174,7 @@ export const Block = ({
                 onValueChange={(value) => {
                   handleSizeChange(value);
                 }}
+                disabled={isDirectory}
               >
                 <ToggleGroupItem
                   value="desktop"
@@ -204,6 +208,7 @@ export const Block = ({
                   asChild
                   title="Open in New Tab"
                   data-umami-event="Open Block Fullscreen Preview"
+                  disabled={isDirectory}
                 >
                   <Link href={`/blocks/preview/${blocksId}`} target="_blank">
                     <span className="sr-only">Open in New Tab</span>
@@ -228,6 +233,7 @@ export const Block = ({
                 size="icon"
                 className="h-7 w-7"
                 data-umami-event="Copy Block Code"
+                disabled={isDirectory}
               >
                 {hasCopied ? (
                   <Check className="h-3 w-3" />
@@ -243,6 +249,7 @@ export const Block = ({
                     size="icon"
                     className="h-7 w-7"
                     data-umami-event="Copy shadcn cli command"
+                    disabled={isDirectory}
                   >
                     <Code className="h-3 w-3" />
                   </Button>
@@ -274,39 +281,43 @@ export const Block = ({
         </div>
       </div>
 
-      <div className="relative mt-4 w-full">
-        {state.view === "preview" && (
-          <div className="md:h-[--height]">
-            <div className="grid w-full gap-4">
-              <ResizablePanelGroup
-                direction="horizontal"
-                className="relative z-10"
-              >
-                <ResizablePanel
-                  ref={resizablePanelRef}
-                  className="relative rounded-lg border border-accent bg-background"
-                  defaultSize={100}
-                  minSize={30}
-                >
-                  <iframe
-                    src={`/blocks/preview/${blocksId}`}
-                    title={`${name} preview`}
-                    height={meta?.iframeHeight ?? 930}
-                    className="relative z-20 w-full bg-background"
-                  />
-                </ResizablePanel>
-                <ResizableHandle className="relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:bg-border after:transition-all after:hover:h-10 md:block" />
-                <ResizablePanel defaultSize={0} minSize={0} />
-              </ResizablePanelGroup>
-            </div>
-          </div>
-        )}
-
-        {state.view === "code" && (
-          <div className="group-data-[view=preview]/block-view-wrapper:hidden md:h-[--height] rounded-lg overflow-auto">
-            {codeSource}
-          </div>
-        )}
+      <div className="relative mt-4 overflow-hidden rounded-lg border shadow-sm">
+        <ResizablePanelGroup direction="horizontal" className="h-full w-full">
+          <ResizablePanel
+            ref={resizablePanelRef}
+            defaultSize={state.view === "code" && !isDirectory ? 50 : 100}
+            className="relative data-[panel-group-direction=vertical]:h-[var(--height)] data-[panel-group-direction=horizontal]:w-full"
+          >
+            {isDirectory ? (
+              <div className="p-4" style={{ height: iframeHeight }}>
+                {fileTree ? (
+                  <CodeBlockEditor fileTree={fileTree} />
+                ) : (
+                  <div className="text-destructive">
+                    Error: Failed to load directory structure.
+                  </div>
+                )}
+              </div>
+            ) : (
+              <iframe
+                src={`/blocks/preview/${blocksId}`}
+                className="box-content h-[var(--height)] w-full"
+                height={meta?.iframeHeight ?? 930}
+                width="100%"
+              ></iframe>
+            )}
+          </ResizablePanel>
+          {state.view === "code" && !isDirectory && (
+            <>
+              <ResizableHandle withHandle />
+              <ResizablePanel defaultSize={50}>
+                <div className="relative h-full overflow-auto">
+                  {codeSource}
+                </div>
+              </ResizablePanel>
+            </>
+          )}
+        </ResizablePanelGroup>
       </div>
     </div>
   );
