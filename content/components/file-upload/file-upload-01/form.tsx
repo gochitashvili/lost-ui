@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default function ProjectDetailsForm() {
+export function Form() {
   return (
     <div className="px-6 pb-4 mt-2">
       <div className="grid grid-cols-2 gap-4">

@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import UploadedFileItem from "./UploadedFileItem";
+import { UploadedFileItem } from "./file-item";
 
 interface UploadedFileListProps {
   uploadedFiles: File[];
@@ -7,20 +7,20 @@ interface UploadedFileListProps {
   removeFile: (filename: string) => void;
 }
 
-export default function UploadedFileList({
+export function FileList({
   uploadedFiles,
   fileProgresses,
   removeFile,
 }: UploadedFileListProps) {
   if (uploadedFiles.length === 0) {
-    return null; // Don't render anything if there are no files
+    return null;
   }
 
   return (
     <div className={cn("px-6 pb-5 space-y-3 mt-4")}>
       {uploadedFiles.map((file, index) => (
         <UploadedFileItem
-          key={file.name + index} // Use index in key for potential duplicate names
+          key={file.name + index}
           file={file}
           progress={fileProgresses[file.name] || 0}
           onRemove={removeFile}

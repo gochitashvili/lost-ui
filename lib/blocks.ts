@@ -86,12 +86,71 @@ export interface FolderItem extends BaseItem {
 
 export type FileTreeItem = FileItem | FolderItem;
 
+function generateFileTree(
+  dirPath: string,
+  basePath: string = dirPath
+): FileTreeItem[] {
+  const items: FileTreeItem[] = [];
+  try {
+    if (!fs.existsSync(dirPath) || !fs.statSync(dirPath).isDirectory()) {
+      console.warn(`Directory not found or is not a directory: ${dirPath}`);
+      return [];
+    }
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+
+    for (const entry of entries) {
+      if (entry.name.startsWith(".")) {
+        continue;
+      }
+
+      const entryPath = path.join(dirPath, entry.name);
+      const relativePath = path.relative(basePath, entryPath);
+
+      if (entry.isDirectory()) {
+        items.push({
+          name: entry.name,
+          path: relativePath,
+          type: "folder",
+          children: generateFileTree(entryPath, basePath),
+        });
+      } else if (entry.isFile()) {
+        try {
+          const content = fs.readFileSync(entryPath, "utf-8");
+          items.push({
+            name: entry.name,
+            path: relativePath,
+            type: "file",
+            content: content,
+          });
+        } catch (readError) {
+          console.error(`Error reading file ${entryPath}:`, readError);
+          items.push({
+            name: entry.name,
+            path: relativePath,
+            type: "file",
+            content: `// Error reading file: ${(readError as Error).message}`,
+          });
+        }
+      }
+    }
+  } catch (error) {
+    console.error(`Error reading directory ${dirPath}:`, error);
+  }
+
+  items.sort((a, b) => {
+    if (a.type === "folder" && b.type === "file") return -1;
+    if (a.type === "file" && b.type === "folder") return 1;
+    return a.name.localeCompare(b.name);
+  });
+  return items;
+}
+
 export interface BlocksProps {
   name: string;
-  code?: string | ReactNode;
-  codeSource?: string | ReactNode;
-  fileTree?: FileTreeItem[];
-  copyCode?: ReactNode;
+  code?: string | ReactNode; // Keep for potential future use or consistency
+  codeSource?: string | ReactNode; // Primarily for type: 'file'
+  fileTree?: FileTreeItem[]; // Use the discriminated union type
+  copyCode?: ReactNode; // This seems unused in Block.tsx, maybe remove?
   blocksId: string;
   blocksCategory: string;
   meta?: {
@@ -112,12 +171,33 @@ export function getBlocks(params: { blocksCategory: string }) {
     .forEach((block) => {
       try {
         let codeSource: string | ReactNode | undefined = undefined;
+        let fileTree: FileTreeItem[] | undefined = undefined;
 
-        codeSource = getBlocksMDX(block.category).find(
-          (b) => b.blocksCategory === block.id
-        )?.content;
-        if (!codeSource) {
-          console.warn(`MDX content not found for file block: ${block.id}`);
+        if (block.type === "directory") {
+          const blockDirPath = path.join(
+            process.cwd(),
+            "content",
+            "components",
+            block.category,
+            block.id
+          );
+
+          console.log(blockDirPath);
+
+          fileTree = generateFileTree(blockDirPath);
+
+          if (fileTree.length === 0) {
+            console.warn(
+              `No files found or error generating file tree for directory block: ${block.id}`
+            );
+          }
+        } else {
+          codeSource = getBlocksMDX(block.category).find(
+            (b) => b.blocksCategory === block.id
+          )?.content;
+          if (!codeSource) {
+            console.warn(`MDX content not found for file block: ${block.id}`);
+          }
         }
 
         blocksData.push({
@@ -129,6 +209,7 @@ export function getBlocks(params: { blocksCategory: string }) {
             type: block.type,
           },
           ...(codeSource && { codeSource }),
+          ...(fileTree && { fileTree }),
         });
       } catch (err) {
         console.error(`Error processing block ${block.id}:`, err);

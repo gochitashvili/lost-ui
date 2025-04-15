@@ -9,7 +9,7 @@ interface FileDropzoneProps {
   handleFileSelect: (files: FileList | null) => void;
 }
 
-export default function FileDropzone({
+export function FileDropzone({
   fileInputRef,
   handleBoxClick,
   handleDragOver,

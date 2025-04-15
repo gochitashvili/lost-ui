@@ -8,14 +8,13 @@ interface UploadedFileItemProps {
   onRemove: (filename: string) => void;
 }
 
-export default function UploadedFileItem({
+export function UploadedFileItem({
   file,
   progress,
   onRemove,
 }: UploadedFileItemProps) {
   const imageUrl = URL.createObjectURL(file);
 
-  // Clean up the object URL when the component unmounts
   useEffect(() => {
     return () => URL.revokeObjectURL(imageUrl);
   }, [imageUrl]);
@@ -23,7 +22,7 @@ export default function UploadedFileItem({
   return (
     <div
       className="border border-border rounded-lg p-2 flex flex-col"
-      key={file.name} // Key can be simplified here
+      key={file.name}
     >
       <div className="flex items-center gap-2">
         <div className="w-18 h-14 bg-muted rounded-sm flex items-center justify-center self-start row-span-2 overflow-hidden">
