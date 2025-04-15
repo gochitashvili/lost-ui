@@ -47,8 +47,6 @@ export default async function Page({ params }: PageProps) {
     notFound();
   }
 
-  console.log(blocks);
-
   return (
     <div className="flex flex-col">
       <div className="space-y-2">

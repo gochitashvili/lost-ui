@@ -88,6 +88,39 @@ function extractDependencies(project, filePath) {
   };
 }
 
+async function findTsxFiles(dirPath, baseSourceDir, baseTargetDir) {
+  const files = [];
+  const entries = await fs.readdir(dirPath, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = path.join(dirPath, entry.name);
+    const relativePath = path.relative(baseSourceDir, fullPath);
+    const targetPath = path
+      .join(baseTargetDir, relativePath)
+      .replace(/\\/g, "/");
+    const sourcePathRelative = path
+      .join(
+        COMPONENTS_DIR,
+        path.relative(path.resolve(process.cwd(), COMPONENTS_DIR), fullPath)
+      )
+      .replace(/\\/g, "/");
+
+    if (entry.isDirectory()) {
+      files.push(
+        ...(await findTsxFiles(fullPath, baseSourceDir, baseTargetDir))
+      );
+    } else if (entry.isFile() && entry.name.endsWith(".tsx")) {
+      files.push({
+        path: sourcePathRelative,
+        absolutePath: fullPath,
+        target: targetPath,
+        type: "registry:block",
+      });
+    }
+  }
+  return files;
+}
+
 async function generateRegistry() {
   const metadataMap = await loadMetadata();
   const project = new Project();
@@ -106,53 +139,91 @@ async function generateRegistry() {
           continue;
         }
         const categoryPath = path.join(absoluteComponentsDir, category);
-        const files = await fs.readdir(categoryPath);
+        const entries = await fs.readdir(categoryPath, { withFileTypes: true });
 
-        for (const file of files) {
-          if (file.startsWith(".") || file.startsWith("index.")) {
+        for (const entry of entries) {
+          if (entry.name.startsWith(".") || entry.name.startsWith("index.")) {
             continue;
           }
 
-          if (file.endsWith(".tsx")) {
-            const blockId = path.basename(file, ".tsx");
-            const absoluteFilePath = path.join(categoryPath, file);
+          const blockId = entry.isDirectory()
+            ? entry.name
+            : path.basename(entry.name, ".tsx");
+          const entryPath = path.join(categoryPath, entry.name);
 
-            let title = metadataMap.get(blockId);
-            if (!title) {
-              console.warn(
-                `Warning: Metadata not found for block ID "${blockId}". Using generated title.`
-              );
-              title = formatTitle(blockId);
-            }
+          let title = metadataMap.get(blockId);
+          if (!title) {
+            console.warn(
+              `Warning: Metadata not found for block ID "${blockId}". Using generated title.`
+            );
+            title = formatTitle(blockId);
+          }
+          const description = `A ${title.toLowerCase()} block.`;
 
-            const description = `A ${title.toLowerCase()} block.`;
+          const allRegistryDeps = new Set();
+          const allExternalDeps = new Set();
+          const blockFiles = [];
+
+          if (entry.isFile() && entry.name.endsWith(".tsx")) {
+            // Single-file block
+            const absoluteFilePath = entryPath;
             const filePathRelative = path
-              .join(COMPONENTS_DIR, category, file)
+              .join(COMPONENTS_DIR, category, entry.name)
               .replace(/\\/g, "/");
             const targetPath = path
-              .join("/components/blocks", file)
+              .join("/components/blocks", entry.name)
               .replace(/\\/g, "/");
 
             const { registryDependencies, dependencies } = extractDependencies(
               project,
               absoluteFilePath
             );
+            registryDependencies.forEach((dep) => allRegistryDeps.add(dep));
+            dependencies.forEach((dep) => allExternalDeps.add(dep));
 
+            blockFiles.push({
+              path: filePathRelative,
+              type: "registry:block",
+              target: targetPath,
+            });
+          } else if (entry.isDirectory()) {
+            const blockSourceDir = entryPath;
+            const blockTargetDir = path
+              .join("/components/blocks", blockId)
+              .replace(/\\/g, "/");
+
+            const foundFiles = await findTsxFiles(
+              blockSourceDir,
+              blockSourceDir,
+              blockTargetDir
+            );
+
+            for (const fileInfo of foundFiles) {
+              const { registryDependencies, dependencies } =
+                extractDependencies(project, fileInfo.absolutePath);
+              registryDependencies.forEach((dep) => allRegistryDeps.add(dep));
+              dependencies.forEach((dep) => allExternalDeps.add(dep));
+
+              blockFiles.push({
+                path: fileInfo.path,
+                type: fileInfo.type,
+                target: fileInfo.target,
+              });
+            }
+          } else {
+            continue;
+          }
+
+          if (blockFiles.length > 0) {
             registryItems.push({
               name: blockId,
               type: "registry:block",
               title: title,
               description: description,
               author: AUTHOR,
-              registryDependencies,
-              dependencies,
-              files: [
-                {
-                  path: filePathRelative,
-                  type: "registry:block",
-                  target: targetPath,
-                },
-              ],
+              registryDependencies: [...allRegistryDeps].sort(),
+              dependencies: [...allExternalDeps].sort(),
+              files: blockFiles,
             });
           }
         }
