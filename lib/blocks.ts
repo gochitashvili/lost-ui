@@ -111,11 +111,6 @@ export function getBlocks(params: { blocksCategory: string }) {
     .filter((blocks) => blocks.category === params.blocksCategory)
     .forEach((block) => {
       try {
-        if (block.type === "directory") {
-          console.log(`Skipping directory block: ${block.id}`);
-          return;
-        }
-
         let codeSource: string | ReactNode | undefined = undefined;
 
         codeSource = getBlocksMDX(block.category).find(
