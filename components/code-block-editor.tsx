@@ -15,7 +15,6 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar";
 
-// Types for our file system
 type FileItem = {
   name: string;
   path: string;
@@ -32,7 +31,6 @@ export type FolderItem = {
 
 export type FileTreeItem = FileItem | FolderItem;
 
-// Context for our code block editor
 type CodeBlockEditorContext = {
   activeFile: string | null;
   setActiveFile: (file: string) => void;
@@ -62,10 +60,8 @@ function CodeBlockEditorProvider({
   fileTree: FileTreeItem[];
 }) {
   const [activeFile, setActiveFile] = React.useState<string | null>(
-    // Find the first file in the tree
     findFirstFile(fileTree)?.path || null
   );
-  // Track expanded folders - initially expand all folders
   const [expandedFolders, setExpandedFolders] = React.useState<Set<string>>(
     () => {
       const expanded = new Set<string>();
@@ -111,7 +107,6 @@ function CodeBlockEditorProvider({
   );
 }
 
-// Helper function to find the first file in the tree
 function findFirstFile(items: FileTreeItem[]): FileItem | null {
   for (const item of items) {
     if (item.type === "file") {
@@ -124,7 +119,6 @@ function findFirstFile(items: FileTreeItem[]): FileItem | null {
   return null;
 }
 
-// Helper function to find a file by path
 function findFileByPath(items: FileTreeItem[], path: string): FileItem | null {
   for (const item of items) {
     if (item.type === "file" && item.path === path) {
@@ -137,14 +131,12 @@ function findFileByPath(items: FileTreeItem[], path: string): FileItem | null {
   return null;
 }
 
-// Create a singleton highlighter instance
 let highlighterInstance: Awaited<ReturnType<typeof createHighlighter>> | null =
   null;
 let highlighterPromise: Promise<
   Awaited<ReturnType<typeof createHighlighter>>
 > | null = null;
 
-// Function to get or create the highlighter instance
 async function getHighlighter() {
   if (highlighterInstance) return highlighterInstance;
 
@@ -198,15 +190,12 @@ function CodeBlockEditorToolbar() {
 function FileTreeView() {
   const { fileTree, expandedFolders } = useCodeBlockEditor();
 
-  // Create a hierarchical structure for rendering
   const renderableTree = React.useMemo(() => {
-    // First, create a map of all items by path
     const itemMap = new Map<
       string,
       FileTreeItem & { depth: number; visible: boolean }
     >();
 
-    // Add all items to the map with initial visibility
     const addToMap = (
       items: FileTreeItem[],
       depth: number,
@@ -225,7 +214,6 @@ function FileTreeView() {
         itemMap.set(item.path, { ...item, depth, visible: isVisible });
 
         if (item.type === "folder") {
-          // For folders, children are only visible if the folder is expanded
           const folderVisible = isVisible && expandedFolders.has(item.path);
           addToMap(item.children, depth + 1, folderVisible);
         }
@@ -234,7 +222,6 @@ function FileTreeView() {
 
     addToMap(fileTree, 0);
 
-    // Convert the map to an array and filter out invisible items
     return Array.from(itemMap.values()).filter((item) => item.visible);
   }, [fileTree, expandedFolders]);
 
@@ -263,7 +250,6 @@ function FileTreeView() {
   );
 }
 
-// A non-list item component for rendering tree items
 function TreeItem({ item, depth }: { item: FileTreeItem; depth: number }) {
   const { activeFile, setActiveFile, expandedFolders, toggleFolder } =
     useCodeBlockEditor();
@@ -379,11 +365,8 @@ export interface CodeBlockEditorProps {
 }
 
 export function CodeBlockEditor({ fileTree }: CodeBlockEditorProps) {
-  console.log(fileTree);
-
-  // Handle cases where fileTree might be missing initially
   if (!fileTree) {
-    return <div>Loading editor...</div>; // Or some other placeholder
+    return <div>Loading editor...</div>;
   }
 
   return (

@@ -13,7 +13,7 @@ export const blocksMetadata: BlocksMetadata[] = [
     category: categoryIds.FileUpload,
     name: "Simple File Upload",
     iframeHeight: "460px",
-    type: "directory",
+    type: "file",
   },
   {
     id: "file-upload-03",
@@ -41,7 +41,7 @@ export const blocksMetadata: BlocksMetadata[] = [
     category: categoryIds.FileUpload,
     name: "File Upload with Icon",
     iframeHeight: "430px",
-    type: "file",
+    type: "directory",
   },
 
   {
