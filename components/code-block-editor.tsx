@@ -3,9 +3,9 @@
 import { cn } from "@/lib/utils";
 import { Check, ChevronRight, Clipboard, File, Folder } from "lucide-react";
 import * as React from "react";
-import { createHighlighter } from "shiki";
 
 import { Button } from "@/components/ui/button";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   Sidebar,
   SidebarContent,
@@ -14,6 +14,8 @@ import {
   SidebarGroupLabel,
   SidebarProvider,
 } from "@/components/ui/sidebar";
+import { useTheme } from "next-themes";
+import { highlightCode } from "@/lib/highlight-code";
 
 type FileItem = {
   name: string;
@@ -37,6 +39,7 @@ type CodeBlockEditorContext = {
   fileTree: FileTreeItem[];
   expandedFolders: Set<string>;
   toggleFolder: (path: string) => void;
+  blockTitle?: string;
 };
 
 const CodeBlockEditorContext =
@@ -55,9 +58,11 @@ function useCodeBlockEditor() {
 function CodeBlockEditorProvider({
   children,
   fileTree,
+  blockTitle,
 }: {
   children: React.ReactNode;
   fileTree: FileTreeItem[];
+  blockTitle?: string;
 }) {
   const [activeFile, setActiveFile] = React.useState<string | null>(
     findFirstFile(fileTree)?.path || null
@@ -65,15 +70,14 @@ function CodeBlockEditorProvider({
   const [expandedFolders, setExpandedFolders] = React.useState<Set<string>>(
     () => {
       const expanded = new Set<string>();
-      const addFolderPaths = (items: FileTreeItem[]) => {
+      const addFirstLevelFolders = (items: FileTreeItem[]) => {
         items.forEach((item) => {
-          if (item.type === "folder") {
+          if (item.type === "folder" && !item.path.includes("/")) {
             expanded.add(item.path);
-            addFolderPaths(item.children);
           }
         });
       };
-      addFolderPaths(fileTree);
+      addFirstLevelFolders(fileTree);
       return expanded;
     }
   );
@@ -98,6 +102,7 @@ function CodeBlockEditorProvider({
         fileTree,
         expandedFolders,
         toggleFolder,
+        blockTitle,
       }}
     >
       <div className="flex min-w-0 flex-col items-stretch rounded-lg border">
@@ -131,28 +136,9 @@ function findFileByPath(items: FileTreeItem[], path: string): FileItem | null {
   return null;
 }
 
-let highlighterInstance: Awaited<ReturnType<typeof createHighlighter>> | null =
-  null;
-let highlighterPromise: Promise<
-  Awaited<ReturnType<typeof createHighlighter>>
-> | null = null;
-
-async function getHighlighter() {
-  if (highlighterInstance) return highlighterInstance;
-
-  if (!highlighterPromise) {
-    highlighterPromise = createHighlighter({
-      themes: ["github-dark"],
-      langs: ["javascript", "typescript", "tsx", "jsx", "html", "css"],
-    });
-  }
-
-  highlighterInstance = await highlighterPromise;
-  return highlighterInstance;
-}
 
 function CodeBlockEditorToolbar() {
-  const { activeFile, fileTree } = useCodeBlockEditor();
+  const { activeFile, fileTree, blockTitle } = useCodeBlockEditor();
   const [isCopied, setIsCopied] = React.useState(false);
 
   const file = activeFile ? findFileByPath(fileTree, activeFile) : null;
@@ -165,15 +151,23 @@ function CodeBlockEditorToolbar() {
   };
 
   return (
-    <div className="flex h-10 items-center gap-2 border-b px-4 text-sm font-medium">
-      <File className="h-4 w-4" />
-      {file?.path || "Select a file"}
-      <div className="ml-auto flex items-center gap-2">
+    <div className="flex h-10 items-center gap-2 border-b px-4 text-sm">
+      <div className="flex items-center gap-2 tracking-tight font-medium">
+        {blockTitle || "Code Block"}
+      </div>
+      <div className="ml-auto flex items-center gap-2 text-muted-foreground">
+        {file && (
+          <>
+            <File className="h-4 w-4" />
+            <span>{file.path}</span>
+          </>
+        )}
         <Button
           onClick={copyToClipboard}
           className="h-7 w-7 rounded-md p-0"
           variant="ghost"
           size="sm"
+          disabled={!file}
         >
           {isCopied ? (
             <Check className="h-4 w-4" />
@@ -231,13 +225,10 @@ function FileTreeView() {
         collapsible="none"
         className="w-full flex-1 border-r bg-muted/50"
       >
-        <SidebarGroupLabel className="h-10 rounded-none border-b px-4 text-sm">
-          Files
-        </SidebarGroupLabel>
         <SidebarContent>
           <SidebarGroup className="p-0">
             <SidebarGroupContent>
-              <div className="flex flex-col gap-1 rounded-none">
+              <div className="flex flex-col gap-0.5 rounded-none">
                 {renderableTree.map((item) => (
                   <TreeItem key={item.path} item={item} depth={item.depth} />
                 ))}
@@ -288,7 +279,7 @@ function TreeItem({ item, depth }: { item: FileTreeItem; depth: number }) {
         </>
       ) : (
         <>
-          <span className="w-4" /> {/* Spacer to align with folder items */}
+          <span className="w-4" />
           <File className="h-4 w-4 shrink-0" />
           <span className="truncate">{item.name}</span>
         </>
@@ -301,12 +292,13 @@ function CodeView() {
   const { activeFile, fileTree } = useCodeBlockEditor();
   const [highlightedCode, setHighlightedCode] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState(true);
+  const { theme } = useTheme();
 
   const file = activeFile ? findFileByPath(fileTree, activeFile) : null;
   const content = file?.content || "";
 
   React.useEffect(() => {
-    async function highlightCode() {
+    async function highlight() {
       if (!file) {
         setHighlightedCode("");
         setIsLoading(false);
@@ -315,8 +307,6 @@ function CodeView() {
 
       setIsLoading(true);
       try {
-        const highlighter = await getHighlighter();
-
         const extension = file.path.split(".").pop() || "";
         let lang = "typescript";
 
@@ -326,10 +316,12 @@ function CodeView() {
         else if (extension === "jsx") lang = "jsx";
         else if (extension === "tsx") lang = "tsx";
 
-        const html = highlighter.codeToHtml(content, {
-          lang,
-          theme: "github-dark",
-        });
+        const html = await highlightCode(
+          content,
+          theme === "dark" ? "dark" : "light",
+          lang
+        );
+
         setHighlightedCode(html);
       } catch (error) {
         console.error("Error highlighting code:", error);
@@ -339,8 +331,8 @@ function CodeView() {
       }
     }
 
-    highlightCode();
-  }, [file, content]);
+    highlight();
+  }, [file, content, theme]);
 
   if (!file) {
     return <div className="p-4">Select a file to view its content</div>;
@@ -351,33 +343,120 @@ function CodeView() {
   }
 
   return (
-    <div className="flex min-w-0 flex-1 flex-col code-block-editor-view">
-      <div
-        className="flex-1 overflow-auto bg-muted/30 p-4 text-sm !rounded-l-none !rounded-tr-none"
-        dangerouslySetInnerHTML={{ __html: highlightedCode }}
-      />
+    <div className="flex min-w-0 flex-1 flex-col code-block-editor-view h-full">
+      <ScrollArea className="h-full w-full bg-muted/30 !rounded-l-none !rounded-tr-none">
+        <div
+          className="p-4 text-base min-w-max"
+          dangerouslySetInnerHTML={{ __html: highlightedCode }}
+        />
+        <ScrollBar orientation="horizontal" />
+        <ScrollBar orientation="vertical" />
+      </ScrollArea>
     </div>
   );
 }
 
 export interface CodeBlockEditorProps {
   fileTree: FileTreeItem[];
+  blockTitle?: string;
+  height?: string;
 }
 
-export function CodeBlockEditor({ fileTree }: CodeBlockEditorProps) {
-  if (!fileTree) {
-    return <div>Loading editor...</div>;
+export function buildFileTree(paths: string[]): FileTreeItem[] {
+  const root: { [key: string]: any } = {};
+
+  paths.forEach((path) => {
+    const parts = path.split("/").filter(Boolean);
+    let current = root;
+    let currentPath = "";
+
+    parts.forEach((part, index) => {
+      currentPath = currentPath ? `${currentPath}/${part}` : part;
+      const isFile = index === parts.length - 1;
+
+      if (!current[part]) {
+        current[part] = {
+          name: part,
+          path: currentPath,
+          type: isFile ? "file" : "folder",
+          ...(isFile
+            ? { content: `// Content for ${currentPath}` }
+            : { children: {} }),
+        };
+      }
+
+      if (!isFile && current[part].type === "folder") {
+        current = current[part].children;
+      }
+    });
+  });
+
+  const convertToArray = (obj: any, parentPath = ""): FileTreeItem[] => {
+    return Object.values(obj)
+      .map((node: any) => {
+        if (node.type === "folder" && node.children) {
+          return {
+            ...node,
+            children: convertToArray(node.children, node.path),
+          };
+        }
+        return node;
+      })
+      .sort((a: FileTreeItem, b: FileTreeItem) => {
+        if (a.type !== b.type) {
+          return a.type === "folder" ? -1 : 1;
+        }
+
+        return a.name.localeCompare(b.name);
+      });
+  };
+
+  return convertToArray(root);
+}
+
+export function CodeBlockEditor({
+  fileTree,
+  blockTitle,
+  height = "700px",
+}: CodeBlockEditorProps) {
+  if (!fileTree || fileTree.length === 0) {
+    return (
+      <div className="rounded-lg border p-4 text-muted-foreground">
+        No files to display
+      </div>
+    );
   }
 
+  const sortedFileTree = React.useMemo(() => {
+    const sortTree = (items: FileTreeItem[]): FileTreeItem[] => {
+      return [...items]
+        .sort((a, b) => {
+          if (a.type !== b.type) {
+            return a.type === "folder" ? -1 : 1;
+          }
+          return a.name.localeCompare(b.name);
+        })
+        .map((item) => {
+          if (item.type === "folder" && item.children) {
+            return { ...item, children: sortTree(item.children) };
+          }
+          return item;
+        });
+    };
+    return sortTree(fileTree);
+  }, [fileTree]);
+
   return (
-    <CodeBlockEditorProvider fileTree={fileTree}>
+    <CodeBlockEditorProvider fileTree={sortedFileTree} blockTitle={blockTitle}>
       <CodeBlockEditorToolbar />
 
-      <div className="flex h-[700px] w-full overflow-hidden">
-        <div className="w-[240px]">
+      <div className="flex w-full overflow-hidden" style={{ height }}>
+        <div className="w-[240px] flex-shrink-0 border-r">
           <FileTreeView />
         </div>
-        <CodeView />
+        <div className="flex-1 min-w-0">
+          <CodeView />
+        </div>
       </div>
     </CodeBlockEditorProvider>
   );

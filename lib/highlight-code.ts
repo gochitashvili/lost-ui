@@ -1,16 +1,36 @@
-import { codeToHtml } from "shiki";
+import { createHighlighter } from "shiki";
 
-export async function highlightCode(code: string) {
-  const html = await codeToHtml(code, {
-    lang: "jsx",
-    theme: "github-dark-default",
+let highlighterInstance: Awaited<ReturnType<typeof createHighlighter>> | null = null;
+let highlighterPromise: Promise<Awaited<ReturnType<typeof createHighlighter>>> | null = null;
+
+async function getHighlighter() {
+  if (highlighterInstance) return highlighterInstance;
+
+  if (!highlighterPromise) {
+    highlighterPromise = createHighlighter({
+      themes: ["github-light", "github-dark"],
+      langs: ["javascript", "typescript", "tsx", "jsx", "html", "css"],
+    });
+  }
+
+  highlighterInstance = await highlighterPromise;
+  return highlighterInstance;
+}
+
+export async function highlightCode(code: string, theme: "light" | "dark" = "dark", lang: string = "tsx") {
+  const highlighter = await getHighlighter();
+  
+  const html = highlighter.codeToHtml(code, {
+    lang,
+    theme: theme === "dark" ? "github-dark" : "github-light",
     transformers: [
       {
-        code(node) {
-          node.properties["data-line-numbers"] = "";
-        },
-      },
-    ],
+        line(node) {
+          node.properties = node.properties || {};
+          node.properties['class'] = 'line';
+        }
+      }
+    ]
   });
 
   return html;
