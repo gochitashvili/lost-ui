@@ -120,8 +120,6 @@ export const Block = ({
     };
   }, [hasCopied]);
 
-  console.log(name);
-
   return (
     <div
       className="my-24 first:mt-8"
