@@ -7,7 +7,7 @@ import {
   Fullscreen,
   Monitor,
   Smartphone,
-  Tablet
+  Tablet,
 } from "lucide-react";
 import Link from "next/link";
 import { ReactNode, useEffect, useRef, useState } from "react";
@@ -17,13 +17,14 @@ import { OpenInV0Button } from "@/components/open-in-v0-button";
 import {
   ResizableHandle,
   ResizablePanel,
-  ResizablePanelGroup
+  ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { useCopy } from "@/hooks/use-copy";
 import { BlocksProps } from "@/lib/blocks";
 
 import CliCommands from "../cli-commands";
 import { CodeBlockEditor } from "../code-block-editor";
+import { SingleFileCodeView } from "../single-file-code-view";
 
 import { Button } from "./button";
 import {
@@ -34,7 +35,7 @@ import {
   DialogOverlay,
   DialogPortal,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "./dialog";
 import { Separator } from "./separator";
 import { Tabs, TabsList, TabsTrigger } from "./tabs";
@@ -118,6 +119,8 @@ export const Block = ({
       }
     };
   }, [hasCopied]);
+
+  console.log(name);
 
   return (
     <div
@@ -302,14 +305,16 @@ export const Block = ({
         )}
 
         {state.view === "code" && meta?.type === "file" && (
-          <div className="group-data-[view=preview]/block-view-wrapper:hidden md:h-[--height] rounded-lg overflow-auto">
-            {codeSource}
+          <div className="group-data-[view=preview]/block-view-wrapper:hidden md:h-[--height] rounded-lg border overflow-hidden">
+            <div className="bg-muted/30 h-full">
+              <SingleFileCodeView code={getCleanCode(code)} />
+            </div>
           </div>
         )}
 
         {state.view === "code" && meta?.type === "directory" && (
           <div className="group-data-[view=preview]/block-view-wrapper:hidden md:h-[--height] rounded-lg overflow-auto">
-            <CodeBlockEditor fileTree={fileTree ?? []} />
+            <CodeBlockEditor blockTitle={name} fileTree={fileTree ?? []} />
           </div>
         )}
       </div>
