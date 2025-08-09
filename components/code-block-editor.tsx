@@ -3,7 +3,6 @@
 import { cn } from "@/lib/utils";
 import { Check, ChevronRight, Clipboard, File, Folder } from "lucide-react";
 import * as React from "react";
-import { createHighlighter } from "shiki";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
@@ -16,6 +15,7 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar";
 import { useTheme } from "next-themes";
+import { highlightCode } from "@/lib/highlight-code";
 
 type FileItem = {
   name: string;
@@ -136,25 +136,6 @@ function findFileByPath(items: FileTreeItem[], path: string): FileItem | null {
   return null;
 }
 
-let highlighterInstance: Awaited<ReturnType<typeof createHighlighter>> | null =
-  null;
-let highlighterPromise: Promise<
-  Awaited<ReturnType<typeof createHighlighter>>
-> | null = null;
-
-async function getHighlighter() {
-  if (highlighterInstance) return highlighterInstance;
-
-  if (!highlighterPromise) {
-    highlighterPromise = createHighlighter({
-      themes: ["github-light", "github-dark"],
-      langs: ["javascript", "typescript", "tsx", "jsx", "html", "css"],
-    });
-  }
-
-  highlighterInstance = await highlighterPromise;
-  return highlighterInstance;
-}
 
 function CodeBlockEditorToolbar() {
   const { activeFile, fileTree, blockTitle } = useCodeBlockEditor();
@@ -317,7 +298,7 @@ function CodeView() {
   const content = file?.content || "";
 
   React.useEffect(() => {
-    async function highlightCode() {
+    async function highlight() {
       if (!file) {
         setHighlightedCode("");
         setIsLoading(false);
@@ -326,8 +307,6 @@ function CodeView() {
 
       setIsLoading(true);
       try {
-        const highlighter = await getHighlighter();
-
         const extension = file.path.split(".").pop() || "";
         let lang = "typescript";
 
@@ -337,10 +316,11 @@ function CodeView() {
         else if (extension === "jsx") lang = "jsx";
         else if (extension === "tsx") lang = "tsx";
 
-        const html = highlighter.codeToHtml(content, {
-          lang,
-          theme: theme === "dark" ? "github-dark" : "github-light",
-        });
+        const html = await highlightCode(
+          content,
+          theme === "dark" ? "dark" : "light",
+          lang
+        );
 
         setHighlightedCode(html);
       } catch (error) {
@@ -351,7 +331,7 @@ function CodeView() {
       }
     }
 
-    highlightCode();
+    highlight();
   }, [file, content, theme]);
 
   if (!file) {
