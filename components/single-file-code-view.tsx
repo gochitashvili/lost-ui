@@ -4,6 +4,7 @@ import * as React from "react";
 import { useTheme } from "next-themes";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { highlightCode } from "@/lib/highlight-code";
+import { resolveTheme } from "@/lib/resolve-theme";
 
 interface SingleFileCodeViewProps {
   code: string;
@@ -24,7 +25,7 @@ export function SingleFileCodeView({
       try {
         const html = await highlightCode(
           code,
-          theme === "dark" ? "dark" : "light",
+          resolveTheme(theme),
           language
         );
         setHighlightedCode(html);

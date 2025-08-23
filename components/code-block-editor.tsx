@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useTheme } from "next-themes";
 import { highlightCode } from "@/lib/highlight-code";
+import { resolveTheme } from "@/lib/resolve-theme";
 
 type FileItem = {
   name: string;
@@ -318,7 +319,7 @@ function CodeView() {
 
         const html = await highlightCode(
           content,
-          theme === "dark" ? "dark" : "light",
+          resolveTheme(theme),
           lang
         );
 
