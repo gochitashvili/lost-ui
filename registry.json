@@ -257,6 +257,30 @@
       ]
     },
     {
+      "name": "dialog-12",
+      "type": "registry:block",
+      "title": "Dialog with avatar upload",
+      "description": "A dialog with avatar upload block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "dialog",
+        "input",
+        "label"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/dialogs/dialog-12.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/dialog-12.tsx"
+        }
+      ]
+    },
+    {
       "name": "file-upload-01",
       "type": "registry:block",
       "title": "File Upload with Preview",
@@ -413,6 +437,29 @@
           "path": "content/components/file-upload/file-upload-05.tsx",
           "type": "registry:block",
           "target": "/components/blocks/file-upload-05.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-upload-06",
+      "type": "registry:block",
+      "title": "File Upload with Status Sections",
+      "description": "A file upload with status sections block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "button",
+        "card",
+        "progress",
+        "separator"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/file-upload/file-upload-06.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/file-upload-06.tsx"
         }
       ]
     },
@@ -792,6 +839,157 @@
           "path": "content/components/login/login-09.tsx",
           "type": "registry:block",
           "target": "/components/blocks/login-09.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-01",
+      "type": "registry:block",
+      "title": "Sidebar",
+      "description": "A sidebar block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "collapsible",
+        "command",
+        "dropdown-menu",
+        "sidebar",
+        "tooltip"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/sidebar/sidebar-01/index.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-01/index.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-01/nav-main.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-01/nav-main.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-01/nav-footer.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-01/nav-footer.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-01/nav-header.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-01/nav-header.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-01/app-sidebar.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-01/app-sidebar.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-01/nav-collapsible.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-01/nav-collapsible.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-02",
+      "type": "registry:block",
+      "title": "Sidebar",
+      "description": "A sidebar block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "collapsible",
+        "dropdown-menu",
+        "sidebar"
+      ],
+      "dependencies": [
+        "framer-motion",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/sidebar/sidebar-02/index.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-02/index.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-02/team-switcher.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-02/team-switcher.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-02/nav-main.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-02/nav-main.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-02/app-sidebar.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-02/app-sidebar.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-02/nav-notifications.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-02/nav-notifications.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-02/logo.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-02/logo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-99",
+      "type": "registry:block",
+      "title": "Sidebar 99",
+      "description": "A sidebar 99 block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "avatar",
+        "breadcrumb",
+        "collapsible",
+        "dropdown-menu",
+        "separator",
+        "sidebar"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/sidebar/sidebar-99/index.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-99/index.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-99/team-switcher.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-99/team-switcher.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-99/nav-main.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-99/nav-main.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-99/nav-user.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-99/nav-user.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-99/app-sidebar.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-99/app-sidebar.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-99/nav-projects.tsx",
+          "type": "registry:block",
+          "target": "/components/blocks/sidebar-99/nav-projects.tsx"
         }
       ]
     },

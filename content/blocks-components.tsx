@@ -6,6 +6,7 @@ export const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "file-upload-03": components.FileUpload03,
   "file-upload-04": components.FileUpload04,
   "file-upload-05": components.FileUpload05,
+  "file-upload-06": components.FileUpload06,
 
   "form-layout-01": components.FormLayout01,
   "form-layout-02": components.FormLayout02,

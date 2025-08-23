@@ -36,6 +36,13 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "430px",
     type: "file",
   },
+  {
+    id: "file-upload-06",
+    category: categoryIds.FileUpload,
+    name: "File Upload with Status Sections",
+    iframeHeight: "800px",
+    type: "file",
+  },
 
   {
     id: "form-layout-01",
