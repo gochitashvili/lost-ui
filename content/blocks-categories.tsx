@@ -10,6 +10,7 @@ import {
   BlocksMetadata,
   categoryIds,
 } from "./declarations";
+import { SidebarThumbnail } from "@/components/thumbnails/sidebar";
 
 type CategoryCount = Record<string, number>;
 
@@ -77,7 +78,7 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   {
     id: categoryIds.Sidebar,
     name: "Sidebar",
-    thumbnail: StatsThumbnail,
+    thumbnail: SidebarThumbnail,
     hasCharts: false,
   },
 ];
