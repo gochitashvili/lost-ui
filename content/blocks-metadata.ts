@@ -336,4 +336,11 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "1000px",
     type: "directory",
   },
+  {
+    id: "sidebar-03",
+    category: categoryIds.Sidebar,
+    name: "Floating Sidebar",
+    iframeHeight: "1000px",
+    type: "directory",
+  },
 ];

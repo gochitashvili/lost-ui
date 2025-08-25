@@ -70,7 +70,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(fontSans.variable, fontMono.variable, "antialiased")}>
+      <body
+        className={cn(fontSans.variable, fontMono.variable, "antialiased")}
+        suppressHydrationWarning
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
