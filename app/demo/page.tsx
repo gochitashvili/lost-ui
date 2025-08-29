@@ -1,4 +1,5 @@
 import { CodeBlockEditor, FileTreeItem } from "@/components/code-block-editor";
+import type { Metadata } from "next";
 
 const sampleFileTree: FileTreeItem[] = [
   {
@@ -44,3 +45,8 @@ export default function Home() {
     </main>
   );
 }
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+  title: "Demo — Not Indexed",
+};

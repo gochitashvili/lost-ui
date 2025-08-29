@@ -1,6 +1,7 @@
 import { blocksComponents } from "@/content/blocks-components";
 import { notFound } from "next/navigation";
 import PreviewThemeSwitcher from "./theme-switcher";
+import type { Metadata } from "next";
 
 type Params = {
   params: Promise<{
@@ -31,3 +32,8 @@ export default async function BlockPreviewPage({ params }: Params) {
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+  title: "Preview — Not Indexed",
+};

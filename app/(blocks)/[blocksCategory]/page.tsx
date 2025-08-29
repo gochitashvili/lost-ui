@@ -34,8 +34,21 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
   }
 
   return {
-    title: `${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui - blocks.so`,
+    title: `${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui`,
     description: `A collection of beautiful and accessible ${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui.`,
+    alternates: { canonical: `/${params.blocksCategory}` },
+    openGraph: {
+      title: `${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui`,
+      description: `A collection of beautiful and accessible ${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui.`,
+      images: [{ url: "/og", width: 1200, height: 630 }],
+      url: `/${params.blocksCategory}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui`,
+      description: `A collection of beautiful and accessible ${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui.`,
+      images: ["/og"],
+    },
   };
 }
 

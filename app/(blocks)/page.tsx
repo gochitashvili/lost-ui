@@ -34,3 +34,17 @@ export default function Home() {
     </div>
   );
 }
+import type { Metadata } from "next";
+import { siteConfig } from "@/config";
+
+export const metadata: Metadata = {
+  title: "Building Blocks for the Web",
+  description: siteConfig.description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Building Blocks for the Web",
+    description: siteConfig.description,
+    url: siteConfig.url,
+    images: [{ url: "/og", width: 1200, height: 630 }],
+  },
+};

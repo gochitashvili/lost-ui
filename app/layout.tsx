@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist_Mono, Inter } from "next/font/google";
+import { siteConfig } from "@/config";
+import { SeoJsonLd } from "@/components/seo-jsonld";
 
 const fontSans = Inter({
   variable: "--font-sans",
@@ -17,19 +19,20 @@ const fontMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "blocks.so",
-  metadataBase: new URL("https://blocks.so"),
-  description: "blocks.so",
+  metadataBase: new URL(siteConfig.url),
+  applicationName: "blocks.so",
+  title: {
+    default: "blocks.so — Building Blocks for the Web",
+    template: "%s — blocks.so",
+  },
+  description: siteConfig.description,
   keywords: [
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "Server Components",
-    "Radix UI",
-    "shadcn",
+    "React UI blocks",
+    "Tailwind components",
     "shadcn/ui",
-    "blocks.so",
-    "blocks",
+    "Next.js components",
+    "Open source UI",
+    "Copy paste components",
   ],
   authors: [
     {
@@ -38,29 +41,40 @@ export const metadata: Metadata = {
     },
   ],
   creator: "Ephraim Duncan",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://blocks.so",
-    title: "blocks.so",
-    description: "blocks.so",
+    url: siteConfig.url,
+    title: "blocks.so — Building Blocks for the Web",
+    description: siteConfig.description,
     siteName: "blocks.so",
     images: [
       {
-        url: "https://blocks.so/og",
+        url: "/og",
         width: 1200,
         height: 630,
-        alt: "blocks.so",
+        alt: "blocks.so Open Graph Image",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "blocks.so",
-    description: "blocks.so",
-    images: ["https://blocks.so/og"],
-    creator: "Ephraim Duncan",
+    title: "blocks.so — Building Blocks for the Web",
+    description: siteConfig.description,
+    images: ["/og"],
+    creator: "@ephraimduncan_",
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
+  manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({
@@ -84,6 +98,7 @@ export default function RootLayout({
 
           <TailwindIndicator />
           <Toaster />
+          <SeoJsonLd />
         </ThemeProvider>
       </body>
     </html>
