@@ -1,11 +1,17 @@
-import * as React from "react";
+import type { ElementType } from "react";
 
 export interface NavItem {
   id: string;
   title: string;
-  icon: React.ElementType;
+  icon: ElementType;
   url?: string;
   isActive?: boolean;
+}
+
+export interface User {
+  name: string;
+  email: string;
+  avatar: string;
 }
 
 export interface FavoriteItem {
@@ -18,16 +24,17 @@ export interface FavoriteItem {
 export interface TeamItem {
   id: string;
   title: string;
-  icon: React.ElementType;
+  icon: ElementType;
 }
 
 export interface TopicItem {
   id: string;
   title: string;
-  icon: React.ElementType;
+  icon: ElementType;
 }
 
 export interface SidebarData {
+  user: User;
   navMain: NavItem[];
   navCollapsible: {
     favorites: FavoriteItem[];

@@ -2,24 +2,24 @@
 
 import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
 import {
-  Bell,
-  CalendarClock,
-  CalendarDays,
-  CheckCircle,
-  CheckSquare,
-  Code,
-  LayoutDashboard,
-  Megaphone,
-  Newspaper,
-  NotebookText,
-  Package,
-} from "lucide-react";
+  IconAd2,
+  IconBellRinging,
+  IconCalendar,
+  IconCalendarStats,
+  IconListDetails,
+  IconNews,
+  IconNotebook,
+  IconProgressCheck,
+  IconSettingsCode,
+} from "@tabler/icons-react";
+import { LayoutDashboard, Package } from "lucide-react";
 import { NavCollapsible } from "./nav-collapsible";
 import { NavFooter } from "./nav-footer";
 import { NavHeader } from "./nav-header";
 import { NavMain } from "./nav-main";
+import type { SidebarData } from "./types";
 
-const data = {
+const data: SidebarData = {
   user: {
     name: "ephraim",
     email: "ephraim@blocks.so",
@@ -37,37 +37,37 @@ const data = {
       id: "tasks",
       title: "Tasks",
       url: "#",
-      icon: CheckSquare,
+      icon: IconListDetails,
     },
     {
       id: "meetings",
       title: "Meetings",
       url: "#",
-      icon: CalendarClock,
+      icon: IconCalendarStats,
     },
     {
       id: "notes",
       title: "Notes",
       url: "#",
-      icon: NotebookText,
+      icon: IconNotebook,
     },
     {
       id: "calendar",
       title: "Calendar",
       url: "#",
-      icon: CalendarDays,
+      icon: IconCalendar,
     },
     {
       id: "completed",
       title: "Completed",
       url: "#",
-      icon: CheckCircle,
+      icon: IconProgressCheck,
     },
     {
       id: "notifications",
       title: "Notifications",
       url: "#",
-      icon: Bell,
+      icon: IconBellRinging,
     },
   ],
   navCollapsible: {
@@ -101,12 +101,12 @@ const data = {
       {
         id: "engineering",
         title: "Engineering",
-        icon: Code,
+        icon: IconSettingsCode,
       },
       {
         id: "marketing",
         title: "Marketing",
-        icon: Megaphone,
+        icon: IconAd2,
       },
     ],
     topics: [
@@ -118,7 +118,7 @@ const data = {
       {
         id: "company-news",
         title: "Company News",
-        icon: Newspaper,
+        icon: IconNews,
       },
     ],
   },

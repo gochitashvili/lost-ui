@@ -858,6 +858,7 @@
         "tooltip"
       ],
       "dependencies": [
+        "@tabler/icons-react",
         "lucide-react"
       ],
       "files": [
@@ -946,8 +947,8 @@
     {
       "name": "sidebar-03",
       "type": "registry:block",
-      "title": "Sidebar (Floating)",
-      "description": "A sidebar (floating) block.",
+      "title": "Floating Sidebar",
+      "description": "A floating sidebar block.",
       "author": "ephraim duncan <https://ephraimduncan.com>",
       "registryDependencies": [
         "avatar",
