@@ -1,12 +1,12 @@
 import "@/app/globals.css";
+import { SeoJsonLd } from "@/components/seo-jsonld";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { Toaster } from "@/components/ui/sonner";
+import { siteConfig } from "@/config";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist_Mono, Inter } from "next/font/google";
-import { siteConfig } from "@/config";
-import { SeoJsonLd } from "@/components/seo-jsonld";
 
 const fontSans = Inter({
   variable: "--font-sans",
@@ -55,20 +55,11 @@ export const metadata: Metadata = {
     title: "blocks.so — Building Blocks for the Web",
     description: siteConfig.description,
     siteName: "blocks.so",
-    images: [
-      {
-        url: "/og",
-        width: 1200,
-        height: 630,
-        alt: "blocks.so Open Graph Image",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "blocks.so — Building Blocks for the Web",
     description: siteConfig.description,
-    images: ["/og"],
     creator: "@ephraimduncan_",
   },
   icons: {

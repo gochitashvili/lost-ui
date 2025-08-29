@@ -1,7 +1,8 @@
-import { blocksComponents } from "@/content/blocks-components";
-import { notFound } from "next/navigation";
-import PreviewThemeSwitcher from "./theme-switcher";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+import { blocksComponents } from "@/content/blocks-components";
+import PreviewThemeSwitcher from "./theme-switcher";
 
 type Params = {
   params: Promise<{
@@ -9,11 +10,11 @@ type Params = {
   }>;
 };
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   const blockIds = Object.keys(blocksComponents);
 
   return blockIds.map((blockId) => ({
-    blockId: blockId,
+    blockId,
   }));
 }
 
@@ -35,5 +36,5 @@ export default async function BlockPreviewPage({ params }: Params) {
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
-  title: "Preview — Not Indexed",
+  title: "Blocks.so — Preview",
 };

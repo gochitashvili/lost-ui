@@ -1,4 +1,7 @@
-import { CodeBlockEditor, FileTreeItem } from "@/components/code-block-editor";
+import {
+  CodeBlockEditor,
+  type FileTreeItem,
+} from "@/components/code-block-editor";
 import type { Metadata } from "next";
 
 const sampleFileTree: FileTreeItem[] = [
@@ -40,7 +43,7 @@ const sampleFileTree: FileTreeItem[] = [
 export default function Home() {
   return (
     <main className="container mx-auto py-10">
-      <h1 className="mb-8 text-3xl font-bold">Code Block Editor</h1>
+      <h1 className="mb-8 font-bold text-3xl">Code Block Editor</h1>
       <CodeBlockEditor fileTree={sampleFileTree} />
     </main>
   );
