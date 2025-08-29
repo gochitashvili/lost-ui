@@ -6,6 +6,7 @@ import { ArrowLeftIcon } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { siteConfig } from "@/config";
 
 type PageProps = {
   params: Promise<{ blocksCategory: string }>;
@@ -41,11 +42,14 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
       title: `${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui`,
       description: `A collection of beautiful and accessible ${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui.`,
       url: `/${params.blocksCategory}`,
+      siteName: "blocks.so",
+      images: [siteConfig.ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: `${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui`,
       description: `A collection of beautiful and accessible ${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui.`,
+      images: [siteConfig.ogImage],
     },
   };
 }

@@ -55,12 +55,14 @@ export const metadata: Metadata = {
     title: "blocks.so — Building Blocks for the Web",
     description: siteConfig.description,
     siteName: "blocks.so",
+    images: [siteConfig.ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "blocks.so — Building Blocks for the Web",
     description: siteConfig.description,
     creator: "@ephraimduncan_",
+    images: [siteConfig.ogImage],
   },
   icons: {
     icon: "/favicon.ico",
