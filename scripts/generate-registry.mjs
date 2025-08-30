@@ -109,7 +109,7 @@ async function findTsxFiles(dirPath, baseSourceDir, baseTargetDir) {
       files.push(
         ...(await findTsxFiles(fullPath, baseSourceDir, baseTargetDir))
       );
-    } else if (entry.isFile() && entry.name.endsWith(".tsx")) {
+    } else if (entry.isFile() && (entry.name.endsWith(".tsx") || entry.name.endsWith(".ts"))) {
       files.push({
         path: sourcePathRelative,
         absolutePath: fullPath,
@@ -164,7 +164,7 @@ async function generateRegistry() {
           const allExternalDeps = new Set();
           const blockFiles = [];
 
-          if (entry.isFile() && entry.name.endsWith(".tsx")) {
+          if (entry.isFile() && (entry.name.endsWith(".tsx") || entry.name.endsWith(".ts"))) {
             // Single-file block
             const absoluteFilePath = entryPath;
             const filePathRelative = path
