@@ -59,7 +59,7 @@
     "react-resizable-panels": "^3.0.5",
     "recharts": "2.15.4",
     "rehype-pretty-code": "^0.14.1",
-    "shadcn": "^2.4.0-canary.17",
+    "shadcn": "^3.0.0",
     "shiki": "^3.2.2",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.0.2",

@@ -66,7 +66,7 @@ function extractDependencies(project, filePath) {
       if (moduleSpecifier.startsWith("@/components/ui/")) {
         const componentName = moduleSpecifier.split("/").pop();
         if (componentName) {
-          registryDeps.add(componentName);
+          registryDeps.add(`@shadcn/${componentName}`);
         }
       } else if (
         !moduleSpecifier.startsWith(".") &&
@@ -171,7 +171,7 @@ async function generateRegistry() {
               .join(COMPONENTS_DIR, category, entry.name)
               .replace(/\\/g, "/");
             const targetPath = path
-              .join("/components/blocks", entry.name)
+              .join("components/blocks", entry.name)
               .replace(/\\/g, "/");
 
             const { registryDependencies, dependencies } = extractDependencies(
@@ -189,7 +189,7 @@ async function generateRegistry() {
           } else if (entry.isDirectory()) {
             const blockSourceDir = entryPath;
             const blockTargetDir = path
-              .join("/components/blocks", blockId)
+              .join("components/blocks", blockId)
               .replace(/\\/g, "/");
 
             const foundFiles = await findTsxFiles(
