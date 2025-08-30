@@ -36,6 +36,13 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "430px",
     type: "file",
   },
+  {
+    id: "file-upload-06",
+    category: categoryIds.FileUpload,
+    name: "File Upload with Status Sections",
+    iframeHeight: "800px",
+    type: "file",
+  },
 
   {
     id: "form-layout-01",
@@ -207,6 +214,13 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "220px",
     type: "file",
   },
+  {
+    id: "stats-11",
+    category: categoryIds.Stats,
+    name: "Status dashboard with progress bars",
+    iframeHeight: "280px",
+    type: "file",
+  },
 
   {
     id: "grid-list-01",
@@ -326,6 +340,13 @@ export const blocksMetadata: BlocksMetadata[] = [
     id: "sidebar-02",
     category: categoryIds.Sidebar,
     name: "Sidebar",
+    iframeHeight: "1000px",
+    type: "directory",
+  },
+  {
+    id: "sidebar-03",
+    category: categoryIds.Sidebar,
+    name: "Floating Sidebar",
     iframeHeight: "1000px",
     type: "directory",
   },

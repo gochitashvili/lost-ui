@@ -1,29 +1,25 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { IconSquareRoundedFilled } from "@tabler/icons-react";
 import Link from "next/link";
 
 export function Header() {
   return (
-    <div className="sticky top-0 z-50 bg-background border-border border-dotted border-b-1">
-      <div className="flex items-center justify-between max-w-screen-xl px-4 sm:px-8 mx-auto border-border border-dotted border-r-1 border-l-1">
-        <Link href="/" className="flex space-x-2 py-5 items-center">
-          <h1 className="text-xl font-semibold">blocks</h1>
-          <Badge
-            variant="outline"
-            className="hidden sm:inline-flex rounded-full text-xs"
-          >
-            v0.0.0-alpha
-          </Badge>
+    <div className="sticky top-0 z-50 border-border border-b-1 border-dotted bg-background">
+      <div className="mx-auto flex max-w-screen-xl items-center justify-between border-border border-r-1 border-l-1 border-dotted px-4 sm:px-8">
+        <Link className="flex items-center space-x-1 py-5" href="/">
+          <IconSquareRoundedFilled />
+
+          <h1 className="font-semibold text-xl">blocks</h1>
         </Link>
         <a
           className={cn(buttonVariants({ variant: "outline" }), "rounded-full")}
+          data-umami-event="View GitHub Repository"
           href="https://github.com/ephraimduncan/blocks"
           rel="noreferrer"
           target="_blank"
-          data-umami-event="View GitHub Repository"
         >
           <svg
             aria-hidden="true"

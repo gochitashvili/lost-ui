@@ -12,7 +12,7 @@ export default function PreviewThemeSwitcher() {
   }, []);
 
   return (
-    <div className="absolute bottom-4 right-4">
+    <div className="absolute right-4 bottom-4">
       {!isInIframe && <ThemeSwitcher />}
     </div>
   );

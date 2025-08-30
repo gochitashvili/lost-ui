@@ -1,5 +1,7 @@
-import { blocksComponents } from "@/content/blocks-components";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+import { blocksComponents } from "@/content/blocks-components";
 import PreviewThemeSwitcher from "./theme-switcher";
 
 type Params = {
@@ -8,11 +10,11 @@ type Params = {
   }>;
 };
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   const blockIds = Object.keys(blocksComponents);
 
   return blockIds.map((blockId) => ({
-    blockId: blockId,
+    blockId,
   }));
 }
 
@@ -31,3 +33,8 @@ export default async function BlockPreviewPage({ params }: Params) {
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+  title: "Blocks.so — Preview",
+};

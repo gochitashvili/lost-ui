@@ -66,7 +66,7 @@ function extractDependencies(project, filePath) {
       if (moduleSpecifier.startsWith("@/components/ui/")) {
         const componentName = moduleSpecifier.split("/").pop();
         if (componentName) {
-          registryDeps.add(componentName);
+          registryDeps.add(`@shadcn/${componentName}`);
         }
       } else if (
         !moduleSpecifier.startsWith(".") &&
@@ -109,7 +109,7 @@ async function findTsxFiles(dirPath, baseSourceDir, baseTargetDir) {
       files.push(
         ...(await findTsxFiles(fullPath, baseSourceDir, baseTargetDir))
       );
-    } else if (entry.isFile() && entry.name.endsWith(".tsx")) {
+    } else if (entry.isFile() && (entry.name.endsWith(".tsx") || entry.name.endsWith(".ts"))) {
       files.push({
         path: sourcePathRelative,
         absolutePath: fullPath,
@@ -164,14 +164,14 @@ async function generateRegistry() {
           const allExternalDeps = new Set();
           const blockFiles = [];
 
-          if (entry.isFile() && entry.name.endsWith(".tsx")) {
+          if (entry.isFile() && (entry.name.endsWith(".tsx") || entry.name.endsWith(".ts"))) {
             // Single-file block
             const absoluteFilePath = entryPath;
             const filePathRelative = path
               .join(COMPONENTS_DIR, category, entry.name)
               .replace(/\\/g, "/");
             const targetPath = path
-              .join("/components/blocks", entry.name)
+              .join("components/blocks", entry.name)
               .replace(/\\/g, "/");
 
             const { registryDependencies, dependencies } = extractDependencies(
@@ -189,7 +189,7 @@ async function generateRegistry() {
           } else if (entry.isDirectory()) {
             const blockSourceDir = entryPath;
             const blockTargetDir = path
-              .join("/components/blocks", blockId)
+              .join("components/blocks", blockId)
               .replace(/\\/g, "/");
 
             const foundFiles = await findTsxFiles(

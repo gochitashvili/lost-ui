@@ -6,6 +6,7 @@ export const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "file-upload-03": components.FileUpload03,
   "file-upload-04": components.FileUpload04,
   "file-upload-05": components.FileUpload05,
+  "file-upload-06": components.FileUpload06,
 
   "form-layout-01": components.FormLayout01,
   "form-layout-02": components.FormLayout02,
@@ -33,6 +34,7 @@ export const blocksComponents: { [blocksId: string]: React.ElementType } = {
   "stats-08": components.Stats08,
   "stats-09": components.Stats09,
   "stats-10": components.Stats10,
+  "stats-11": components.Stats11,
 
   "grid-list-01": components.GridList01,
   "grid-list-02": components.GridList02,
@@ -53,4 +55,5 @@ export const blocksComponents: { [blocksId: string]: React.ElementType } = {
 
   "sidebar-01": components.Sidebar01,
   "sidebar-02": components.Sidebar02,
+  "sidebar-03": components.Sidebar03,
 };

@@ -1,24 +1,40 @@
-import { blocksCategoriesMetadata } from "@/content/blocks-categories";
+import type { Metadata } from "next";
 import Link from "next/link";
+
+import { siteConfig } from "@/config";
+import { blocksCategoriesMetadata } from "@/content/blocks-categories";
+
+export const metadata: Metadata = {
+  title: "Building Blocks for the Web",
+  description: siteConfig.description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Building Blocks for the Web",
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: "blocks.so",
+    images: [siteConfig.ogImage],
+  },
+};
 
 export default function Home() {
   return (
     <div className="w-full">
       <div className="mb-15">
-        <h1 className="text-foreground mb-4 text-4xl/[1.1] font-bold tracking-tight md:text-5xl/[1.1]">
+        <h1 className="mb-4 font-bold text-4xl/[1.1] text-foreground tracking-tight md:text-5xl/[1.1]">
           Building Blocks for the Web
         </h1>
-        <p className="text-muted-foreground mb-8 text-lg">
+        <p className="mb-8 text-lg text-muted-foreground">
           Clean, modern building blocks. Copy and paste into your apps. Works
           with all React frameworks. Open Source. Free forever.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-4 lg:gap-10 w-full">
+      <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-4 lg:gap-10">
         {blocksCategoriesMetadata.map((block) => (
-          <Link key={`${block.id}-${block.name}`} href={`/${block.id}`}>
+          <Link href={`/${block.id}`} key={`${block.id}-${block.name}`}>
             <div className="space-y-3">
-              <block.thumbnail className="w-full grayscale rounded-lg border border-border" />
+              <block.thumbnail className="w-full rounded-lg border border-border grayscale" />
               <div className="flex flex-col gap-1">
                 <div className="font-medium text-base leading-none tracking-tight">
                   {block.name}
