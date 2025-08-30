@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "ephraimduncan/blocks",
   url: "https://blocks.so",
-  ogImage: "https://blocks.so/og.jpg",
+  ogImage: "https://blocks.so/opengraph-image.png",
   description:
     "A set of beautifully-designed, accessible components and a code distribution platform. Works with your favorite frameworks. Open Source. Open Code.",
   links: {
