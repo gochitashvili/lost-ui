@@ -1197,6 +1197,30 @@
           "target": "components/blocks/stats-10.tsx"
         }
       ]
+    },
+    {
+      "name": "stats-11",
+      "type": "registry:block",
+      "title": "Status dashboard with progress bars",
+      "description": "A status dashboard with progress bars block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "@shadcn/button",
+        "@shadcn/card",
+        "@shadcn/dialog",
+        "@shadcn/input",
+        "@shadcn/label"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/stats/stats-11.tsx",
+          "type": "registry:block",
+          "target": "components/blocks/stats-11.tsx"
+        }
+      ]
     }
   ]
 }
