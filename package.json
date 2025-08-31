@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "generate:registry": "bun run scripts/generate-registry.mjs && shadcn build",
+    "generate:registry": "bun run scripts/generate-registry.mjs",
     "generate:markdown": "bun run scripts/generate-markdown.ts ./content/components/",
     "build": "bun run generate:registry && bun run generate:markdown && next build --turbopack",
     "start": "next start",
