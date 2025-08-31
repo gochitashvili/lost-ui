@@ -6,9 +6,9 @@ import { siteConfig } from "@/config";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
-import { Geist_Mono, Inter } from "next/font/google";
+import { DM_Sans, Geist_Mono } from "next/font/google";
 
-const fontSans = Inter({
+const fontSans = DM_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
 });
