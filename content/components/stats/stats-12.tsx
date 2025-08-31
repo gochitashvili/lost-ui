@@ -73,13 +73,17 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 function DonutChart({ percentage }: { percentage: number }) {
-  const safePercentage = Math.max(0, Math.min(100, Number(percentage)));
-  const chartData = [
-    { name: "used", value: safePercentage, fill: "#3B82F6" },
+  const backgroundData = [{ name: "background", value: 100, fill: "#E5E7EB" }];
+  const foregroundData = [
     {
-      name: "remaining",
-      value: 100 - safePercentage,
-      fill: "#E5E7EB",
+      name: "used",
+      value: Math.max(0, Math.min(100, Number(percentage))),
+      fill: "#3B82F6",
+    },
+    {
+      name: "empty",
+      value: 100 - Math.max(0, Math.min(100, Number(percentage))),
+      fill: "transparent",
     },
   ];
 
@@ -90,7 +94,21 @@ function DonutChart({ percentage }: { percentage: number }) {
     >
       <PieChart>
         <Pie
-          data={chartData}
+          data={backgroundData}
+          dataKey="value"
+          nameKey="name"
+          cx="50%"
+          cy="50%"
+          innerRadius={6}
+          outerRadius={10}
+          isAnimationActive={false}
+        >
+          {backgroundData.map((entry, index) => (
+            <Cell key={`bg-cell-${index}`} fill={entry.fill} />
+          ))}
+        </Pie>
+        <Pie
+          data={foregroundData}
           dataKey="value"
           nameKey="name"
           cx="50%"
@@ -100,8 +118,8 @@ function DonutChart({ percentage }: { percentage: number }) {
           startAngle={90}
           endAngle={-270}
         >
-          {chartData.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={entry.fill} />
+          {foregroundData.map((entry, index) => (
+            <Cell key={`fg-cell-${index}`} fill={entry.fill} />
           ))}
         </Pie>
       </PieChart>
