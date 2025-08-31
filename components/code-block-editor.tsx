@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Check, ChevronRight, Clipboard, File, Folder } from "lucide-react";
+import { Check, ChevronRight, Clipboard } from "lucide-react";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -11,12 +11,18 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarProvider,
 } from "@/components/ui/sidebar";
-import { useTheme } from "next-themes";
 import { highlightCode } from "@/lib/highlight-code";
 import { resolveTheme } from "@/lib/resolve-theme";
+import {
+  IconFile,
+  IconFileTypeTs,
+  IconFileTypeTsx,
+  IconFolder,
+  IconFolderOpen,
+} from "@tabler/icons-react";
+import { useTheme } from "next-themes";
 
 type FileItem = {
   name: string;
@@ -137,6 +143,11 @@ function findFileByPath(items: FileTreeItem[], path: string): FileItem | null {
   return null;
 }
 
+function getFileIcon(filename: string) {
+  if (filename.endsWith(".tsx")) return IconFileTypeTsx;
+  if (filename.endsWith(".ts")) return IconFileTypeTs;
+  return IconFile;
+}
 
 function CodeBlockEditorToolbar() {
   const { activeFile, fileTree, blockTitle } = useCodeBlockEditor();
@@ -159,7 +170,9 @@ function CodeBlockEditorToolbar() {
       <div className="ml-auto flex items-center gap-2 text-muted-foreground">
         {file && (
           <>
-            <File className="h-4 w-4" />
+            {React.createElement(getFileIcon(file.name), {
+              className: "h-4 w-4",
+            })}
             <span>{file.path}</span>
           </>
         )}
@@ -275,13 +288,20 @@ function TreeItem({ item, depth }: { item: FileTreeItem; depth: number }) {
               isExpanded && "rotate-90"
             )}
           />
-          <Folder className="h-4 w-4 shrink-0" />
+          {isExpanded ? (
+            <IconFolderOpen className="h-4 w-4 shrink-0" />
+          ) : (
+            <IconFolder className="h-4 w-4 shrink-0" />
+          )}
+
           <span className="font-medium truncate">{item.name}</span>
         </>
       ) : (
         <>
           <span className="w-4" />
-          <File className="h-4 w-4 shrink-0" />
+          {React.createElement(getFileIcon(item.name), {
+            className: "h-4 w-4 shrink-0",
+          })}
           <span className="truncate">{item.name}</span>
         </>
       )}
@@ -317,11 +337,7 @@ function CodeView() {
         else if (extension === "jsx") lang = "jsx";
         else if (extension === "tsx") lang = "tsx";
 
-        const html = await highlightCode(
-          content,
-          resolveTheme(theme),
-          lang
-        );
+        const html = await highlightCode(content, resolveTheme(theme), lang);
 
         setHighlightedCode(html);
       } catch (error) {
