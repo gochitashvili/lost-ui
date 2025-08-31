@@ -15,47 +15,46 @@ import {
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import {
+  IconActivityHeartbeat,
+  IconArchive,
   IconBackground,
+  IconBellRinging,
   IconBrandGoogle,
   IconBrandMeta,
+  IconBrandNpm,
   IconBrandOpenai,
   IconBug,
+  IconChartBar,
+  IconChevronRight,
+  IconCloud,
+  IconDatabase,
   IconFileText,
+  IconFolder,
   IconFolders,
+  IconGitCommit,
+  IconGitMerge,
   IconGitPullRequest,
   IconHome,
+  IconKey,
+  IconLockExclamation,
   IconLockPassword,
   IconLogout,
   IconNorthStar,
+  IconPackageExport,
   IconPackages,
+  IconPasswordFingerprint,
+  IconPlayerPlay,
+  IconScanEye,
   IconSettings,
+  IconShieldLock,
+  IconStar,
+  IconTarget,
+  IconTerminal2,
+  IconUser,
+  IconUserPlus,
+  IconWebhook,
+  IconX,
 } from "@tabler/icons-react";
-import {
-  Activity,
-  AlertTriangle,
-  BarChart3,
-  Bell,
-  Bug,
-  CheckCircle,
-  ChevronRight,
-  Code,
-  Database,
-  Eye,
-  Folder,
-  GitCommit,
-  GitPullRequest,
-  Key,
-  Package,
-  Play,
-  Shield,
-  Star,
-  Target,
-  Terminal,
-  Users,
-  Webhook,
-  X,
-  Zap,
-} from "lucide-react";
 import type React from "react";
 import { useState } from "react";
 import { TeamSwitcher } from "./team-switcher";
@@ -111,21 +110,21 @@ const sidebarItems: SidebarItem[] = [
       {
         id: "dashboard",
         label: "Dashboard",
-        icon: BarChart3,
+        icon: IconChartBar,
         description: "Project overview and activity",
         route: "/overview/dashboard",
       },
       {
         id: "activity",
         label: "Activity",
-        icon: Activity,
+        icon: IconActivityHeartbeat,
         description: "Recent commits and changes",
         route: "/overview/activity",
       },
       {
         id: "insights",
         label: "Insights",
-        icon: Target,
+        icon: IconTarget,
         description: "Code analytics and metrics",
         route: "/overview/insights",
       },
@@ -141,21 +140,21 @@ const sidebarItems: SidebarItem[] = [
       {
         id: "all-repos",
         label: "All Repositories",
-        icon: Folder,
+        icon: IconFolder,
         description: "Browse all your repositories",
         route: "/repositories",
       },
       {
         id: "starred",
         label: "Starred",
-        icon: Star,
+        icon: IconStar,
         description: "Your starred repositories",
         route: "/repositories/starred",
       },
       {
         id: "archived",
         label: "Archived",
-        icon: Package,
+        icon: IconArchive,
         description: "Archived repositories",
         route: "/repositories/archived",
       },
@@ -171,21 +170,21 @@ const sidebarItems: SidebarItem[] = [
       {
         id: "open-prs",
         label: "Open",
-        icon: GitPullRequest,
+        icon: IconGitPullRequest,
         description: "Open pull requests",
         route: "/pull-requests/open",
       },
       {
         id: "review-requests",
         label: "Review Requests",
-        icon: Eye,
+        icon: IconScanEye,
         description: "PRs awaiting your review",
         route: "/pull-requests/review",
       },
       {
         id: "merged",
         label: "Merged",
-        icon: CheckCircle,
+        icon: IconGitMerge,
         description: "Recently merged PRs",
         route: "/pull-requests/merged",
       },
@@ -201,21 +200,21 @@ const sidebarItems: SidebarItem[] = [
       {
         id: "open-issues",
         label: "Open Issues",
-        icon: Bug,
+        icon: IconBug,
         description: "Active issues and bugs",
         route: "/issues/open",
       },
       {
         id: "assigned",
         label: "Assigned to Me",
-        icon: Users,
+        icon: IconUserPlus,
         description: "Issues assigned to you",
         route: "/issues/assigned",
       },
       {
         id: "created",
         label: "Created by Me",
-        icon: GitCommit,
+        icon: IconGitCommit,
         description: "Issues you've created",
         route: "/issues/created",
       },
@@ -230,21 +229,21 @@ const sidebarItems: SidebarItem[] = [
       {
         id: "workflows",
         label: "Workflows",
-        icon: Play,
+        icon: IconPlayerPlay,
         description: "CI/CD workflows and pipelines",
         route: "/actions/workflows",
       },
       {
         id: "runners",
         label: "Runners",
-        icon: Terminal,
+        icon: IconTerminal2,
         description: "Self-hosted runners",
         route: "/actions/runners",
       },
       {
         id: "deployments",
         label: "Deployments",
-        icon: Zap,
+        icon: IconCloud,
         description: "Deployment history",
         route: "/actions/deployments",
       },
@@ -259,21 +258,21 @@ const sidebarItems: SidebarItem[] = [
       {
         id: "published",
         label: "Published",
-        icon: Package,
+        icon: IconPackageExport,
         description: "Your published packages",
         route: "/packages/published",
       },
       {
         id: "container-registry",
         label: "Container Registry",
-        icon: Database,
+        icon: IconDatabase,
         description: "Docker images and containers",
         route: "/packages/containers",
       },
       {
         id: "npm-packages",
         label: "npm Packages",
-        icon: Code,
+        icon: IconBrandNpm,
         description: "Node.js packages",
         route: "/packages/npm",
       },
@@ -289,21 +288,21 @@ const sidebarItems: SidebarItem[] = [
       {
         id: "alerts",
         label: "Security Alerts",
-        icon: AlertTriangle,
+        icon: IconLockExclamation,
         description: "Vulnerability alerts",
         route: "/security/alerts",
       },
       {
         id: "advisories",
         label: "Advisories",
-        icon: Shield,
+        icon: IconShieldLock,
         description: "Security advisories",
         route: "/security/advisories",
       },
       {
         id: "secrets",
         label: "Secrets",
-        icon: Key,
+        icon: IconPasswordFingerprint,
         description: "Repository secrets",
         route: "/security/secrets",
       },
@@ -318,28 +317,28 @@ const sidebarItems: SidebarItem[] = [
       {
         id: "profile",
         label: "Profile",
-        icon: Users,
+        icon: IconUser,
         description: "Your profile settings",
         route: "/settings/profile",
       },
       {
         id: "notifications",
         label: "Notifications",
-        icon: Bell,
+        icon: IconBellRinging,
         description: "Notification preferences",
         route: "/settings/notifications",
       },
       {
         id: "webhooks",
         label: "Webhooks",
-        icon: Webhook,
+        icon: IconWebhook,
         description: "Webhook configurations",
         route: "/settings/webhooks",
       },
       {
         id: "api-keys",
         label: "API Keys",
-        icon: Key,
+        icon: IconKey,
         description: "Personal access tokens",
         route: "/settings/api-keys",
       },
@@ -355,7 +354,7 @@ const sidebarItems: SidebarItem[] = [
 ];
 
 export function AppSidebar() {
-  const [activeItem, setActiveItem] = useState<string | null>(null);
+  const [activeItem, setActiveItem] = useState<string | null>("overview");
   const [selectedSubItem, setSelectedSubItem] = useState<string | null>(null);
 
   const activeItemData = sidebarItems.find((item) => item.id === activeItem);
@@ -403,7 +402,7 @@ export function AppSidebar() {
                   const Icon = item.icon;
                   const isActive = activeItem === item.id;
                   const chevronIndicator = (
-                    <ChevronRight
+                    <IconChevronRight
                       className={cn(
                         "h-4 w-4 transition-transform flex-shrink-0",
                         isActive && "rotate-90"
@@ -475,15 +474,15 @@ export function AppSidebar() {
           side="left"
           variant="sidebar"
           collapsible="none"
-          className="w-80 animate-in slide-in-from-left-5 duration-200 border-r"
+          className="w-72 animate-in slide-in-from-left-5 duration-200 border-r"
         >
           <SidebarHeader className="flex flex-row items-center justify-between border-b px-4">
-            <h3 className="text-lg font-semibold">{activeItemData.label}</h3>
+            <h3 className="font-medium">{activeItemData.label}</h3>
             <button
               onClick={() => setActiveItem(null)}
-              className="h-8 w-8 p-0 rounded-md hover:bg-sidebar-accent flex items-center justify-center"
+              className="h-6 w-6 p-0 rounded-md hover:bg-sidebar-accent flex items-center justify-center"
             >
-              <X className="h-4 w-4" />
+              <IconX className="h-4 w-4" />
             </button>
           </SidebarHeader>
 
@@ -499,10 +498,11 @@ export function AppSidebar() {
                       <SidebarMenuItem key={subItem.id}>
                         <SidebarMenuButton
                           isActive={isSelected}
-                          className="w-full justify-start gap-3 h-auto p-3"
+                          className="w-full justify-start gap-3 h-auto py-2 px-3"
                           onClick={() => handleSubItemClick(subItem)}
                         >
-                          <SubIcon className="h-4 w-4 flex-shrink-0" />
+                          <SubIcon className="h-5 w-5 flex-shrink-0 self-start mt-0.5" />
+
                           <div className="flex-1 text-left min-w-0">
                             <div className="font-medium">{subItem.label}</div>
                             {subItem.description && (

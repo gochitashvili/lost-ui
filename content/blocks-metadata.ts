@@ -360,7 +360,7 @@ export const blocksMetadata: BlocksMetadata[] = [
   {
     id: "sidebar-05",
     category: categoryIds.Sidebar,
-    name: "Task Management Sidebar",
+    name: "Double Sided Sidebar",
     iframeHeight: "1000px",
     type: "directory",
   },
