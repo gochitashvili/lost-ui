@@ -1,31 +1,35 @@
-import { useCallback, useState } from "react";
-import { toast } from "sonner";
+"use client"
 
-type CopiedValue = string | null;
+import * as React from "react"
 
-type CopyFn = (text: string) => Promise<boolean>;
+export function useCopyToClipboard({
+  timeout = 2000,
+  onCopy,
+}: {
+  timeout?: number
+  onCopy?: () => void
+} = {}) {
+  const [isCopied, setIsCopied] = React.useState(false)
 
-export function useCopy(): [CopiedValue, CopyFn] {
-  const [copiedText, setCopiedText] = useState<CopiedValue>(null);
-
-  const copy: CopyFn = useCallback(async (text) => {
-    if (!navigator?.clipboard) {
-      console.warn("Clipboard not supported");
-      return false;
+  const copyToClipboard = (value: string) => {
+    if (typeof window === "undefined" || !navigator.clipboard.writeText) {
+      return
     }
 
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopiedText(text);
-      toast("Copied to clipboard!");
+    if (!value) return
 
-      return true;
-    } catch (error) {
-      console.warn("Copy failed", error);
-      setCopiedText(null);
-      return false;
-    }
-  }, []);
+    navigator.clipboard.writeText(value).then(() => {
+      setIsCopied(true)
 
-  return [copiedText, copy];
+      if (onCopy) {
+        onCopy()
+      }
+
+      setTimeout(() => {
+        setIsCopied(false)
+      }, timeout)
+    }, console.error)
+  }
+
+  return { isCopied, copyToClipboard }
 }

@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  Check,
-  Code,
-  Copy,
-  Fullscreen,
-  Monitor,
-  Smartphone,
-  Tablet,
-} from "lucide-react";
+import { Fullscreen, Monitor, Smartphone, Tablet } from "lucide-react";
 import Link from "next/link";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { ImperativePanelHandle } from "react-resizable-panels";
@@ -19,24 +11,13 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { useCopy } from "@/hooks/use-copy";
 import { BlocksProps } from "@/lib/blocks";
 
-import CliCommands from "../cli-commands";
 import { CodeBlockEditor } from "../code-block-editor";
 import { SingleFileCodeView } from "../single-file-code-view";
 
+import { AddCommand } from "../add-command";
 import { Button } from "./button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogOverlay,
-  DialogPortal,
-  DialogTitle,
-  DialogTrigger,
-} from "./dialog";
 import { Separator } from "./separator";
 import { Tabs, TabsList, TabsTrigger } from "./tabs";
 import { ToggleGroup, ToggleGroupItem } from "./toggle-group";
@@ -63,7 +44,6 @@ export const Block = ({
   const resizablePanelRef = useRef<ImperativePanelHandle>(null);
   const iframeHeight = meta?.iframeHeight ?? "930px";
 
-  const [, copy] = useCopy();
 
   const getCleanCode = (rawCode: string | ReactNode): string => {
     const cleanCode = typeof rawCode === "string" ? rawCode : "";
@@ -143,17 +123,17 @@ export const Block = ({
               onValueChange={handleViewChange}
               className="hidden lg:flex"
             >
-              <TabsList className="h-7 items-center rounded-md p-0 px-[calc(theme(spacing.1)_-_2px)] py-[theme(spacing.1)] dark:bg-background dark:text-foreground dark:border">
+              <TabsList className="h-8 items-center rounded-lg px-[calc(theme(spacing.1)_-_2px)] dark:bg-background dark:text-foreground dark:border">
                 <TabsTrigger
                   value="preview"
-                  className="h-[1.45rem] rounded-sm px-2 text-xs"
+                  className="h-[1.75rem] rounded-md px-2 "
                   data-umami-event="View Block Preview"
                 >
                   Preview
                 </TabsTrigger>
                 <TabsTrigger
                   value="code"
-                  className="h-[1.45rem] rounded-sm px-2 text-xs"
+                  className="h-[1.75rem] rounded-md px-2"
                   data-umami-event="View Block Code"
                 >
                   Code
@@ -164,50 +144,51 @@ export const Block = ({
               orientation="vertical"
               className="mx-2 hidden h-4 lg:flex"
             />
-            <div className="ml-auto hidden h-7 items-center gap-1.5 rounded-md border p-[2px] shadow-none lg:flex">
+            <div className="ml-auto hidden h-8 items-center gap-1.5 rounded-md border p-0.5 shadow-none lg:flex">
               <ToggleGroup
                 type="single"
                 value={state.size}
+                className="gap-0.5"
                 onValueChange={(value) => {
                   handleSizeChange(value);
                 }}
               >
                 <ToggleGroupItem
                   value="desktop"
-                  className="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
+                  className="h-[25px] w-[25px] min-w-0 rounded-sm p-0"
                   title="Desktop"
                   data-umami-event="Set Preview Desktop"
                 >
-                  <Monitor className="h-3.5 w-3.5" />
+                  <Monitor className="h-4 w-4" />
                 </ToggleGroupItem>
                 <ToggleGroupItem
                   value="tablet"
-                  className="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
+                  className="h-[25px] w-[25px] min-w-0 rounded-sm p-0"
                   title="Tablet"
                   data-umami-event="Set Preview Tablet"
                 >
-                  <Tablet className="h-3.5 w-3.5" />
+                  <Tablet className="h-4 w-4" />
                 </ToggleGroupItem>
                 <ToggleGroupItem
                   value="mobile"
-                  className="h-[22px] w-[22px] min-w-0 rounded-sm p-0"
+                  className="h-[25px] w-[25px] min-w-0 rounded-sm p-0"
                   title="Mobile"
                   data-umami-event="Set Preview Mobile"
                 >
-                  <Smartphone className="h-3.5 w-3.5" />
+                  <Smartphone className="h-4 w-4" />
                 </ToggleGroupItem>
-                <Separator orientation="vertical" className="h-4" />
+                <Separator orientation="vertical" className="h-4.5" />
                 <Button
                   size="icon"
                   variant="ghost"
-                  className="h-[22px] w-[22px] rounded-sm p-0"
+                  className="h-[25px] w-[25px] rounded-sm p-0"
                   asChild
                   title="Open in New Tab"
                   data-umami-event="Open Block Fullscreen Preview"
                 >
                   <Link href={`/blocks/preview/${blocksId}`} target="_blank">
                     <span className="sr-only">Open in New Tab</span>
-                    <Fullscreen className="h-3.5 w-3.5" />
+                    <Fullscreen className="h-4 w-4" />
                   </Link>
                 </Button>
               </ToggleGroup>
@@ -218,58 +199,16 @@ export const Block = ({
             />
 
             <div className="flex items-center gap-1">
-              <Button
-                onClick={() => {
-                  const cleanCode = getCleanCode(code);
-                  copy(cleanCode);
-                  setHasCopied(true);
-                }}
-                variant="outline"
-                size="icon"
-                className="h-7 w-7"
-                data-umami-event="Copy Block Code"
-              >
-                {hasCopied ? (
-                  <Check className="h-3 w-3" />
-                ) : (
-                  <Copy className="h-3 w-3" />
-                )}
-              </Button>
-
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="h-7 w-7"
-                    data-umami-event="Copy shadcn cli command"
-                  >
-                    <Code className="h-3 w-3" />
-                  </Button>
-                </DialogTrigger>
-
-                <DialogPortal>
-                  <DialogOverlay className="backdrop-blur-sm" />
-                  <DialogContent className="sm:max-w-2xl">
-                    <DialogHeader>
-                      <DialogTitle className="text-left">
-                        Installation
-                      </DialogTitle>
-                      <DialogDescription className="sr-only">
-                        Use the CLI to add blocks to your project
-                      </DialogDescription>
-                    </DialogHeader>
-                    <CliCommands name={blocksId} />
-                  </DialogContent>
-                </DialogPortal>
-              </Dialog>
+              <AddCommand name={blocksId} />
             </div>
 
             <Separator
               orientation="vertical"
               className="mx-1 hidden h-4 xl:flex"
             />
-            <OpenInV0Button name={blocksId} />
+            <div>
+              <OpenInV0Button name={blocksId} />
+            </div>
           </div>
         </div>
       </div>
