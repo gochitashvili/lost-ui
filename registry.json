@@ -1000,6 +1000,44 @@
       ]
     },
     {
+      "name": "sidebar-04",
+      "type": "registry:block",
+      "title": "Double Sided Sidebar",
+      "description": "A double sided sidebar block.",
+      "author": "ephraim duncan <https://ephraimduncan.com>",
+      "registryDependencies": [
+        "@shadcn/avatar",
+        "@shadcn/dropdown-menu",
+        "@shadcn/sidebar"
+      ],
+      "dependencies": [
+        "@tabler/icons-react",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "content/components/sidebar/sidebar-04/app/page.tsx",
+          "type": "registry:block",
+          "target": "components/blocks/sidebar-04/app/page.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-04/nav-user.tsx",
+          "type": "registry:block",
+          "target": "components/blocks/sidebar-04/nav-user.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-04/app-sidebar.tsx",
+          "type": "registry:block",
+          "target": "components/blocks/sidebar-04/app-sidebar.tsx"
+        },
+        {
+          "path": "content/components/sidebar/sidebar-04/mail-context.tsx",
+          "type": "registry:block",
+          "target": "components/blocks/sidebar-04/mail-context.tsx"
+        }
+      ]
+    },
+    {
       "name": "stats-01",
       "type": "registry:block",
       "title": "Stats with trending",
