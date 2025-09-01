@@ -11,6 +11,7 @@ import {
   categoryIds,
 } from "./declarations";
 import { SidebarThumbnail } from "@/components/thumbnails/sidebar";
+import { AIThumbnail } from "@/components/thumbnails/ai";
 
 type CategoryCount = Record<string, number>;
 
@@ -81,6 +82,12 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
     thumbnail: SidebarThumbnail,
     hasCharts: false,
   },
-];
 
-export const blocksCategoriesMetadata = initializeAndUpdateCategories();
+  {
+    id: categoryIds.AI,
+    name: "AI",
+    thumbnail: AIThumbnail,
+    hasCharts: false,
+  },];
+
+export const blocksCategoriesMetadata = initializeAndUpdateCategories().sort((a, b) => a.name.localeCompare(b.name));
