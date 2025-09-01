@@ -386,4 +386,11 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "500px",
     type: "file",
   },
+  {
+    id: "ai-02",
+    category: categoryIds.AI,
+    name: "AI Chat Input",
+    iframeHeight: "500px",
+    type: "file",
+  },
 ];
