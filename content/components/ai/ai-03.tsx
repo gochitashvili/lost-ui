@@ -41,7 +41,6 @@ export default function Ai03() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (input.trim()) {
-      console.log("Submitting:", input);
     }
   };
 
@@ -53,7 +52,7 @@ export default function Ai03() {
           type="file"
           multiple
           className="sr-only"
-          onChange={(e) => console.log("Files selected:", e.target.files)}
+          onChange={(e) => {}}
         />
 
         <div className="px-3 pt-3 pb-2 flex-grow">
@@ -100,21 +99,21 @@ export default function Ai03() {
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="rounded-[calc(1rem-6px)] text-xs"
-                    onClick={() => console.log("Code Interpreter")}
+                    onClick={() => {}}
                   >
                     <IconCode size={16} className="opacity-60" />
                     Code Interpreter
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="rounded-[calc(1rem-6px)] text-xs"
-                    onClick={() => console.log("Web Search mode selected")}
+                    onClick={() => {}}
                   >
                     <IconWorld size={16} className="opacity-60" />
                     Web Search
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="rounded-[calc(1rem-6px)] text-xs"
-                    onClick={() => console.log("Chat History requested")}
+                    onClick={() => {}}
                   >
                     <IconHistory size={16} className="opacity-60" />
                     Chat History
