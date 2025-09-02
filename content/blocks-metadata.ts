@@ -404,7 +404,7 @@ export const blocksMetadata: BlocksMetadata[] = [
     id: "ai-04",
     category: categoryIds.AI,
     name: "AI Chat Input",
-    iframeHeight: "800px",
+    iframeHeight: "500px",
     type: "file",
   },
 ];
