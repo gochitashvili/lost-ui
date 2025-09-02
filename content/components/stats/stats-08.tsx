@@ -99,7 +99,7 @@ export default function Stats08() {
                 </div>
               </div>
             </CardContent>
-            <CardFooter className="flex items-center justify-end border-t border-border !p-0">
+            <CardFooter className="flex items-center justify-end border-t border-border p-0!">
               <a
                 href={item.href}
                 className="text-sm font-medium text-primary px-6 py-3 hover:text-primary/90"

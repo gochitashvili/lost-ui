@@ -76,7 +76,7 @@ const actions = [
 export default function GridList03() {
   return (
     <div className="flex items-center justify-center p-8">
-      <div className="overflow-hidden rounded-[1rem] bg-muted shadow-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-0.5 space-y-0.5 sm:space-y-0 p-0.5">
+      <div className="overflow-hidden rounded-2xl bg-muted shadow-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-0.5 space-y-0.5 sm:space-y-0 p-0.5">
         {actions.map((action) => (
           <Card
             key={action.title}

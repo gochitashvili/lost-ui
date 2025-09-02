@@ -151,7 +151,7 @@ export default function SignupForm() {
               Create free account
             </Button>
           </CardContent>
-          <CardFooter className="flex justify-center border-t !py-4">
+          <CardFooter className="flex justify-center border-t py-4!">
             <p className="text-center text-sm text-muted-foreground">
               Already have an account?{" "}
               <Link href="#" className="text-primary hover:underline">

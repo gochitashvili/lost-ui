@@ -63,7 +63,7 @@ export function NavHeader({ data }: NavHeaderProps) {
           <CommandGroup heading="Navigation">
             {data.navMain.map((item) => (
               <CommandItem
-                className="!py-2"
+                className="py-2!"
                 key={item.id}
                 onSelect={() => {
                   setOpen(false);
@@ -78,7 +78,7 @@ export function NavHeader({ data }: NavHeaderProps) {
           <CommandGroup heading="Favorites">
             {data.navCollapsible.favorites.map((item) => (
               <CommandItem
-                className="!py-2"
+                className="py-2!"
                 key={item.id}
                 onSelect={() => {
                   setOpen(false);
@@ -93,7 +93,7 @@ export function NavHeader({ data }: NavHeaderProps) {
           <CommandGroup heading="Teams">
             {data.navCollapsible.teams.map((item) => (
               <CommandItem
-                className="!py-2"
+                className="py-2!"
                 key={item.id}
                 onSelect={() => {
                   setOpen(false);
@@ -108,7 +108,7 @@ export function NavHeader({ data }: NavHeaderProps) {
           <CommandGroup heading="Topics">
             {data.navCollapsible.topics.map((item) => (
               <CommandItem
-                className="!py-2"
+                className="py-2!"
                 key={item.id}
                 onSelect={() => {
                   setOpen(false);
