@@ -44,7 +44,6 @@ export const Block = ({
   const resizablePanelRef = useRef<ImperativePanelHandle>(null);
   const iframeHeight = meta?.iframeHeight ?? "930px";
 
-
   const getCleanCode = (rawCode: string | ReactNode): string => {
     const cleanCode = typeof rawCode === "string" ? rawCode : "";
 
@@ -242,7 +241,7 @@ export const Block = ({
         )}
 
         {state.view === "code" && meta?.type === "file" && (
-          <div className="group-data-[view=preview]/block-view-wrapper:hidden md:h-(--height) rounded-lg border overflow-hidden">
+          <div className="group-data-[view=preview]/block-view-wrapper:hidden md:h-170 rounded-lg border overflow-hidden">
             <div className="bg-muted/30 h-full">
               <SingleFileCodeView code={getCleanCode(code)} />
             </div>

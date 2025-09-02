@@ -235,20 +235,28 @@ export default function Ai04({
                       className="rounded-[calc(1rem-6px)] text-xs"
                       onClick={() => fileInputRef.current?.click()}
                     >
-                      <IconPaperclip className="opacity-60" size={16} />
-                      Attach Files
+                      <div className="flex items-center gap-2">
+                        <IconPaperclip className="text-muted-foreground" size={16} />
+                        <span>Attach Files</span>
+                      </div>
                     </DropdownMenuItem>
                     <DropdownMenuItem className="rounded-[calc(1rem-6px)] text-xs">
-                      <IconLink className="opacity-60" size={16} />
-                      Import from URL
+                      <div className="flex items-center gap-2">
+                        <IconLink className="text-muted-foreground" size={16} />
+                        <span>Import from URL</span>
+                      </div>
                     </DropdownMenuItem>
                     <DropdownMenuItem className="rounded-[calc(1rem-6px)] text-xs">
-                      <IconClipboard className="opacity-60" size={16} />
-                      Paste from Clipboard
+                      <div className="flex items-center gap-2">
+                        <IconClipboard className="text-muted-foreground" size={16} />
+                        <span>Paste from Clipboard</span>
+                      </div>
                     </DropdownMenuItem>
                     <DropdownMenuItem className="rounded-[calc(1rem-6px)] text-xs">
-                      <IconTemplate className="opacity-60" size={16} />
-                      Use Template
+                      <div className="flex items-center gap-2">
+                        <IconTemplate className="text-muted-foreground" size={16} />
+                        <span>Use Template</span>
+                      </div>
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                 </DropdownMenuContent>
@@ -272,7 +280,7 @@ export default function Ai04({
                   <DropdownMenuGroup className="space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <IconSparkles className="opacity-60" size={16} />
+                        <IconSparkles className="text-muted-foreground" size={16} />
                         <Label className="text-xs">Auto-complete</Label>
                       </div>
                       <Switch
@@ -286,7 +294,7 @@ export default function Ai04({
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <IconPlayerPlay className="opacity-60" size={16} />
+                        <IconPlayerPlay className="text-muted-foreground" size={16} />
                         <Label className="text-xs">Streaming</Label>
                       </div>
                       <Switch
@@ -300,7 +308,7 @@ export default function Ai04({
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <IconHistory className="opacity-60" size={16} />
+                        <IconHistory className="text-muted-foreground" size={16} />
                         <Label className="text-xs">Show History</Label>
                       </div>
                       <Switch
@@ -315,6 +323,7 @@ export default function Ai04({
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
+
             <div className="ml-auto flex items-center gap-0.5 sm:gap-1">
               <Button
                 className="h-7 w-7 rounded-md"
