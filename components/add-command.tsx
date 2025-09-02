@@ -12,7 +12,7 @@ export function AddCommand({ name }: { name: string }) {
     <Button
       variant="outline"
       size="sm"
-      className="!pl-2 rounded-lg"
+      className="pl-2! rounded-lg"
       onClick={() => {
         copyToClipboard(`npx shadcn@latest add @blocks/${name}`);
         toast.success(`npx command copied to clipboard`);

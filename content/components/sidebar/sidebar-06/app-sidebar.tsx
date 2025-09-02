@@ -375,7 +375,7 @@ export function AppSidebar() {
                     {sidebarItems.map((item) => {
                       const Icon = item.icon;
                       const chevronIndicator = (
-                        <IconChevronRight className="h-4 w-4 transition-transform flex-shrink-0" />
+                        <IconChevronRight className="h-4 w-4 transition-transform shrink-0" />
                       );
 
                       return (
@@ -385,10 +385,10 @@ export function AppSidebar() {
                             onClick={() => handleItemClick(item)}
                           >
                             <div className="flex items-center gap-3 flex-1 min-w-0">
-                              <Icon className="h-4 w-4 flex-shrink-0" />
+                              <Icon className="h-4 w-4 shrink-0" />
                               <span className="truncate">{item.label}</span>
                             </div>
-                            <div className="flex items-center gap-1 flex-shrink-0 ml-auto min-w-fit">
+                            <div className="flex items-center gap-1 shrink-0 ml-auto min-w-fit">
                               {(item.badge || item.hasSubItems) &&
                                 (item.badge ? (
                                   <SidebarMenuBadge
@@ -429,7 +429,7 @@ export function AppSidebar() {
                         </div>
                       </div>
                     </div>
-                    <IconLogout className="h-4 w-4 flex-shrink-0" />
+                    <IconLogout className="h-4 w-4 shrink-0" />
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               </SidebarMenu>
@@ -465,7 +465,7 @@ export function AppSidebar() {
                               onClick={() => handleSubItemClick(subItem)}
                             >
                               <div className="flex items-center gap-3 flex-1 min-w-0">
-                                <SubIcon className="h-4 w-4 flex-shrink-0" />
+                                <SubIcon className="h-4 w-4 shrink-0" />
                                 <span className="truncate">{subItem.label}</span>
                               </div>
                             </SidebarMenuButton>

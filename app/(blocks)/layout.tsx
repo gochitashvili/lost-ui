@@ -13,7 +13,7 @@ export default function BlockLayout({
     <div className="flex min-h-screen flex-col">
       <Header />
       <div className="flex flex-1 flex-col">
-        <div className="mx-auto w-full max-w-screen-xl flex-1 border-border border-r-1 border-l-1 border-dotted px-8">
+        <div className="mx-auto w-full max-w-(--breakpoint-xl) flex-1 border-border border-r border-l border-dotted px-8">
           <div className="min-h-[calc(100%-2rem)] w-full pt-10 pb-20">
             {children}
           </div>

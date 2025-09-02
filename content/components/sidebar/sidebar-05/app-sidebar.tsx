@@ -404,7 +404,7 @@ export function AppSidebar() {
                   const chevronIndicator = (
                     <IconChevronRight
                       className={cn(
-                        "h-4 w-4 transition-transform flex-shrink-0",
+                        "h-4 w-4 transition-transform shrink-0",
                         isActive && "rotate-90"
                       )}
                     />
@@ -418,10 +418,10 @@ export function AppSidebar() {
                         onClick={() => handleItemClick(item)}
                       >
                         <div className="flex items-center gap-3 flex-1 min-w-0">
-                          <Icon className="h-4 w-4 flex-shrink-0" />
+                          <Icon className="h-4 w-4 shrink-0" />
                           <span className="truncate">{item.label}</span>
                         </div>
-                        <div className="flex items-center gap-1 flex-shrink-0 ml-auto min-w-fit">
+                        <div className="flex items-center gap-1 shrink-0 ml-auto min-w-fit">
                           {(item.badge || item.hasSubItems) &&
                             (item.badge ? (
                               <SidebarMenuBadge
@@ -462,7 +462,7 @@ export function AppSidebar() {
                     </div>
                   </div>
                 </div>
-                <IconLogout className="h-4 w-4 flex-shrink-0" />
+                <IconLogout className="h-4 w-4 shrink-0" />
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -501,7 +501,7 @@ export function AppSidebar() {
                           className="w-full justify-start gap-3 h-auto py-2 px-3"
                           onClick={() => handleSubItemClick(subItem)}
                         >
-                          <SubIcon className="h-5 w-5 flex-shrink-0 self-start mt-0.5" />
+                          <SubIcon className="h-5 w-5 shrink-0 self-start mt-0.5" />
 
                           <div className="flex-1 text-left min-w-0">
                             <div className="font-medium">{subItem.label}</div>

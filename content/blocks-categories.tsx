@@ -3,14 +3,15 @@ import { FormLayoutThumbnail } from "@/components/thumbnails/form-layout";
 import { LoginThumbnail } from "@/components/thumbnails/login";
 import { StatsThumbnail } from "@/components/thumbnails/stats";
 
+import { AIThumbnail } from "@/components/thumbnails/ai";
 import { DialogThumbnail } from "@/components/thumbnails/dialog";
+import { SidebarThumbnail } from "@/components/thumbnails/sidebar";
 import { blocksMetadata } from "./blocks-metadata";
 import {
   BlocksCategoryMetadata,
   BlocksMetadata,
   categoryIds,
 } from "./declarations";
-import { SidebarThumbnail } from "@/components/thumbnails/sidebar";
 
 type CategoryCount = Record<string, number>;
 
@@ -81,6 +82,15 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
     thumbnail: SidebarThumbnail,
     hasCharts: false,
   },
+
+  {
+    id: categoryIds.AI,
+    name: "AI",
+    thumbnail: AIThumbnail,
+    hasCharts: false,
+  },
 ];
 
-export const blocksCategoriesMetadata = initializeAndUpdateCategories();
+export const blocksCategoriesMetadata = initializeAndUpdateCategories().sort(
+  (a, b) => a.name.localeCompare(b.name)
+);

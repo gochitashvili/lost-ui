@@ -109,7 +109,7 @@ export default function SignIn() {
             </Button>
           </div>
         </CardContent>
-        <CardFooter className="flex justify-center border-t !py-4">
+        <CardFooter className="flex justify-center border-t py-4!">
           <p className="text-center text-sm text-muted-foreground">
             New to Acme?{" "}
             <Link href="#" className="text-primary hover:underline">

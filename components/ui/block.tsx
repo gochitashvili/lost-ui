@@ -123,17 +123,17 @@ export const Block = ({
               onValueChange={handleViewChange}
               className="hidden lg:flex"
             >
-              <TabsList className="h-8 items-center rounded-lg px-[calc(theme(spacing.1)_-_2px)] dark:bg-background dark:text-foreground dark:border">
+              <TabsList className="h-8 items-center rounded-lg px-[calc(--spacing(1)-2px)] dark:bg-background dark:text-foreground dark:border">
                 <TabsTrigger
                   value="preview"
-                  className="h-[1.75rem] rounded-md px-2 "
+                  className="h-7 rounded-md px-2 "
                   data-umami-event="View Block Preview"
                 >
                   Preview
                 </TabsTrigger>
                 <TabsTrigger
                   value="code"
-                  className="h-[1.75rem] rounded-md px-2"
+                  className="h-7 rounded-md px-2"
                   data-umami-event="View Block Code"
                 >
                   Code
@@ -215,7 +215,7 @@ export const Block = ({
 
       <div className="relative mt-4 w-full">
         {state.view === "preview" && (
-          <div className="md:h-[--height]">
+          <div className="md:h-(--height)">
             <div className="grid w-full gap-4">
               <ResizablePanelGroup
                 direction="horizontal"
@@ -234,7 +234,7 @@ export const Block = ({
                     className="relative z-20 w-full bg-background"
                   />
                 </ResizablePanel>
-                <ResizableHandle className="relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:bg-border after:transition-all after:hover:h-10 md:block" />
+                <ResizableHandle className="relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:-translate-x-px after:rounded-full after:bg-border after:transition-all after:hover:h-10 md:block" />
                 <ResizablePanel defaultSize={0} minSize={0} />
               </ResizablePanelGroup>
             </div>
@@ -242,7 +242,7 @@ export const Block = ({
         )}
 
         {state.view === "code" && meta?.type === "file" && (
-          <div className="group-data-[view=preview]/block-view-wrapper:hidden md:h-[--height] rounded-lg border overflow-hidden">
+          <div className="group-data-[view=preview]/block-view-wrapper:hidden md:h-(--height) rounded-lg border overflow-hidden">
             <div className="bg-muted/30 h-full">
               <SingleFileCodeView code={getCleanCode(code)} />
             </div>
@@ -250,7 +250,7 @@ export const Block = ({
         )}
 
         {state.view === "code" && meta?.type === "directory" && (
-          <div className="group-data-[view=preview]/block-view-wrapper:hidden md:h-[--height] rounded-lg overflow-auto">
+          <div className="group-data-[view=preview]/block-view-wrapper:hidden md:h-(--height) rounded-lg overflow-auto">
             <CodeBlockEditor blockTitle={name} fileTree={fileTree ?? []} />
           </div>
         )}

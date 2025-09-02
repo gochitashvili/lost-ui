@@ -378,4 +378,33 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "1000px",
     type: "directory",
   },
+
+  {
+    id: "ai-01",
+    category: categoryIds.AI,
+    name: "Prompt Input with Voice Input",
+    iframeHeight: "450px",
+    type: "file",
+  },
+  {
+    id: "ai-02",
+    category: categoryIds.AI,
+    name: "Prompt Input with Model Selection",
+    iframeHeight: "400px",
+    type: "file",
+  },
+  {
+    id: "ai-03",
+    category: categoryIds.AI,
+    name: "Prompt Input Compact Interface",
+    iframeHeight: "350px",
+    type: "file",
+  },
+  {
+    id: "ai-04",
+    category: categoryIds.AI,
+    name: "Prompt Input with File Attachments",
+    iframeHeight: "650px",
+    type: "file",
+  },
 ];

@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -160,7 +160,7 @@ code[data-line-numbers] > [data-line]::before {
 }
 
 pre [data-line] {
-  @apply px-4 min-h-[1rem] py-0.5 w-full inline-block;
+  @apply px-4 min-h-4 py-0.5 w-full inline-block;
 }
 
 figure {

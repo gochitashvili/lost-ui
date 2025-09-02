@@ -234,7 +234,7 @@ function FileTreeView() {
   }, [fileTree, expandedFolders]);
 
   return (
-    <SidebarProvider className="flex !min-h-full flex-col">
+    <SidebarProvider className="flex min-h-full! flex-col">
       <Sidebar
         collapsible="none"
         className="w-full flex-1 border-r bg-muted/50"
@@ -361,7 +361,7 @@ function CodeView() {
 
   return (
     <div className="flex min-w-0 flex-1 flex-col code-block-editor-view h-full">
-      <ScrollArea className="h-full w-full bg-muted/30 !rounded-l-none !rounded-tr-none">
+      <ScrollArea className="h-full w-full bg-muted/30 rounded-l-none! rounded-tr-none!">
         <div
           className="p-4 text-base min-w-max"
           dangerouslySetInnerHTML={{ __html: highlightedCode }}
@@ -468,7 +468,7 @@ export function CodeBlockEditor({
       <CodeBlockEditorToolbar />
 
       <div className="flex w-full overflow-hidden" style={{ height }}>
-        <div className="w-[240px] flex-shrink-0 border-r">
+        <div className="w-[240px] shrink-0 border-r">
           <FileTreeView />
         </div>
         <div className="flex-1 min-w-0">
