@@ -43,11 +43,8 @@ next-env.d.ts
 # generated files
 /.component-sources
 content/index.ts
-/public/r
-/public/index.json
-/registry.json
 
-# AI 
+# AI
 .claude
 .cursor
 .vscode
