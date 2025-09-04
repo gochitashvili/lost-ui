@@ -12,7 +12,7 @@ import { GeneratorConfig } from "./lib/types";
 const DEFAULT_CONFIG: GeneratorConfig = {
   componentsDir: "content/components",
   metadataFile: "content/blocks-metadata.ts",
-  outputFile: "registry.json",
+  outputFile: "public/r/registry.json",
   individualOutputDir: "public/r",
   author: "ephraim duncan <https://ephraimduncan.com>",
   schema: "https://ui.shadcn.com/schema/registry.json",

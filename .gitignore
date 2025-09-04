@@ -45,6 +45,7 @@ next-env.d.ts
 content/index.ts
 /public/r
 /public/index.json
+/registry.json
 
 # AI 
 .claude

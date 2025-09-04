@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "generate:registry": "bunx tsx scripts/generate-registry.ts",
     "generate:registry:verbose": "bunx tsx scripts/generate-registry.ts --verbose",
-    "validate:registry": "bunx tsx scripts/generate-registry.ts validate registry.json",
+    "validate:registry": "bunx tsx scripts/generate-registry.ts validate public/r/registry.json",
     "registry:info": "bunx tsx scripts/generate-registry.ts info",
     "generate:markdown": "bun run scripts/generate-markdown.ts ./content/components/",
     "build": "bun run generate:registry && bun run generate:markdown && next build --turbopack",
