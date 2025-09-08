@@ -15,7 +15,7 @@ export function SeoJsonLd() {
         name: "gocha.dev",
         url: siteConfig.url,
         logo: `${siteConfig.url}/favicon.ico`,
-        sameAs: [siteConfig.links.twitter, siteConfig.links.github],
+        sameAs: [siteConfig.links.github],
       },
     ],
   } as const;
