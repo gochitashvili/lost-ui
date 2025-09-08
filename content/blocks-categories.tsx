@@ -3,7 +3,6 @@ import { FormLayoutThumbnail } from "@/components/thumbnails/form-layout";
 import { LoginThumbnail } from "@/components/thumbnails/login";
 import { StatsThumbnail } from "@/components/thumbnails/stats";
 
-import { AIThumbnail } from "@/components/thumbnails/ai";
 import { DialogThumbnail } from "@/components/thumbnails/dialog";
 import { SidebarThumbnail } from "@/components/thumbnails/sidebar";
 import { blocksMetadata } from "./blocks-metadata";
@@ -12,6 +11,7 @@ import {
   BlocksMetadata,
   categoryIds,
 } from "./declarations";
+import { FootersThumbnail } from "@/components/thumbnails/footers";
 
 type CategoryCount = Record<string, number>;
 
@@ -41,16 +41,16 @@ const initializeAndUpdateCategories = (): BlocksCategoryMetadata[] => {
 
 const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   {
-    id: categoryIds.Sidebar,
-    name: "Sidebar",
-    thumbnail: SidebarThumbnail,
+    id: categoryIds.Navbars,
+    name: "Navbars",
+    thumbnail: FootersThumbnail,
     hasCharts: false,
   },
 
   {
-    id: categoryIds.Navbars,
-    name: "Navbars",
-    thumbnail: AIThumbnail,
+    id: categoryIds.Footers,
+    name: "Footers",
+    thumbnail: FootersThumbnail,
     hasCharts: false,
   },
 ];

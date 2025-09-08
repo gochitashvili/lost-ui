@@ -14,7 +14,10 @@
     "sidebar",
     "tooltip"
   ],
-  "dependencies": ["@tabler/icons-react", "lucide-react"],
+  "dependencies": [
+    "@tabler/icons-react",
+    "lucide-react"
+  ],
   "files": [
     {
       "path": "content/components/sidebar/sidebar-01/app-sidebar.tsx",
@@ -59,5 +62,7 @@
       "content": "import type { ElementType } from \"react\";\n\nexport interface NavItem {\n  id: string;\n  title: string;\n  icon: ElementType;\n  url?: string;\n  isActive?: boolean;\n}\n\nexport interface User {\n  name: string;\n  email: string;\n  avatar: string;\n}\n\nexport interface FavoriteItem {\n  id: string;\n  title: string;\n  href: string;\n  color: string;\n}\n\nexport interface TeamItem {\n  id: string;\n  title: string;\n  icon: ElementType;\n}\n\nexport interface TopicItem {\n  id: string;\n  title: string;\n  icon: ElementType;\n}\n\nexport interface SidebarData {\n  user: User;\n  navMain: NavItem[];\n  navCollapsible: {\n    favorites: FavoriteItem[];\n    teams: TeamItem[];\n    topics: TopicItem[];\n  };\n}\n"
     }
   ],
-  "categories": ["sidebar"]
+  "categories": [
+    "sidebar"
+  ]
 }

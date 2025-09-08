@@ -18,7 +18,7 @@ const DEFAULT_CONFIG: GeneratorConfig = {
   schema: "https://ui.shadcn.com/schema/registry.json",
   itemSchema: "https://ui.shadcn.com/schema/registry-item.json",
   homepage: "https://lost-ui.vercel.app",
-  name: "blocks",
+  name: "lost-ui",
 };
 
 class RegistryGenerator {

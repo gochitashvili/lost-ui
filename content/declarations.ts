@@ -15,6 +15,6 @@ export type BlocksMetadata = {
 };
 
 export const categoryIds: { [key: string]: string } = {
-  Sidebar: "sidebar",
   Navbars: "navbars",
+  Footers: "footers",
 };

@@ -1,2 +1,2 @@
-export * from "./sidebar";
 export * from "./navbars";
+export * from "./footers";
