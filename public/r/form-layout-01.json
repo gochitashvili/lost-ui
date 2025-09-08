@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Workspace Registration Form",
   "description": "A workspace registration form block.",
-  "author": "ephraim duncan <https://ephraimduncan.com>",
+  "author": "Gocha Gochitashvili <https://gocha.dev>",
   "registryDependencies": [
     "button",
     "input",

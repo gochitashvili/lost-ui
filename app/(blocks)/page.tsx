@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Building Blocks for the Web",
     description: siteConfig.description,
     url: siteConfig.url,
-    siteName: "blocks.so",
+    siteName: "gocha.dev",
     images: [siteConfig.ogImage],
   },
 };

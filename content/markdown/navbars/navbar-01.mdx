@@ -1,0 +1,36 @@
+````tsx
+"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
+import {
+  IconAlertTriangle,
+  IconArrowUp,
+  IconCloud,
+  IconFileSpark,
+  IconGauge,
+  IconMenu,
+  IconPhotoScan,
+} from "@tabler/icons-react";
+import { useRef, useState } from "react";
+
+export default function Navbar01() {
+  return (
+    <nav className="flex items-center justify-between">
+      <div className="flex items-center gap-2">
+        <Button variant="ghost" size="icon">
+          <IconMenu />
+        </Button>
+      </div>
+    </nav>
+  );
+}
+````

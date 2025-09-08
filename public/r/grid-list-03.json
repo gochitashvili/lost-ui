@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Link cards with icons",
   "description": "A link cards with icons block.",
-  "author": "ephraim duncan <https://ephraimduncan.com>",
+  "author": "Gocha Gochitashvili <https://gocha.dev>",
   "registryDependencies": [
     "card"
   ],

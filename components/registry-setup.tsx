@@ -64,7 +64,7 @@ export function RegistrySetup({
         <DialogHeader>
           <DialogTitle>Setup Registry</DialogTitle>
           <DialogDescription>
-            Use the code below to configure the @blocks registry for your
+            Use the code below to configure the @lost-ui registry for your
             project.
           </DialogDescription>
         </DialogHeader>
@@ -92,7 +92,7 @@ export function RegistrySetup({
         </div>
         <div className="overflow-x-auto bg-muted p-8 rounded-md min-h-[50px]">
           <pre className="text-sm font-mono">
-            <code>npx shadcn@latest add @blocks/[component-name]</code>
+            <code>npx shadcn@latest add @lost-ui/[component-name]</code>
           </pre>
         </div>
         <div className="font-medium">
@@ -109,6 +109,6 @@ export function RegistrySetup({
 }
 
 const registrySetupCode = `"registries": {
-  "@blocks": "https://blocks.so/r/{name}.json"
+  "@lost-ui": "https://gocha.dev/r/{name}.json"
 }
 `;

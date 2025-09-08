@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Simple File Upload",
   "description": "A simple file upload block.",
-  "author": "ephraim duncan <https://ephraimduncan.com>",
+  "author": "Gocha Gochitashvili <https://gocha.dev>",
   "registryDependencies": [
     "button",
     "card",

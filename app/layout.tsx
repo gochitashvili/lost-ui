@@ -20,10 +20,10 @@ const fontMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  applicationName: "blocks.so",
+  applicationName: "gocha.dev",
   title: {
-    default: "blocks.so — Building Blocks for the Web",
-    template: "%s — blocks.so",
+    default: "gocha.dev — Building Blocks for the Web",
+    template: "%s — gocha.dev",
   },
   description: siteConfig.description,
   keywords: [
@@ -36,11 +36,11 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: "Ephraim Duncan",
-      url: "https://ephraimduncan.com",
+      name: "Gocha Gochitashvili",
+      url: "https://gocha.dev",
     },
   ],
-  creator: "Ephraim Duncan",
+  creator: "Gocha Gochitashvili",
   alternates: {
     canonical: "/",
   },
@@ -52,16 +52,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: "blocks.so — Building Blocks for the Web",
+    title: "gocha.dev — Building Blocks for the Web",
     description: siteConfig.description,
-    siteName: "blocks.so",
+    siteName: "gocha.dev",
     images: [siteConfig.ogImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "blocks.so — Building Blocks for the Web",
+    title: "gocha.dev — Building Blocks for the Web",
     description: siteConfig.description,
-    creator: "@ephraimduncan_",
+    creator: "@gochitashvili_",
     images: [siteConfig.ogImage],
   },
   icons: {

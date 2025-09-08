@@ -1,12 +1,11 @@
 export const siteConfig = {
-  name: "ephraimduncan/blocks",
-  url: "https://blocks.so",
-  ogImage: "https://blocks.so/opengraph-image.png",
+  name: "gochitashvili/lost-ui",
+  url: "https://gocha.dev",
+  ogImage: "https://gocha.dev/opengraph-image.png",
   description:
     "A set of beautifully-designed, accessible components and a code distribution platform. Works with your favorite frameworks. Open Source. Open Code.",
   links: {
-    twitter: "https://twitter.com/ephraimduncan_",
-    github: "https://github.com/ephraimduncan/blocks",
+    github: "https://github.com/gochitashvili/lost-ui",
   },
 };
 

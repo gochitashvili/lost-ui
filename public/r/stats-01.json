@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Stats with trending",
   "description": "A stats with trending block.",
-  "author": "ephraim duncan <https://ephraimduncan.com>",
+  "author": "Gocha Gochitashvili <https://gocha.dev>",
   "registryDependencies": [
     "card"
   ],

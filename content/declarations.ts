@@ -15,12 +15,6 @@ export type BlocksMetadata = {
 };
 
 export const categoryIds: { [key: string]: string } = {
-  FileUpload: "file-upload",
-  FormLayout: "form-layout",
-  Login: "login",
-  Stats: "stats",
-  GridList: "grid-list",
-  Dialogs: "dialogs",
   Sidebar: "sidebar",
-
-  AI: "ai",};
+  Navbars: "navbars",
+};

@@ -27,7 +27,7 @@ export default async function BlockPreviewPage({ params }: Params) {
   }
 
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center">
+    <div className="relative flex min-h-screen w-full  justify-center">
       <BlocksComponent />
       <PreviewThemeSwitcher />
     </div>
@@ -36,5 +36,5 @@ export default async function BlockPreviewPage({ params }: Params) {
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
-  title: "Blocks.so — Preview",
+  title: "gocha.dev — Preview",
 };

@@ -420,12 +420,16 @@ export function AppSidebar() {
                     <div className="flex items-center gap-3 flex-1 min-w-0">
                       <Avatar className="h-8 w-8 rounded-full">
                         <AvatarImage src="/avatar-01.png" alt="ephraim" />
-                        <AvatarFallback className="rounded-full">E</AvatarFallback>
+                        <AvatarFallback className="rounded-full">
+                          E
+                        </AvatarFallback>
                       </Avatar>
                       <div className="flex-1 text-left min-w-0">
-                        <div className="text-sm font-medium truncate">ephraim</div>
+                        <div className="text-sm font-medium truncate">
+                          ephraim
+                        </div>
                         <div className="text-xs text-muted-foreground truncate">
-                          ephraim@blocks.so
+                          ephraim@gocha.dev
                         </div>
                       </div>
                     </div>
@@ -445,7 +449,9 @@ export function AppSidebar() {
                 >
                   <IconArrowLeft className="h-4 w-4" />
                 </button>
-                <h3 className="font-medium flex-1 text-center">{activeItemData.label}</h3>
+                <h3 className="font-medium flex-1 text-center">
+                  {activeItemData.label}
+                </h3>
                 <div className="w-8" />
               </SidebarHeader>
 
@@ -466,7 +472,9 @@ export function AppSidebar() {
                             >
                               <div className="flex items-center gap-3 flex-1 min-w-0">
                                 <SubIcon className="h-4 w-4 shrink-0" />
-                                <span className="truncate">{subItem.label}</span>
+                                <span className="truncate">
+                                  {subItem.label}
+                                </span>
                               </div>
                             </SidebarMenuButton>
                           </SidebarMenuItem>

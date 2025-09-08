@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Simple Email Login with Google",
   "description": "A simple email login with google block.",
-  "author": "ephraim duncan <https://ephraimduncan.com>",
+  "author": "Gocha Gochitashvili <https://gocha.dev>",
   "registryDependencies": [
     "button",
     "input",

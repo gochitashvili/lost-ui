@@ -30,7 +30,7 @@ import { NavUser } from "./nav-user";
 const data = {
   user: {
     name: "ephraim",
-    email: "ephraim@blocks.so",
+    email: "ephraim@gocha.dev",
     avatar: "/avatar-01.png",
   },
   navMain: [

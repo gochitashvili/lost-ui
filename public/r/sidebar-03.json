@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Floating Sidebar",
   "description": "A floating sidebar block.",
-  "author": "ephraim duncan <https://ephraimduncan.com>",
+  "author": "Gocha Gochitashvili <https://gocha.dev>",
   "registryDependencies": [
     "avatar",
     "button",

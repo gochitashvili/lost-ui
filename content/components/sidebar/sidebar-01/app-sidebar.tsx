@@ -22,7 +22,7 @@ import type { SidebarData } from "./types";
 const data: SidebarData = {
   user: {
     name: "ephraim",
-    email: "ephraim@blocks.so",
+    email: "ephraim@gocha.dev",
     avatar: "/avatar-01.png",
   },
   navMain: [

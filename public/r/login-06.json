@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Login with Magic Link/SSO",
   "description": "A login with magic link/sso block.",
-  "author": "ephraim duncan <https://ephraimduncan.com>",
+  "author": "Gocha Gochitashvili <https://gocha.dev>",
   "registryDependencies": [
     "button",
     "card",

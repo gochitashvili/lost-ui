@@ -14,10 +14,10 @@ const DEFAULT_CONFIG: GeneratorConfig = {
   metadataFile: "content/blocks-metadata.ts",
   outputFile: "public/r/registry.json",
   individualOutputDir: "public/r",
-  author: "ephraim duncan <https://ephraimduncan.com>",
+  author: "Gocha Gochitashvili <https://gocha.dev>",
   schema: "https://ui.shadcn.com/schema/registry.json",
   itemSchema: "https://ui.shadcn.com/schema/registry-item.json",
-  homepage: "https://blocks.so",
+  homepage: "https://gocha.dev",
   name: "blocks",
 };
 

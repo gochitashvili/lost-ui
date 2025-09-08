@@ -458,7 +458,7 @@ export function AppSidebar() {
                   <div className="flex-1 text-left min-w-0">
                     <div className="text-sm font-medium truncate">ephraim</div>
                     <div className="text-xs text-muted-foreground truncate">
-                      ephraim@blocks.so
+                      ephraim@gocha.dev
                     </div>
                   </div>
                 </div>

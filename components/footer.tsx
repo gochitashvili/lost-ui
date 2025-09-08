@@ -10,17 +10,7 @@ export function Footer() {
         <footer className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 py-5">
           <div>
             <div className="text-balance text-sm leading-loose text-muted-foreground">
-              Built by{" "}
-              <a
-                href={siteConfig.links.twitter}
-                target="_blank"
-                rel="noreferrer"
-                className="font-medium underline underline-offset-4"
-                data-umami-event="View Twitter Profile"
-              >
-                ephraimduncan_
-              </a>
-              . The source code is available on{" "}
+              Built by . The source code is available on{" "}
               <a
                 href={siteConfig.links.github}
                 target="_blank"

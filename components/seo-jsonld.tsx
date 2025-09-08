@@ -6,13 +6,13 @@ export function SeoJsonLd() {
     "@graph": [
       {
         "@type": "WebSite",
-        name: "blocks.so",
+        name: "gocha.dev",
         url: siteConfig.url,
         description: siteConfig.description,
       },
       {
         "@type": "Organization",
-        name: "blocks.so",
+        name: "gocha.dev",
         url: siteConfig.url,
         logo: `${siteConfig.url}/favicon.ico`,
         sameAs: [siteConfig.links.twitter, siteConfig.links.github],

@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Drag & Drop Upload",
   "description": "A drag & drop upload block.",
-  "author": "ephraim duncan <https://ephraimduncan.com>",
+  "author": "Gocha Gochitashvili <https://gocha.dev>",
   "registryDependencies": [
     "button",
     "card",

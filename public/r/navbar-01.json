@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navbar-01",
+  "type": "registry:block",
+  "title": "Navbar",
+  "description": "A navbar block.",
+  "author": "Gocha Gochitashvili <https://gocha.dev>",
+  "registryDependencies": [
+    "button",
+    "select",
+    "textarea"
+  ],
+  "dependencies": [
+    "@tabler/icons-react"
+  ],
+  "files": [
+    {
+      "path": "content/components/navbars/navbar-01.tsx",
+      "type": "registry:component",
+      "target": "components/navbar-01.tsx",
+      "content": "\"use client\";\n\nimport { Button } from \"@/components/ui/button\";\nimport {\n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/components/ui/select\";\nimport { Textarea } from \"@/components/ui/textarea\";\nimport { cn } from \"@/lib/utils\";\nimport {\n  IconAlertTriangle,\n  IconArrowUp,\n  IconCloud,\n  IconFileSpark,\n  IconGauge,\n  IconMenu,\n  IconPhotoScan,\n} from \"@tabler/icons-react\";\nimport { useRef, useState } from \"react\";\n\nexport default function Navbar01() {\n  return (\n    <nav className=\"flex items-center justify-between\">\n      <div className=\"flex items-center gap-2\">\n        <Button variant=\"ghost\" size=\"icon\">\n          <IconMenu />\n        </Button>\n      </div>\n    </nav>\n  );\n}\n"
+    }
+  ],
+  "categories": [
+    "navbars"
+  ]
+}

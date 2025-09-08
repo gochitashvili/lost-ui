@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Early Access Application with Package Selection",
   "description": "A early access application with package selection block.",
-  "author": "ephraim duncan <https://ephraimduncan.com>",
+  "author": "Gocha Gochitashvili <https://gocha.dev>",
   "registryDependencies": [
     "button",
     "input",

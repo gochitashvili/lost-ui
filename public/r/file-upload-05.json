@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "File Upload with Progress",
   "description": "A file upload with progress block.",
-  "author": "ephraim duncan <https://ephraimduncan.com>",
+  "author": "Gocha Gochitashvili <https://gocha.dev>",
   "registryDependencies": [
     "button",
     "label"

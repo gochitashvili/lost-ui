@@ -41,42 +41,6 @@ const initializeAndUpdateCategories = (): BlocksCategoryMetadata[] => {
 
 const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   {
-    id: categoryIds.Dialogs,
-    name: "Dialogs",
-    thumbnail: DialogThumbnail,
-    hasCharts: false,
-  },
-  {
-    id: categoryIds.FileUpload,
-    name: "File Upload",
-    thumbnail: FileUploadThumbnail,
-    hasCharts: false,
-  },
-  {
-    id: categoryIds.FormLayout,
-    name: "Form Layout",
-    thumbnail: FormLayoutThumbnail,
-    hasCharts: false,
-  },
-  {
-    id: categoryIds.GridList,
-    name: "Grid List",
-    thumbnail: StatsThumbnail,
-    hasCharts: false,
-  },
-  {
-    id: categoryIds.Login,
-    name: "Login & Signup",
-    thumbnail: LoginThumbnail,
-    hasCharts: false,
-  },
-  {
-    id: categoryIds.Stats,
-    name: "Stats",
-    thumbnail: StatsThumbnail,
-    hasCharts: false,
-  },
-  {
     id: categoryIds.Sidebar,
     name: "Sidebar",
     thumbnail: SidebarThumbnail,
@@ -84,8 +48,8 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   },
 
   {
-    id: categoryIds.AI,
-    name: "AI",
+    id: categoryIds.Navbars,
+    name: "Navbars",
     thumbnail: AIThumbnail,
     hasCharts: false,
   },
