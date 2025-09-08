@@ -11,7 +11,7 @@ To use blocks from this registry, configure your `components.json` file with the
 ```json
 {
   "registries": {
-    "@blocks": "https://gocha.dev/r/{name}.json"
+    "@lost-ui": "https://lost-ui.vercel.app/r/{name}.json"
   }
 }
 ```
@@ -20,23 +20,23 @@ Then add blocks to your project using the shadcn CLI:
 
 ```bash
 # Add a specific block
-npx shadcn@latest add @blocks/login-01
+npx shadcn@latest add @lost-ui/login-01
 
 # Add a dialog block
-npx shadcn@latest add @blocks/dialog-01
+npx shadcn@latest add @lost-ui/dialog-01
 
 # Add a sidebar block
-npx shadcn@latest add @blocks/sidebar-01
+npx shadcn@latest add @lost-ui/sidebar-01
 ```
 
 Alternatively, you can add blocks directly from the registry:
 
 ```bash
 # Using the direct registry URL
-npx shadcn@latest add https://gocha.dev/r/login-01.json
+npx shadcn@latest add https://lost-ui.vercel.app/r/login-01.json
 ```
 
-Visit [gocha.dev](https://gocha.dev) to view the full documentation and browse all available blocks with live previews.
+Visit [lost-ui.vercel.app](https://lost-ui.vercel.app) to view the full documentation and browse all available blocks with live previews.
 
 ## Contributing
 

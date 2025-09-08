@@ -4,15 +4,9 @@
   "type": "registry:block",
   "title": "Header 02",
   "description": "A header 02 block.",
-  "author": "Gocha Gochitashvili <https://gocha.dev>",
-  "registryDependencies": [
-    "button",
-    "select",
-    "textarea"
-  ],
-  "dependencies": [
-    "@tabler/icons-react"
-  ],
+  "author": "Gocha Gochitashvili <https://lost-ui.vercel.app>",
+  "registryDependencies": ["button", "select", "textarea"],
+  "dependencies": ["@tabler/icons-react"],
   "files": [
     {
       "path": "content/components/headers/header-02.tsx",

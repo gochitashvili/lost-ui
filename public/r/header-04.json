@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Header 04",
   "description": "A header 04 block.",
-  "author": "Gocha Gochitashvili <https://gocha.dev>",
+  "author": "Gocha Gochitashvili <https://lost-ui.vercel.app>",
   "registryDependencies": [
     "badge",
     "button",
@@ -13,9 +13,7 @@
     "switch",
     "textarea"
   ],
-  "dependencies": [
-    "@tabler/icons-react"
-  ],
+  "dependencies": ["@tabler/icons-react"],
   "files": [
     {
       "path": "content/components/headers/header-04.tsx",

@@ -4,13 +4,8 @@
   "type": "registry:block",
   "title": "Simple File Upload",
   "description": "A simple file upload block.",
-  "author": "Gocha Gochitashvili <https://gocha.dev>",
-  "registryDependencies": [
-    "button",
-    "card",
-    "input",
-    "label"
-  ],
+  "author": "Gocha Gochitashvili <https://lost-ui.vercel.app>",
+  "registryDependencies": ["button", "card", "input", "label"],
   "dependencies": [],
   "files": [
     {
@@ -20,7 +15,5 @@
       "content": "import { Button } from \"@/components/ui/button\";\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/components/ui/card\";\nimport { Input } from \"@/components/ui/input\";\nimport { Label } from \"@/components/ui/label\";\n\nexport default function FileUpload02() {\n  return (\n    <div className=\"flex items-center justify-center p-10\">\n      <Card>\n        <CardHeader>\n          <CardTitle>Set up your first workspace</CardTitle>\n          <CardDescription>\n            Lorem ipsum dolor sit amet, consetetur sadipscing elitr.\n          </CardDescription>\n        </CardHeader>\n        <CardContent>\n          <form action=\"#\" method=\"POST\">\n            <div className=\"space-y-6\">\n              <div className=\"space-y-2\">\n                <Label htmlFor=\"workspace-name\">\n                  Workspace <span className=\"text-destructive\">*</span>\n                </Label>\n                <Input\n                  type=\"text\"\n                  id=\"workspace-name\"\n                  name=\"workspace-name\"\n                  autoComplete=\"workspace-name\"\n                  placeholder=\"Workspace name\"\n                  required\n                />\n              </div>\n              <div className=\"space-y-2\">\n                <Label htmlFor=\"file-1\">\n                  Upload file <span className=\"text-destructive\">*</span>\n                </Label>\n                <Input\n                  id=\"file-1\"\n                  name=\"file-1\"\n                  type=\"file\"\n                  accept=\".csv, .xlsx, .xls\"\n                />\n                <p className=\"text-sm text-muted-foreground\">\n                  You are only allowed to upload CSV, XLSX or XLS files.\n                </p>\n              </div>\n            </div>\n            <div className=\"flex justify-end space-x-3 mt-8\">\n              <Button type=\"button\" variant=\"outline\">\n                Cancel\n              </Button>\n              <Button type=\"submit\">Submit</Button>\n            </div>\n          </form>\n        </CardContent>\n      </Card>\n    </div>\n  );\n}\n"
     }
   ],
-  "categories": [
-    "file-upload"
-  ]
+  "categories": ["file-upload"]
 }

@@ -42,7 +42,7 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
       title: `${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui`,
       description: `A collection of beautiful and accessible ${blocksCategory.name} blocks built with React and Tailwind CSS for shadcn/ui.`,
       url: `/${params.blocksCategory}`,
-      siteName: "gocha.dev",
+      siteName: "lost-ui.vercel.app",
       images: [siteConfig.ogImage],
     },
     twitter: {

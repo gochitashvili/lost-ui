@@ -4,15 +4,9 @@
   "type": "registry:block",
   "title": "Header 03",
   "description": "A header 03 block.",
-  "author": "Gocha Gochitashvili <https://gocha.dev>",
-  "registryDependencies": [
-    "button",
-    "dropdown-menu",
-    "textarea"
-  ],
-  "dependencies": [
-    "@tabler/icons-react"
-  ],
+  "author": "Gocha Gochitashvili <https://lost-ui.vercel.app>",
+  "registryDependencies": ["button", "dropdown-menu", "textarea"],
+  "dependencies": ["@tabler/icons-react"],
   "files": [
     {
       "path": "content/components/headers/header-03.tsx",

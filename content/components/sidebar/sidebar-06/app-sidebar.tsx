@@ -429,7 +429,7 @@ export function AppSidebar() {
                           ephraim
                         </div>
                         <div className="text-xs text-muted-foreground truncate">
-                          ephraim@gocha.dev
+                          ephraim@lost-ui.vercel.app
                         </div>
                       </div>
                     </div>

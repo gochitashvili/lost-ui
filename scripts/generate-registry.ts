@@ -14,10 +14,10 @@ const DEFAULT_CONFIG: GeneratorConfig = {
   metadataFile: "content/blocks-metadata.ts",
   outputFile: "public/r/registry.json",
   individualOutputDir: "public/r",
-  author: "Gocha Gochitashvili <https://gocha.dev>",
+  author: "Gocha Gochitashvili <https://lost-ui.vercel.app>",
   schema: "https://ui.shadcn.com/schema/registry.json",
   itemSchema: "https://ui.shadcn.com/schema/registry-item.json",
-  homepage: "https://gocha.dev",
+  homepage: "https://lost-ui.vercel.app",
   name: "blocks",
 };
 

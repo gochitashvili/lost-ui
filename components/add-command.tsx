@@ -14,7 +14,7 @@ export function AddCommand({ name }: { name: string }) {
       size="sm"
       className="pl-2! rounded-lg"
       onClick={() => {
-        copyToClipboard(`npx shadcn@latest add @blocks/${name}`);
+        copyToClipboard(`npx shadcn@latest add @lost-ui/${name}`);
         toast.success(`npx command copied to clipboard`);
       }}
     >
@@ -47,7 +47,7 @@ export function AddCommand({ name }: { name: string }) {
           ></line>
         </svg>
       )}
-      {`@blocks/${name}`}
+      {`@lost-ui/${name}`}
     </Button>
   );
 }

@@ -109,6 +109,6 @@ export function RegistrySetup({
 }
 
 const registrySetupCode = `"registries": {
-  "@lost-ui": "https://gocha.dev/r/{name}.json"
+  "@lost-ui": "https://lost-ui.vercel.app/r/{name}.json"
 }
 `;

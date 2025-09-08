@@ -36,5 +36,5 @@ export default async function BlockPreviewPage({ params }: Params) {
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
-  title: "gocha.dev — Preview",
+  title: "lost-ui.vercel.app — Preview",
 };

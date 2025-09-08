@@ -20,10 +20,10 @@ const fontMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  applicationName: "gocha.dev",
+  applicationName: "lost-ui.vercel.app",
   title: {
-    default: "gocha.dev — Building Blocks for the Web",
-    template: "%s — gocha.dev",
+    default: "lost-ui.vercel.app — Building Blocks for the Web",
+    template: "%s — lost-ui.vercel.app",
   },
   description: siteConfig.description,
   keywords: [
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "Gocha Gochitashvili",
-      url: "https://gocha.dev",
+      url: "https://lost-ui.vercel.app",
     },
   ],
   creator: "Gocha Gochitashvili",
@@ -52,14 +52,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: "gocha.dev — Building Blocks for the Web",
+    title: "lost-ui.vercel.app — Building Blocks for the Web",
     description: siteConfig.description,
-    siteName: "gocha.dev",
+    siteName: "lost-ui.vercel.app",
     images: [siteConfig.ogImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "gocha.dev — Building Blocks for the Web",
+    title: "lost-ui.vercel.app — Building Blocks for the Web",
     description: siteConfig.description,
     creator: "@gochitashvili_",
     images: [siteConfig.ogImage],

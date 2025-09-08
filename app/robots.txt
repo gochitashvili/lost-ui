@@ -4,4 +4,4 @@ Disallow: /private/
 Disallow: /blocks/preview/
 Disallow: /demo/
 
-Sitemap: https://gocha.dev/sitemap.xml
+Sitemap: https://lost-ui.vercel.app/sitemap.xml

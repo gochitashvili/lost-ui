@@ -6,13 +6,13 @@ export function SeoJsonLd() {
     "@graph": [
       {
         "@type": "WebSite",
-        name: "gocha.dev",
+        name: "lost-ui.vercel.app",
         url: siteConfig.url,
         description: siteConfig.description,
       },
       {
         "@type": "Organization",
-        name: "gocha.dev",
+        name: "lost-ui.vercel.app",
         url: siteConfig.url,
         logo: `${siteConfig.url}/favicon.ico`,
         sameAs: [siteConfig.links.github],

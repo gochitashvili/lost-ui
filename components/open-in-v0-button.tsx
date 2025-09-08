@@ -16,7 +16,7 @@ export function OpenInV0Button({
     >
       <a
         href={`https://v0.dev/chat/api/open?url=${
-          process.env.NEXT_PUBLIC_BASE_URL || "https://gocha.dev"
+          process.env.NEXT_PUBLIC_BASE_URL || "https://lost-ui.vercel.app"
         }/r/${name}.json`}
         target="_blank"
         rel="noreferrer"

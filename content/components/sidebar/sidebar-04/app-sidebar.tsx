@@ -30,7 +30,7 @@ import { NavUser } from "./nav-user";
 const data = {
   user: {
     name: "ephraim",
-    email: "ephraim@gocha.dev",
+    email: "ephraim@lost-ui.vercel.app",
     avatar: "/avatar-01.png",
   },
   navMain: [
