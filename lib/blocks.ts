@@ -176,8 +176,8 @@ export function getBlocks(params: { blocksCategory: string }) {
         if (block.type === "directory") {
           const blockDirPath = path.join(
             process.cwd(),
-            "content",
             "components",
+            "lost-ui",
             block.category,
             block.id
           );

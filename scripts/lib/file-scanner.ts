@@ -173,13 +173,17 @@ export class FileScanner {
 
       return {
         type: "registry:component",
-        targetPath: path.join("components", relativeToRoot).replace(/\\/g, "/"),
+        targetPath: path
+          .join("components", "lost-ui", relativeToRoot)
+          .replace(/\\/g, "/"),
       };
     }
 
     return {
       type: "registry:component",
-      targetPath: path.join("components", fileName).replace(/\\/g, "/"),
+      targetPath: path
+        .join("components", "lost-ui", fileName)
+        .replace(/\\/g, "/"),
     };
   }
 

@@ -10,7 +10,7 @@ import { SchemaValidator } from "./lib/schema-validator";
 import { GeneratorConfig } from "./lib/types";
 
 const DEFAULT_CONFIG: GeneratorConfig = {
-  componentsDir: "content/components",
+  componentsDir: "components/lost-ui",
   metadataFile: "content/blocks-metadata.ts",
   outputFile: "public/r/registry.json",
   individualOutputDir: "public/r",

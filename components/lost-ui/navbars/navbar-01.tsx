@@ -70,18 +70,18 @@ const components: { title: string; href: string; description: string }[] = [
 
 export default function Navbar01() {
   return (
-    <nav className="w-full h-16 px-4 sm:px-8 md:px-10 lg:px-12 py-2.5 bg-secondary/30 border-b border-border/30 flex items-center justify-between">
+    <nav className="bg-secondary/30 border-border/30 flex h-16 w-full items-center justify-between border-b px-4 py-2.5 sm:px-8 md:px-10 lg:px-12">
       <div className="flex items-center gap-8">
         <a href="/" className="flex items-center gap-2">
           <span className="bg-primary text-primary-foreground flex items-center justify-center rounded-md p-1.5">
             <ChartNoAxesGantt className="size-5" />
           </span>
-          <span className="text-lg bloc font-medium text-primary">Lost</span>
+          <span className="bloc text-primary text-lg font-medium">Lost</span>
         </a>
         <NavigationMenuExample />
       </div>
       <div className="flex items-center gap-2">
-        <div className="items-center gap-2 hidden md:flex">
+        <div className="hidden items-center gap-2 md:flex">
           <Button variant="default">Sign in</Button>
           <Button variant="outline">Sign up</Button>
         </div>

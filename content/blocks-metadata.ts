@@ -7,5 +7,4 @@ export const blocksMetadata: BlocksMetadata[] = [
     name: "Navbar",
     iframeHeight: "500px",
     type: "file",
-  },
-];
+  }];

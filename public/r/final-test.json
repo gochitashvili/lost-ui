@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "final-test",
+  "type": "registry:block",
+  "title": "Final Test Component",
+  "description": "A final test component block.",
+  "author": "Gocha Gochitashvili <https://lost-ui.vercel.app>",
+  "registryDependencies": [
+    "button",
+    "card"
+  ],
+  "dependencies": [],
+  "files": [
+    {
+      "path": "components/lost-ui/navbars/final-test.tsx",
+      "type": "registry:component",
+      "target": "components/lost-ui/final-test.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/components/ui/card\";\n\nexport default function FinalTest() {\n  return (\n    <div className=\"flex items-center justify-center p-10\">\n      <Card className=\"w-full max-w-md\">\n        <CardHeader>\n          <CardTitle>Final Test Component</CardTitle>\n          <CardDescription>\n            This is a placeholder component. Update with your implementation.\n          </CardDescription>\n        </CardHeader>\n        <CardContent>\n          <Button className=\"w-full\">\n            Example Button\n          </Button>\n        </CardContent>\n      </Card>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "categories": [
+    "navbars"
+  ]
+}
