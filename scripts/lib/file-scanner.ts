@@ -123,10 +123,12 @@ export class FileScanner {
 
       switch (specialDir) {
         case "app":
+          // Extract the component/block name from the path structure
+          const blockName = this.extractBlockNameFromPath(filePath);
           return {
             type: "registry:page",
             targetPath: path
-              .join("app", pathAfterSpecialDir)
+              .join("app", blockName, "page.tsx")
               .replace(/\\/g, "/"),
           };
 
@@ -179,6 +181,26 @@ export class FileScanner {
       type: "registry:component",
       targetPath: path.join("components", fileName).replace(/\\/g, "/"),
     };
+  }
+
+  private extractBlockNameFromPath(filePath: string): string {
+    const relativePath = path.relative(
+      path.resolve(this.config.componentsDir),
+      filePath
+    );
+    const pathParts = relativePath.split(path.sep);
+
+    // Find the category (first part after components dir)
+    // For example: components/navbars/navbar-01/app/page.tsx -> navbars
+    const categoryIndex = 0;
+    const category = pathParts[categoryIndex];
+
+    // Find the block name (second part)
+    // For example: components/navbars/navbar-01/app/page.tsx -> navbar-01
+    const blockNameIndex = 1;
+    const blockName = pathParts[blockNameIndex] || category;
+
+    return blockName;
   }
 
   private isSourceFile(filename: string): boolean {

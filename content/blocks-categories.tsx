@@ -46,13 +46,6 @@ const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
     thumbnail: FootersThumbnail,
     hasCharts: false,
   },
-
-  {
-    id: categoryIds.Footers,
-    name: "Footers",
-    thumbnail: FootersThumbnail,
-    hasCharts: false,
-  },
 ];
 
 export const blocksCategoriesMetadata = initializeAndUpdateCategories().sort(

@@ -4,29 +4,6 @@
   "homepage": "https://lost-ui.vercel.app",
   "items": [
     {
-      "name": "footer-01",
-      "type": "registry:block",
-      "title": "Simple Footer",
-      "description": "A simple footer block.",
-      "author": "Gocha Gochitashvili <https://lost-ui.vercel.app>",
-      "registryDependencies": [
-        "button",
-        "card"
-      ],
-      "dependencies": [],
-      "files": [
-        {
-          "path": "content/components/footers/footer-01/index.tsx",
-          "type": "registry:component",
-          "target": "components/index.tsx",
-          "content": "import { Button } from \"@/components/ui/button\";\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/components/ui/card\";\n\nexport default function Footer01() {\n  return (\n    <div className=\"flex items-center justify-center p-10\">\n      <Card className=\"w-full max-w-md\">\n        <CardHeader>\n          <CardTitle>Simple Footer</CardTitle>\n          <CardDescription>\n            This is a placeholder component. Update with your implementation.\n          </CardDescription>\n        </CardHeader>\n        <CardContent>\n          <Button className=\"w-full\">\n            Example Button\n          </Button>\n        </CardContent>\n      </Card>\n    </div>\n  );\n}\n"
-        }
-      ],
-      "categories": [
-        "footers"
-      ]
-    },
-    {
       "name": "navbar-01",
       "type": "registry:block",
       "title": "Navbar",

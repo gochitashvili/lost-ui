@@ -8,12 +8,4 @@ export const blocksMetadata: BlocksMetadata[] = [
     iframeHeight: "500px",
     type: "file",
   },
-
-  {
-    id: "footer-01",
-    category: categoryIds.Footers,
-    name: "Simple Footer",
-    iframeHeight: "1000px",
-    type: "directory",
-  },
 ];

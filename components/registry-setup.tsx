@@ -23,11 +23,7 @@ export function RegistrySetup({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          variant="ghost"
-          size="default"
-          className={cn(className, "rounded-full")}
-        >
+        <Button variant="ghost" size="default" className={cn(className)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 256"
