@@ -2,17 +2,19 @@
 
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { IconBrandGithub, IconSquareRoundedFilled } from "@tabler/icons-react";
 import { RegistrySetup } from "./registry-setup";
 import Logo from "./logo";
+import { ThemeSwitcher } from "./theme-switcher";
+import { RiGithubFill } from "react-icons/ri";
 
 export function Header() {
   return (
-    <div className="sticky top-0 z-50 border-border border-b border-dotted bg-background">
-      <div className="mx-auto flex max-w-(--breakpoint-xl) items-center justify-between border-border border-r border-l border-dotted px-4 sm:px-8">
+    <div className="border-border bg-background sticky top-0 z-50 border-b">
+      <div className="mx-auto flex max-w-(--breakpoint-xl) items-center justify-between px-4 sm:px-8">
         <Logo className="py-5" />
         <div className="flex items-center gap-2">
           <RegistrySetup />
+          <ThemeSwitcher />
           <a
             className={cn(buttonVariants({ variant: "ghost" }))}
             data-umami-event="View GitHub Repository"
@@ -20,7 +22,7 @@ export function Header() {
             rel="noreferrer"
             target="_blank"
           >
-            <IconBrandGithub className="size-5" />
+            <RiGithubFill className="size-5" />
           </a>
         </div>
       </div>

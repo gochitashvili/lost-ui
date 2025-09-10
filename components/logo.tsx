@@ -8,7 +8,7 @@ function Logo({ className }: { className?: string }) {
       <span className="bg-primary text-primary-foreground flex items-center justify-center rounded-md p-1.5">
         <ChartNoAxesGantt className="size-5" />
       </span>
-      <span className="text-lg bloc font-medium text-primary">Lost</span>
+      <span className="bloc text-primary text-lg font-medium">Lost</span>
     </Link>
   );
 }

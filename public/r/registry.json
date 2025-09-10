@@ -35,6 +35,28 @@
           "content": "import { cn } from \"@/lib/utils\";\nimport { ChartNoAxesGantt } from \"lucide-react\";\nimport Link from \"next/link\";\n\nfunction LelukaAiLogo({ className }: { className?: string }) {\n  return (\n    <Link href=\"/\" className={cn(\"flex items-center gap-2\", className)}>\n      <ChartNoAxesGantt className=\"size-5\" />\n      <span className=\"text-leluka-ai-foreground/80 -ml-1 text-lg font-medium\">\n        Leluka AI\n      </span>\n    </Link>\n  );\n}\n\nexport default LelukaAiLogo;\n"
         }
       ],
+      "cssVars": {
+      "light": {
+      "background": "oklch(5 5 5)",
+      "foreground": "oklch(0.141 0.005 285.823)",
+      "primary": "oklch(0.546 0.245 262.881)",
+      "primary-foreground": "oklch(0.97 0.014 254.604)",
+      "ring": "oklch(0.746 0.16 232.661)",
+      "sidebar-primary": "oklch(0.546 0.245 262.881)",
+      "sidebar-primary-foreground": "oklch(0.97 0.014 254.604)",
+      "sidebar-ring": "oklch(0.746 0.16 232.661)"
+    },
+    "dark": {
+      "background": "oklch(1 0 0)",
+      "foreground": "oklch(0.141 0.005 285.823)",
+      "primary": "oklch(0.707 0.165 254.624)",
+      "primary-foreground": "oklch(0.97 0.014 254.604)",
+      "ring": "oklch(0.707 0.165 254.624)",
+      "sidebar-primary": "oklch(0.707 0.165 254.624)",
+      "sidebar-primary-foreground": "oklch(0.97 0.014 254.604)",
+      "sidebar-ring": "oklch(0.707 0.165 254.624)"
+    }
+      },
       "categories": [
         "leluka-ai"
       ]
