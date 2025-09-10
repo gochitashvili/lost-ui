@@ -171,18 +171,20 @@ export class FileScanner {
         };
       }
 
+      const categoryName = this.extractCategoryFromPath(filePath);
       return {
         type: "registry:component",
         targetPath: path
-          .join("components", "lost-ui", relativeToRoot)
+          .join("components", categoryName, relativeToRoot)
           .replace(/\\/g, "/"),
       };
     }
 
+    const categoryName = this.extractCategoryFromPath(filePath);
     return {
       type: "registry:component",
       targetPath: path
-        .join("components", "lost-ui", fileName)
+        .join("components", categoryName, fileName)
         .replace(/\\/g, "/"),
     };
   }
@@ -205,6 +207,18 @@ export class FileScanner {
     const blockName = pathParts[blockNameIndex] || category;
 
     return blockName;
+  }
+
+  private extractCategoryFromPath(filePath: string): string {
+    const relativePath = path.relative(
+      path.resolve(this.config.componentsDir),
+      filePath
+    );
+    const pathParts = relativePath.split(path.sep);
+
+    // Extract the category (first part after components dir)
+    // For example: content/components/leluka-ai/leluka-ai-guest-view/button.tsx -> leluka-ai
+    return pathParts[0] || "components";
   }
 
   private isSourceFile(filename: string): boolean {

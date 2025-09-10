@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "leluka-ai-user-view",
+  "type": "registry:page",
+  "title": "User View",
+  "description": "A user view block.",
+  "author": "Gocha Gochitashvili <https://lost-ui.vercel.app>",
+  "registryDependencies": [
+    "button",
+    "card"
+  ],
+  "dependencies": [],
+  "files": [
+    {
+      "path": "content/components/leluka-ai/leluka-ai-user-view/app/page.tsx",
+      "type": "registry:page",
+      "target": "app/leluka-ai-user-view/page.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/components/ui/card\";\n\nexport default function LelukaAiUserViewPage() {\n  return (\n    <div className=\"min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8\">\n      <div className=\"mx-auto max-w-4xl\">\n        <h1 className=\"mb-8 text-center text-4xl font-bold\">User View</h1>\n        \n        <div className=\"grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3\">\n          <Card className=\"transition-shadow hover:shadow-lg\">\n            <CardHeader>\n              <CardTitle>Demo Card</CardTitle>\n              <CardDescription>\n                This is a full page demo. Update with your implementation.\n              </CardDescription>\n            </CardHeader>\n            <CardContent>\n              <Button className=\"w-full\">Get Started</Button>\n            </CardContent>\n          </Card>\n        </div>\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ],
+  "categories": [
+    "leluka-ai"
+  ]
+}

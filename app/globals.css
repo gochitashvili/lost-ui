@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -43,6 +43,9 @@
   --radius-xl: calc(var(--radius) + 4px);
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  --color-leluka-ai-background: var(--leluka-ai-background);
+  --color-leluka-ai-foreground: var(--leluka-ai-foreground);
 
   @keyframes accordion-down {
     from {
@@ -96,6 +99,9 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --leluka-ai-background: oklch(0.98 0 106);
+  --leluka-ai-foreground: oklch(0.27 0.01 34);
 }
 
 .dark {
@@ -130,6 +136,9 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  --leluka-ai-background: oklch(0.27 0.01 34);
+  --leluka-ai-foreground: oklch(0.98 0 106);
 }
 
 @layer base {
@@ -142,7 +151,7 @@
 }
 
 pre {
-  @apply text-base rounded-lg;
+  @apply rounded-lg text-base;
 }
 
 pre > code {
@@ -156,15 +165,15 @@ code[data-line-numbers] {
 code[data-line-numbers] > [data-line]::before {
   counter-increment: line;
   content: counter(line);
-  @apply inline-block w-4 mr-4 text-right text-zinc-50/40;
+  @apply mr-4 inline-block w-4 text-right text-zinc-50/40;
 }
 
 pre [data-line] {
-  @apply px-4 min-h-4 py-0.5 w-full inline-block;
+  @apply inline-block min-h-4 w-full px-4 py-0.5;
 }
 
 figure {
-  @apply mb-6 mt-1;
+  @apply mt-1 mb-6;
 }
 
 pre,

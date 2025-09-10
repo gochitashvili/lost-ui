@@ -2,9 +2,9 @@ import { BlocksMetadata, categoryIds } from "./declarations";
 
 export const blocksMetadata: BlocksMetadata[] = [
   {
-    id: "navbar-01",
-    category: categoryIds.Navbars,
-    name: "Navbar",
-    iframeHeight: "500px",
-    type: "file",
-  }];
+    id: "leluka-ai-guest-view",
+    category: categoryIds.LelukaAI,
+    name: "Guest View",
+    type: "directory",
+  },
+];

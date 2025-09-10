@@ -105,23 +105,17 @@ export const ${categoryKey}Thumbnail = (
     `content/components/${categorySlug}`
   );
   const markdownDir = join(process.cwd(), `content/markdown/${categorySlug}`);
-  const lostUiDir = join(process.cwd(), `components/lost-ui/${categorySlug}`);
 
   mkdirSync(componentDir, { recursive: true });
   mkdirSync(markdownDir, { recursive: true });
-  mkdirSync(lostUiDir, { recursive: true });
   console.log(
-    `✓ Created directories: content/components/${categorySlug}/, content/markdown/${categorySlug}/, and components/lost-ui/${categorySlug}/`
+    `✓ Created directories: content/components/${categorySlug}/ and content/markdown/${categorySlug}/`
   );
 
-  // 5. Create category index.ts files
+  // 5. Create category index.ts file
   const categoryIndexPath = join(componentDir, "index.ts");
   writeFileSync(categoryIndexPath, "// Export your components here\n");
   console.log(`✓ Created content/components/${categorySlug}/index.ts`);
-
-  const lostUiIndexPath = join(lostUiDir, "index.ts");
-  writeFileSync(lostUiIndexPath, "// Export your components here\n");
-  console.log(`✓ Created components/lost-ui/${categorySlug}/index.ts`);
 
   // 6. Update main components index.ts
   const mainIndexPath = join(process.cwd(), "content/components/index.ts");

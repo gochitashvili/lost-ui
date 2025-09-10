@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "leluka-ai-guest-view",
+  "type": "registry:page",
+  "title": "Guest View",
+  "description": "A guest view block.",
+  "author": "Gocha Gochitashvili <https://lost-ui.vercel.app>",
+  "registryDependencies": [],
+  "dependencies": [
+    "@radix-ui/react-slot",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "content/components/leluka-ai/leluka-ai-guest-view/app/page.tsx",
+      "type": "registry:page",
+      "target": "app/leluka-ai-guest-view/page.tsx",
+      "content": "import { Button } from \"@/components/button\";\nimport LelukaAiLogo from \"@/components/logo\";\n\nexport default function LelukaAiGuestViewPage() {\n  return (\n    <div className=\"bg-leluka-ai-background flex h-full min-h-screen w-full flex-col justify-between\">\n      <div className=\"mx-auto flex w-full max-w-(--breakpoint-xl) items-center justify-between px-4 py-6 sm:px-6 md:px-8 lg:px-10 xl:px-12\">\n        <LelukaAiLogo />\n        <div>\n          <Button variant=\"secondary\" size=\"lg\">\n            Login\n          </Button>\n        </div>\n      </div>\n      <div className=\"flex h-full flex-1 flex-col justify-between\">\n        <div className=\"flex flex-1 items-center justify-center\">\n          content here\n        </div>\n        <div className=\"mx-auto flex w-full max-w-(--breakpoint-xl) items-center justify-center px-4 py-6 sm:px-6 md:px-8 lg:px-10 xl:px-12\">\n          <div className=\"text-muted-foreground text-center text-xs\">\n            <span>\n              All rights reserved © {new Date().getFullYear()} Leluka AI\n            </span>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "content/components/leluka-ai/leluka-ai-guest-view/button.tsx",
+      "type": "registry:component",
+      "target": "components/leluka-ai/button.tsx",
+      "content": "import * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst buttonVariants = cva(\n  \"focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"bg-primary text-primary-foreground hover:bg-primary/90 shadow-xs\",\n        destructive:\n          \"bg-destructive hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 text-white shadow-xs\",\n        outline:\n          \"bg-background hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 border shadow-xs\",\n        secondary:\n          \"bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-xs\",\n        ghost:\n          \"hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50\",\n        link: \"text-primary underline-offset-4 hover:underline\",\n      },\n      size: {\n        default: \"h-9 px-4 py-2 has-[>svg]:px-3\",\n        sm: \"h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5\",\n        lg: \"h-10 rounded-md px-6 has-[>svg]:px-4\",\n        icon: \"size-9\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  }\n);\n\nfunction Button({\n  className,\n  variant,\n  size,\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"button\"> &\n  VariantProps<typeof buttonVariants> & {\n    asChild?: boolean;\n  }) {\n  const Comp = asChild ? Slot : \"button\";\n\n  return (\n    <Comp\n      data-slot=\"button\"\n      className={cn(buttonVariants({ variant, size, className }))}\n      {...props}\n    />\n  );\n}\n\nexport { Button, buttonVariants };\n"
+    },
+    {
+      "path": "content/components/leluka-ai/leluka-ai-guest-view/logo.tsx",
+      "type": "registry:component",
+      "target": "components/leluka-ai/logo.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\nimport { ChartNoAxesGantt } from \"lucide-react\";\nimport Link from \"next/link\";\n\nfunction LelukaAiLogo({ className }: { className?: string }) {\n  return (\n    <Link href=\"/\" className={cn(\"flex items-center gap-2\", className)}>\n      <ChartNoAxesGantt className=\"size-5\" />\n      <span className=\"text-leluka-ai-foreground/80 -ml-1 text-lg font-medium\">\n        Leluka AI\n      </span>\n    </Link>\n  );\n}\n\nexport default LelukaAiLogo;\n"
+    }
+  ],
+  "categories": [
+    "leluka-ai"
+  ]
+}

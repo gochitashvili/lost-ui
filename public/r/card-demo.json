@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-demo",
+  "type": "registry:page",
+  "title": "Interactive Card Demo",
+  "description": "A interactive card demo block.",
+  "author": "Gocha Gochitashvili <https://lost-ui.vercel.app>",
+  "registryDependencies": [
+    "button",
+    "card"
+  ],
+  "dependencies": [],
+  "files": [
+    {
+      "path": "content/components/cards/card-demo/app/page.tsx",
+      "type": "registry:page",
+      "target": "app/card-demo/page.tsx",
+      "content": "import { DemoCard } from \"@/components/components/demo-card\";\nimport { cardData } from \"@/components/lib/card-data\";\n\nexport default function CardDemoPage() {\n  return (\n    <div className=\"min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8\">\n      <div className=\"mx-auto max-w-4xl\">\n        <h1 className=\"mb-8 text-center text-4xl font-bold\">\n          Interactive Card Demo\n        </h1>\n\n        <div className=\"grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3\">\n          {cardData.map((card) => (\n            <DemoCard\n              key={card.id}\n              title={card.title}\n              description={card.description}\n              buttonText={card.buttonText}\n              variant={card.variant}\n            />\n          ))}\n        </div>\n      </div>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "content/components/cards/card-demo/components/demo-card.tsx",
+      "type": "registry:component",
+      "target": "components/lost-ui/components/demo-card.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/components/ui/card\";\n\ninterface DemoCardProps {\n  title: string;\n  description: string;\n  buttonText: string;\n  variant?: \"default\" | \"outline\" | \"secondary\";\n}\n\nexport function DemoCard({\n  title,\n  description,\n  buttonText,\n  variant = \"default\",\n}: DemoCardProps) {\n  return (\n    <Card className=\"transition-shadow hover:shadow-lg\">\n      <CardHeader>\n        <CardTitle>{title}</CardTitle>\n        <CardDescription>{description}</CardDescription>\n      </CardHeader>\n      <CardContent>\n        <Button variant={variant} className=\"w-full\">\n          {buttonText}\n        </Button>\n      </CardContent>\n    </Card>\n  );\n}\n"
+    },
+    {
+      "path": "content/components/cards/card-demo/index.tsx",
+      "type": "registry:component",
+      "target": "components/lost-ui/index.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardHeader,\n  CardTitle,\n} from \"@/components/ui/card\";\n\nexport default function CardDemo() {\n  return (\n    <div className=\"flex items-center justify-center p-10\">\n      <Card className=\"w-full max-w-md\">\n        <CardHeader>\n          <CardTitle>Interactive Card Demo</CardTitle>\n          <CardDescription>\n            This is a placeholder component. Update with your implementation.\n          </CardDescription>\n        </CardHeader>\n        <CardContent>\n          <Button className=\"w-full\">\n            Example Button\n          </Button>\n        </CardContent>\n      </Card>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "content/components/cards/card-demo/lib/card-data.ts",
+      "type": "registry:lib",
+      "target": "lib/card-data.ts",
+      "content": "export interface CardData {\n  id: string;\n  title: string;\n  description: string;\n  buttonText: string;\n  variant: \"default\" | \"outline\" | \"secondary\";\n}\n\nexport const cardData: CardData[] = [\n  {\n    id: \"card-1\",\n    title: \"Demo Card 1\",\n    description: \"This is a demo page rendered instead of component\",\n    buttonText: \"Click Me\",\n    variant: \"default\",\n  },\n  {\n    id: \"card-2\",\n    title: \"Demo Card 2\",\n    description: \"Full page experience with multiple cards\",\n    buttonText: \"Learn More\",\n    variant: \"outline\",\n  },\n  {\n    id: \"card-3\",\n    title: \"Demo Card 3\",\n    description: \"Interactive demo with beautiful styling\",\n    buttonText: \"Get Started\",\n    variant: \"secondary\",\n  },\n];\n"
+    }
+  ],
+  "categories": [
+    "cards"
+  ]
+}

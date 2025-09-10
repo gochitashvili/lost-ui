@@ -1,17 +1,10 @@
-import { FileUploadThumbnail } from "@/components/thumbnails/file-upload";
-import { FormLayoutThumbnail } from "@/components/thumbnails/form-layout";
-import { LoginThumbnail } from "@/components/thumbnails/login";
-import { StatsThumbnail } from "@/components/thumbnails/stats";
-
-import { DialogThumbnail } from "@/components/thumbnails/dialog";
-import { SidebarThumbnail } from "@/components/thumbnails/sidebar";
 import { blocksMetadata } from "./blocks-metadata";
 import {
   BlocksCategoryMetadata,
   BlocksMetadata,
   categoryIds,
 } from "./declarations";
-import { FootersThumbnail } from "@/components/thumbnails/footers";
+import { LelukaAIThumbnail } from "@/components/thumbnails/leluka-ai";
 
 type CategoryCount = Record<string, number>;
 
@@ -41,9 +34,9 @@ const initializeAndUpdateCategories = (): BlocksCategoryMetadata[] => {
 
 const preblocksCategoriesMetadata: Omit<BlocksCategoryMetadata, "count">[] = [
   {
-    id: categoryIds.Navbars,
-    name: "Navbars",
-    thumbnail: FootersThumbnail,
+    id: categoryIds.LelukaAI,
+    name: "Leluka AI",
+    thumbnail: LelukaAIThumbnail,
     hasCharts: false,
   },
 ];

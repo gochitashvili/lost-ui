@@ -148,9 +148,13 @@ export class RegistryBuilder {
       this.buildRegistryFile(file)
     );
 
+    const metadata = metadataMap.get(block.id);
+    const blockType =
+      metadata?.type === "directory" ? "registry:page" : "registry:block";
+
     const registryItem: RegistryItem = {
       name: block.id,
-      type: "registry:block",
+      type: blockType,
       title: block.title,
       description: block.description,
       author: this.config.author,
@@ -159,7 +163,6 @@ export class RegistryBuilder {
       files: registryFiles,
     };
 
-    const metadata = metadataMap.get(block.id);
     if (metadata) {
       if (metadata.category) {
         registryItem.categories = [metadata.category];

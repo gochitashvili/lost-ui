@@ -86,7 +86,7 @@ export interface FolderItem extends BaseItem {
 
 export type FileTreeItem = FileItem | FolderItem;
 
-function generateFileTree(
+export function generateFileTree(
   dirPath: string,
   basePath: string = dirPath
 ): FileTreeItem[] {
@@ -176,8 +176,7 @@ export function getBlocks(params: { blocksCategory: string }) {
         if (block.type === "directory") {
           const blockDirPath = path.join(
             process.cwd(),
-            "components",
-            "lost-ui",
+            "content/components",
             block.category,
             block.id
           );

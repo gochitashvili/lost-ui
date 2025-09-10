@@ -1,6 +1,6 @@
 import { JSX, SVGProps } from "react";
 
-export const FootersThumbnail = (
+export const LelukaAIThumbnail = (
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
 ) => (
   <svg width="296" height="141" viewBox="0 0 296 141" fill="none" {...props}>

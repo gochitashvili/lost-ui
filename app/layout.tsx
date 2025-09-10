@@ -88,7 +88,6 @@ export default function RootLayout({
           enableSystem
         >
           {children}
-
           <TailwindIndicator />
           <Toaster />
           <SeoJsonLd />

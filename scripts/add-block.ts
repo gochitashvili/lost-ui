@@ -57,7 +57,7 @@ function createFileTypeBlock(args: BlockArgs) {
   const componentName = toPascalCase(id);
   const componentPath = join(
     process.cwd(),
-    `components/lost-ui/${category}/${id}.tsx`
+    `content/components/${category}/${id}.tsx`
   );
 
   // Create basic component template
@@ -98,14 +98,15 @@ export default function ${componentName}() {
 function createDirectoryTypeBlock(args: BlockArgs) {
   const { category, id, name } = args;
   const componentName = toPascalCase(id);
-  const blockDir = join(process.cwd(), `components/lost-ui/${category}/${id}`);
+  const blockDir = join(process.cwd(), `content/components/${category}/${id}`);
+  const appDir = join(blockDir, "app");
 
-  // Create directory
-  mkdirSync(blockDir, { recursive: true });
+  // Create directories
+  mkdirSync(appDir, { recursive: true });
 
-  // Create main index.tsx
-  const indexPath = join(blockDir, "index.tsx");
-  const indexContent = `import { Button } from "@/components/ui/button";
+  // Create app/page.tsx instead of index.tsx
+  const pagePath = join(appDir, "page.tsx");
+  const pageContent = `import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -114,29 +115,33 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export default function ${componentName}() {
+export default function ${componentName}Page() {
   return (
-    <div className="flex items-center justify-center p-10">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>${name}</CardTitle>
-          <CardDescription>
-            This is a placeholder component. Update with your implementation.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Button className="w-full">
-            Example Button
-          </Button>
-        </CardContent>
-      </Card>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
+      <div className="mx-auto max-w-4xl">
+        <h1 className="mb-8 text-center text-4xl font-bold">${name}</h1>
+        
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Card className="transition-shadow hover:shadow-lg">
+            <CardHeader>
+              <CardTitle>Demo Card</CardTitle>
+              <CardDescription>
+                This is a full page demo. Update with your implementation.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button className="w-full">Get Started</Button>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 }
 `;
 
-  writeFileSync(indexPath, indexContent);
-  console.log(`✓ Created ${blockDir}/ with index.tsx`);
+  writeFileSync(pagePath, pageContent);
+  console.log(`✓ Created ${blockDir}/ with app/page.tsx`);
 }
 
 async function runGenerateMarkdown(): Promise<void> {
@@ -192,9 +197,20 @@ async function main() {
     // Find the end of the array and insert before the closing bracket
     const arrayEndMatch = metadataContent.match(/(\];)$/m);
     if (arrayEndMatch) {
+      // Check if the last entry needs a comma
+      const beforeClosing = metadataContent.substring(
+        0,
+        metadataContent.lastIndexOf(arrayEndMatch[0])
+      );
+      const lastChar = beforeClosing.trim().slice(-1);
+
+      // If the last character is not a comma and not an opening bracket, add a comma
+      const needsComma = lastChar !== "," && lastChar !== "[";
+      const commaPrefix = needsComma ? "," : "";
+
       metadataContent = metadataContent.replace(
         arrayEndMatch[0],
-        newEntry + "\n" + arrayEndMatch[0]
+        commaPrefix + newEntry + "\n" + arrayEndMatch[0]
       );
     }
 
@@ -211,9 +227,20 @@ async function main() {
     // Find the end of the object and insert before the closing brace
     const objectEndMatch = componentsContent.match(/(\};)$/m);
     if (objectEndMatch) {
+      // Check if the last entry needs a comma
+      const beforeClosing = componentsContent.substring(
+        0,
+        componentsContent.lastIndexOf(objectEndMatch[0])
+      );
+      const lastChar = beforeClosing.trim().slice(-1);
+
+      // If the last character is not a comma and not an opening brace, add a comma
+      const needsComma = lastChar !== "," && lastChar !== "{";
+      const commaPrefix = needsComma ? "," : "";
+
       componentsContent = componentsContent.replace(
         objectEndMatch[0],
-        newComponentEntry + objectEndMatch[0]
+        commaPrefix + "\n" + newComponentEntry + objectEndMatch[0]
       );
     }
 
@@ -223,17 +250,22 @@ async function main() {
     // 4. Update category index.ts
     const categoryIndexPath = join(
       process.cwd(),
-      `components/lost-ui/${args.category}/index.ts`
+      `content/components/${args.category}/index.ts`
     );
     let categoryIndexContent = readFileSync(categoryIndexPath, "utf8");
 
     const exportEntry = `export { default as ${componentName} } from "./${args.id}";\n`;
-    categoryIndexContent += exportEntry;
 
-    writeFileSync(categoryIndexPath, categoryIndexContent);
-    console.log(`✓ Updated components/lost-ui/${args.category}/index.ts`);
+    // Check if export already exists to avoid duplicates
+    if (
+      !categoryIndexContent.includes(`export { default as ${componentName} }`)
+    ) {
+      categoryIndexContent += exportEntry;
+      writeFileSync(categoryIndexPath, categoryIndexContent);
+      console.log(`✓ Updated content/components/${args.category}/index.ts`);
+    }
 
-    // 5. Generate markdown for file-type blocks
+    // 7. Generate markdown for file-type blocks
     if (args.type === "file") {
       await runGenerateMarkdown();
     }
@@ -242,11 +274,11 @@ async function main() {
     console.log(`\nNext steps:`);
     if (args.type === "file") {
       console.log(
-        `1. Update the component implementation in components/lost-ui/${args.category}/${args.id}.tsx`
+        `1. Update the component implementation in content/components/${args.category}/${args.id}.tsx`
       );
     } else {
       console.log(
-        `1. Update the component implementation in components/lost-ui/${args.category}/${args.id}/`
+        `1. Update the component implementation in content/components/${args.category}/${args.id}/`
       );
       console.log(
         `2. Add additional component files as needed in the directory`

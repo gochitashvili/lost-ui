@@ -89,7 +89,7 @@ npx tsx scripts/add-category.ts "E-commerce"
 
 ```bash
 # Create a "Tables" category
-npx tsx scripts/add-category.ts "Tables"
+npx tsx scripts/add-category.ts "Leluka AI"
 
 # This creates category ID "tables" automatically from "Tables"
 ```
@@ -117,7 +117,7 @@ Use the `add-block` script to create new blocks in existing categories:
 
 ```bash
 # Basic file block
-npx tsx scripts/add-block.ts --category navbars --name "Navigation Bar 02" --id navbar-02 --type file
+npx tsx scripts/add-block.ts --category leluka-ai --name "Guest View" --id leluka-ai-guest-view --type directory
 
 # File block with custom iframe height
 npx tsx scripts/add-block.ts --category forms --name "Contact Form" --id contact-form --type file --height 600px
@@ -134,7 +134,7 @@ npx tsx scripts/add-block.ts --category auth --name "Login Form" --id login-form
 
 ```bash
 # Directory block for complex components
-npx tsx scripts/add-block.ts --category tables --name "Advanced Data Table" --id advanced-table --type directory
+npx tsx scripts/add-block.ts --category LelukaAI --name "Guest View" --id guest-view --type directory
 ```
 
 **Example:**
